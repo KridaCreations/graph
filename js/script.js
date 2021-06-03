@@ -39,9 +39,9 @@ function graph_click(event){
 			console.log("i");
 			new_node.style=`left:${event.offsetX - 25}px;top: ${event.offsetY -25}px;`;
 			console.log("j");
-			// new_node.addEventListener('click',node_click);
-			// new_node.addEventListener('mouseup',node_mouse_up);
-			// new_node.addEventListener('mousedown',node_mouse_down);
+			new_node.addEventListener('click',node_click);
+			new_node.addEventListener('mouseup',node_mouse_up);
+			new_node.addEventListener('mousedown',node_mouse_down);
 			
 		}
 		// console.log("k");
