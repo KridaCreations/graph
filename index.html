@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html >
+<head>
+	<title>GraphAlgorithmVisualizer</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body style="padding: 0px; margin: 0px;">
+
+	<h1 >GraphAlgorithmVisualizer</h1>
+	<div id = "control-panel" >
+		<div class="options">
+			<label class = "radio_buttons">ADD<input  type="radio" name="mode" checked="true" id="add_button"></label>
+			<label class = "radio_buttons">DELETE<input type="radio" name="mode" id="delete_button"></label>
+			<label class = "radio_buttons">CONNECT<input type="radio" name="mode" id="connect_button"></label>
+			<label class = "radio_buttons">FOCUS<input type="radio" name="mode" id="focus_button"></label>
+			<label class = "radio_buttons">MOVE<input type="radio" name="mode" id="move_button"></label>
+		</div>
+		<label class="options">Connection Type
+			<select >
+				<option>Bidirectional Unweighted</option>
+				<option>directional Unweighted</option>
+				<option>Bidirectional weighted</option>
+				<option>directional weighted</option>
+			</select>
+		</label>
+		<div class="options">
+			<label>Algorithm
+				<select name="EightiesFave">
+					<option>Breadth First Search</option>
+					<option>Depth First Search</option>
+					<option>Dijsktra Algorithm</option>
+					<option>Bellman Ford Algorithm</option>
+					<option>Kruskal Algorithm</option>
+					<option>Prims's Algorithm</option>
+					<option>Articulation Points</option>
+					<option>Finding Bridges</option>
+				</select>
+				<button id="bake">Bake Animation</button>
+			</label>
+		</div>
+
+	</div>
+	<!-- ondragenter="return dragEnter(event)" ondrop="return dragDrop(event)" ondragover="return dragOver(event)" -->
+	<div id="graph-container"  style="">
+		<div  id="graph" >
+			
+		</div>
+		<!-- x = "0" y = "0" height = "1" width = "1" -->
+		<svg  x = "0" y = "0" height = "100" width = "100" id = "draw_area" xmlns="http://www.w3.org/2000/svg" >
+		
+		</svg>
+	</div>
+
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/node_script.js"></script>
+<script type="text/javascript" src="js/line_script.js"></script>
+</body>
+</html>
