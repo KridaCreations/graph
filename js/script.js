@@ -11,9 +11,8 @@ graph_container.addEventListener("click",graph_click);
 graph_container.addEventListener("mousemove",graph_mouse_over);
 var node_number = -1;
 function graph_click(event){
-	console.log("hello");
 	console.log(event.target);
-	
+	event.stopPropagation();
 	if (event.currentTarget === event.target)
 	{
 		
@@ -65,16 +64,16 @@ var node_drag_offsetY;
 function graph_mouse_over(event)
 {
 	
-	while (!(event.currentTarget === event.target))
-	{	
-		if (!(foccused_node === null))
-		{
-			if(foccused_node.pressed === true)
-			{
-				foccused_node.style=`left:${event.offsetX - 25}px;top: ${event.offsetY -25}px;`;
-			}
-		}
-	}
+	// while (!(event.currentTarget === event.target))
+	// {	
+	// 	if (!(foccused_node === null))
+	// 	{
+	// 		if(foccused_node.pressed === true)
+	// 		{
+	// 			foccused_node.style=`left:${event.offsetX - 25}px;top: ${event.offsetY -25}px;`;
+	// 		}
+	// 	}
+	// }
 	
 }
 
@@ -116,7 +115,6 @@ function node_mouse_up(event)
 		this.style=`left:${event.offsetX + this.offsetLeft -25 }px;top: ${event.offsetY + this.offsetTop - 25}px;`;
 		
 	}
-	// event.stopPropagation();
 	
 
 }
