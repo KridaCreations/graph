@@ -23,12 +23,16 @@ function graph_click(event){
 	var present_node = event.target;
 	while( !(event.currentTarget === present_node))
 	{
-		if (present_node !== null)
+		if (!(present_node === null))
 		{
 			p_x += present_node.offsetLeft;
 			p_y += present_node.offsetTop;
 			present_node = present_node.parentNode;
-			break;
+			
+		}
+		else
+		{
+			return;
 		}
 	}
 	event.stopPropagation();

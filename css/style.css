@@ -1,13 +1,17 @@
 h1{
-	text-align: center;
 	height: 60px;align-content: center; 
-	background-color: gray; 
 	border: 3px solid black; 
+	padding-top: 5px;
+	padding-left: 8px;
 	box-sizing: border-box; 
+	border-radius: 10px;
 	margin: 0px;
 }
 
-/*style="position : fixed; left: 100px; top: 300px; width:50%;background-color:#F4FFEF;border:1px dotted black;"*/
+body
+{
+	background-color: floralwhite;
+}
 
 #dialog
 {
@@ -15,15 +19,16 @@ h1{
 	left: 100px;
 	top: 300px;
 	width: 50%;
-	/*background-color: #F4FFEF;*/
-	background-color: grey;
+	background-color: lightgreen;
 	color: black;
-	border: 3px solid yellow;
+	font-weight: bolder;
+	border: 4px solid yellow;
+	border-radius: 10px;
 }
 
-text{
+/*text{
 	stroke: white;
-}
+}*/
 
 svg {
 	pointer-events: none;
@@ -33,10 +38,11 @@ svg {
 
 #graph-container
 {
-	/*pointer-events: all;*/
 	overflow: scroll; 
 	position :relative;
-	background: black;
+	background: #cccccc;
+	border: 4px solid black;
+	border-radius: 6px;
 	width: 1200; 
 	height: 550px; 
 	padding-left: 0px;
@@ -58,22 +64,17 @@ svg {
 
 .radio_buttons:hover , .smooth:focus
 {
-	box-shadow: 1px 2px skyblue;
-	background-color:lightblue ;
-	letter-spacing: 0.5px;
+	background-color: #67e4de;
 }
 
-/*input:checked ~ .radio_buttons {
-  background-color: #2196F3;
-  box-shadow: 1px 2px skyblue;
-	background-color:lightblue ;
-}*/
+
 
 .radio_buttons
 {
+	border-radius: 6px;
 	user-select: none;
 	box-shadow: 1px 2px black;
-	background-color: yellow;
+	background: floralwhite;
 	border: 2px solid darkred;
 	color: red;
 	text-align: center;
@@ -93,20 +94,17 @@ svg {
 	padding-left: 10px;
 }
 
-
-
-
 #control-panel
 {
+	border-radius: 10px;
 	user-select: none;
 	position: relative;
 	width:700px ;
-	background-color: goldenrod;
 	box-sizing: border-box;
-	border: 5px solid forestgreen;
+	border: 5px solid lightgreen;
 	height: 120px;
 	margin: 5px 0px 5px 0px;
-	color: white;
+	color: darkgreen;
 	padding: 10px;
 	padding-top: 5px;
 }
@@ -118,14 +116,24 @@ svg {
 	padding: 0px;  
 }
 
-.node:hover{
-	/*font-size: 1.2em;*/
+.node:hover {
 	background: lightseagreen;
-	transform: scale(1.1);
+	transform: scale(1.3);
+}
+
+@keyframes slide-up {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+    	transform: scale(1.0);
+        
+    }
 }
 
 .node{
-	transition-property: min-height,min-width,border,background,transform;
+	/*animation: slide-up 0.4s ease;*/
+	transition-property: height,width,border,background,transform;
 	transition-duration:0.3s ;
 	user-select: none;
 	pointer-events:all;
@@ -136,14 +144,12 @@ svg {
 	text-align: center;
 	padding-top:13px;
 	padding-bottom:12.5px;
-	padding-left: 1%;
-	padding-right: 1%;
 	position: absolute; 
 	left: 100px;
 	top: 20px; 
-	background: black; 
-	min-height: 50px;
-	min-width: 50px; 
+	background: palevioletred;
+	height: 50px;
+	width: 50px;
 	border-radius: 50%; 
 	box-sizing:border-box; 
 	border:4px solid yellow;

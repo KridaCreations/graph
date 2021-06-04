@@ -1,6 +1,7 @@
 
 line{
-	stroke:skyblue;
+	/*stroke:firebrick;*/
+	stroke: saddlebrown;
 	stroke-width:4;
 	pointer-events:all;
 }
@@ -9,9 +10,14 @@ line{
 
 rect{
 	box-sizing: border-box;
-	fill:rgb(0,0,255);
+	fill:#67e4de;
 	stroke-width:3;
-	/*stroke:rgb(0,0,0);*/
-	stroke: red;
+	stroke:#ff6666;
 	pointer-events:all;
+}
+
+
+text{
+
+	stroke: darkolivegreen;
 }
