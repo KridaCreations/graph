@@ -78,12 +78,13 @@ line{
 
 #graph
 {
-	 
+	pointer-events: none;
 	margin:0px; 
 	padding: 0px;  
 }
 
 .node{
+	pointer-events:all;
 	/*pointer-events:all;*/
 	overflow: visible;
 	font font-weight: bold;

@@ -1,7 +1,6 @@
 function node_click(event)
 {
 	// event.stopPropagation();
-	// console.log(this);
 	if (event.currentTarget === event.target)
 	{
 		if (delete_button.checked === true)
@@ -48,6 +47,46 @@ function node_click(event)
 	}
 }
 
+function node_mouse_down(event)
+{
+	if (!(event.currentTarget === event.target))
+	{
+		return;
+	}
+	if (move_button.checked === true)
+	{
+		this.pressed = true;
+		node_drag_offsetX = event.offsetX;
+		node_drag_offsetY = event.offsetY;
+		if(foccused_node === null)
+		{
+			this.style.border= "4px solid green";
+			foccused_node = this;
+		}
+		else
+		{
+			foccused_node.style.border= "4px solid yellow";
+			this.style.border= "4px solid green";
+			foccused_node = this;
+		}
+		
+	}
+
+}
+
+function node_mouse_up(event)
+{
+	if (move_button.checked === true)
+	{
+		if (this.pressed === true)
+		{
+			this.pressed = false;
+			foccused_node.style.border= "4px solid yellow";
+			foccused_node = null;
+		}
+	}
+}
+
 
 function join(from,to,event)
 {
@@ -65,6 +104,7 @@ function join(from,to,event)
 	new_line.detail.end = to;
 	new_line.detail.both = true;
 	new_line.addEventListener("click",line_click);
+	// console.log(this.pressed);
 }
 
 

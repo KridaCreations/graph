@@ -11,50 +11,38 @@ graph_container.addEventListener("click",graph_click);
 graph_container.addEventListener("mousemove",graph_mouse_over);
 var node_number = -1;
 function graph_click(event){
-	console.log(event.target);
+	var p_x = 0;
+	var p_y = 0;
+	var present_node = event.target;
+	while( !(event.currentTarget === present_node))
+	{
+		p_x += present_node.offsetLeft;
+		p_y += present_node.offsetTop;
+		present_node = present_node.parentNode;
+	}
 	event.stopPropagation();
-	if (event.currentTarget === event.target)
+	if (event.currentTarget === present_node)
 	{
 		
 		if (add_button.checked === true)
 		{
 			node_number+=1;
-			console.log("a");
 			var new_node = document.createElement("div");
-			console.log("b");
 			new_node.id = "node" + node_number;
-			console.log("c");
 			graph.append(new_node);
-			console.log("d");
 			new_node.connections = {};
-			console.log("e");
 			new_node.other_connections = {};
-			console.log("f");
 			new_node.className += "node";
-			console.log("g");
 			new_node.textContent = node_number;
-			console.log("h");
 			new_node.pressed = false;
-			console.log("i");
-			new_node.style=`left:${event.offsetX - 25}px;top: ${event.offsetY -25}px;`;
-			console.log("j");
+			new_node.style=`left:${event.offsetX + p_x - 25}px;top: ${event.offsetY + p_y -25}px;`;
 			new_node.addEventListener('click',node_click);
 			new_node.addEventListener('mouseup',node_mouse_up);
 			new_node.addEventListener('mousedown',node_mouse_down);
 			
 		}
-		// console.log("k");
-		else if(focus_button.checked === true)
-		{
-			if(!(foccused_node === null))
-			{
-				foccused_node.style.border= "4px solid yellow";
-				foccused_node = null;
-			}
-		}
-		console.log("l");
+
 	}
-	console.log("m");
 		
 };
 
@@ -64,60 +52,56 @@ var node_drag_offsetY;
 function graph_mouse_over(event)
 {
 	
-	// while (!(event.currentTarget === event.target))
-	// {	
-	// 	if (!(foccused_node === null))
-	// 	{
-	// 		if(foccused_node.pressed === true)
-	// 		{
-	// 			foccused_node.style=`left:${event.offsetX - 25}px;top: ${event.offsetY -25}px;`;
-	// 		}
-	// 	}
-	// }
-	
-}
-
-
-
-function node_mouse_down(event)
-{
-	if (move_button.checked === true)
+	if (foccused_node === null)
 	{
-		this.pressed = true;
-		node_drag_offsetX = event.offsetX;
-		node_drag_offsetY = event.offsetY;
-		if(foccused_node === null)
-		{
-			this.style.border= "4px solid green";
-			foccused_node = this;
-		}
-		else if (foccused_node === this)
-		{
-			foccused_node.style.border= "4px solid yellow";
-			foccused_node = null;
-		}
-		else
-		{
-			foccused_node.style.border= "4px solid yellow";
-			this.style.border= "4px solid green";
-			foccused_node = this;
-		}
-		
+		return;
 	}
-
-}
-
-function node_mouse_up(event)
-{
-	if (this.pressed === true)
+	else
 	{
-		this.pressed = false;
-		this.style=`left:${event.offsetX + this.offsetLeft -25 }px;top: ${event.offsetY + this.offsetTop - 25}px;`;
-		
-	}
-	
+		if(foccused_node.pressed === true)
+		{
+			var p_x = 0;
+			var p_y = 0;
+			console.log(event.target.nodeName);
+			if (event.target.nodeName === "line")
+			{
+				var present_node = foccused_node;
+			}	
+			else
+			{
+				present_node = event.target;
+			}
+			while( !(event.currentTarget === present_node))
+			{
+				p_x += present_node.offsetLeft;
+				p_y += present_node.offsetTop;
+				present_node = present_node.parentNode;
+			}
 
+			// foccused_node.style.left = `${event.offsetX + p_x -25}px`;
+			// foccused_node.style.top = `${event.offsetY  + p_y - 25}px`;
+
+			foccused_node.style.left = `${event.offsetX - node_drag_offsetX + p_x }px`;
+			foccused_node.style.top = `${event.offsetY  - node_drag_offsetY + p_y }px`;
+			for (node in foccused_node.connections)
+			{
+				// console.log("error" + event.offsetY);
+				var pair = foccused_node.connections[node];
+				// pair.line.setAttribute("x1" , `${foccused_node.style.left}px` );
+				// pair.line.setAttribute("y1" , `${foccused_node.style.top}px`  );
+				pair.line.setAttribute("x1" , `${event.offsetX - node_drag_offsetX + p_x + 25 }px` );
+				pair.line.setAttribute("y1" , `${event.offsetY  - node_drag_offsetY + p_y + 25 }px` );
+				pair.line.setAttribute("x2" , pair.node.offsetLeft + 25);
+				pair.line.setAttribute("y2" , pair.node.offsetTop + 25);
+			}
+
+		}
+	}
 }
+
+
+
+
 
 
 
