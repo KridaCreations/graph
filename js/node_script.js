@@ -12,7 +12,7 @@ function node_click(event)
 			for (node in this.other_connections)
 			{
 				var pair = this.other_connections[node];
-				line_delete(par.line)
+				line_delete(pair.line)
 			}
 			this.remove();
 

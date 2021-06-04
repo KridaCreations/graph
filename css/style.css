@@ -56,6 +56,19 @@ svg {
 	overflow: visible;
 }
 
+.radio_buttons:hover , .smooth:focus
+{
+	box-shadow: 1px 2px skyblue;
+	background-color:lightblue ;
+	letter-spacing: 0.5px;
+}
+
+/*input:checked ~ .radio_buttons {
+  background-color: #2196F3;
+  box-shadow: 1px 2px skyblue;
+	background-color:lightblue ;
+}*/
+
 .radio_buttons
 {
 	user-select: none;
@@ -65,6 +78,9 @@ svg {
 	color: red;
 	text-align: center;
 	padding: 3px;
+	transition-property: background-color, letter-spacing;
+ 	transition-duration: 0.5s ,0.3s;
+ 	transition-timing-function: ease, ease;
 }
 
 .options
@@ -102,15 +118,23 @@ svg {
 	padding: 0px;  
 }
 
+.node:hover{
+	/*font-size: 1.2em;*/
+	background: lightseagreen;
+	transform: scale(1.1);
+}
+
 .node{
+	transition-property: min-height,min-width,border,background,transform;
+	transition-duration:0.3s ;
 	user-select: none;
 	pointer-events:all;
 	overflow: visible;
-	font font-weight: bold;
+	font-weight: bold;
 	cursor: pointer;
 	color: white;
 	text-align: center;
-	padding-top:12.5px;
+	padding-top:13px;
 	padding-bottom:12.5px;
 	padding-left: 1%;
 	padding-right: 1%;
