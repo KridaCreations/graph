@@ -132,7 +132,7 @@ svg {
 }
 
 .node{
-	/*animation: slide-up 0.4s ease;*/
+	animation: slide-up 0.4s ease;
 	transition-property: height,width,border,background,transform;
 	transition-duration:0.3s ;
 	user-select: none;
