@@ -1,4 +1,4 @@
-#Graph Algorithm Visualizer
+# Graph Algorithm Visualizer
 
 
 work in progress(WIP)
