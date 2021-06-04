@@ -7,8 +7,27 @@ h1{
 	margin: 0px;
 }
 
+/*style="position : fixed; left: 100px; top: 300px; width:50%;background-color:#F4FFEF;border:1px dotted black;"*/
+
+#dialog
+{
+	position: fixed;
+	left: 100px;
+	top: 300px;
+	width: 50%;
+	/*background-color: #F4FFEF;*/
+	background-color: grey;
+	color: black;
+	border: 3px solid yellow;
+}
+
+text{
+	stroke: white;
+}
+
 svg {
 	pointer-events: none;
+	overflow: visible;
 }
 
 
@@ -39,6 +58,7 @@ svg {
 
 .radio_buttons
 {
+	user-select: none;
 	box-shadow: 1px 2px black;
 	background-color: yellow;
 	border: 2px solid darkred;
@@ -57,8 +77,12 @@ svg {
 	padding-left: 10px;
 }
 
+
+
+
 #control-panel
 {
+	user-select: none;
 	position: relative;
 	width:700px ;
 	background-color: goldenrod;

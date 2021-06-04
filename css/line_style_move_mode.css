@@ -4,3 +4,12 @@ line{
 	stroke-width:4;
 	/*pointer-events:all;*/
 }
+
+
+rect{
+	box-sizing: border-box;
+	fill:rgb(0,0,255);
+	stroke-width:3;
+	stroke: red;
+	/*pointer-events:all;*/
+}

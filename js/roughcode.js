@@ -334,3 +334,31 @@ function dragEnter(ev)
 	// // 	present_node = present_node.parentNode;
 	// // }
 	// console.log(present_node);
+
+
+
+
+
+
+
+
+
+
+
+
+	////code for adding rect
+
+	var new_rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
+	new_rect.className += " svg_graphics";
+	draw_area.append(new_rect);
+	console.log(dialog.line.getAttribute("x1"));
+	console.log(dialog.line.getAttribute("x2"));
+	var x_pos = (Number(dialog.line.getAttribute("x1"))+ Number(dialog.line.getAttribute("x2")))/2;
+	var y_pos = (Number(dialog.line.getAttribute("y1")) + Number(dialog.line.getAttribute("y2")))/2;
+	console.log(x_pos);
+	new_rect.setAttribute("x" , x_pos-7.5);
+	new_rect.setAttribute("y" , y_pos-10);
+	new_rect.setAttribute("width" , 20);
+	new_rect.setAttribute("height" , 15);
+	dialog.line.detail.weight_rect = new_rect;
+	dialog.close();

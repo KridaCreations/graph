@@ -19,8 +19,8 @@
 		<label  class="options" >Connection Type
 			<select id = "connections" name = "connections">
 				<option>Bidirectional Unweighted</option>
-				<option >directional Unweighted</option>
-				<option  selected>Bidirectional weighted</option>
+				<option selected>directional Unweighted</option>
+				<option  >Bidirectional weighted</option>
 				<option>directional weighted</option>
 			</select>
 		</label>
@@ -55,16 +55,26 @@
 		  	</defs>
 		</svg>
 	</div>
-	<dialog id="dialog" style="position : fixed; left: 100px; top: 300px; width:50%;background-color:#F4FFEF;border:1px dotted black;">  
-			<p>
-				<q>I am so clever that sometimes I don't understand a single word of what I am saying.   
-				</q> 
-			</p>  
-		<button id="hide">Close</button>  
+	<dialog id="dialog" >  
+			<div>
+				<label>
+					length value 
+					<input value="50" id = "num_input" type="number" name="guests"  >
+				</label>
+			</div>  
+			<div>
+				<label>length (0 to 100) 
+					<input id="dialog_slider" value = '50' type="range" name="satisfaction"
+						min="0" max="100" step="1">
+				</label>
+			</div>
+		<button id="hide">Close</button>
+		<button id="connect">Connect</button>   
 	</dialog>
 <script type="text/javascript" src="js/script.js"></script>
 
 <script type="text/javascript" src="js/line_script.js"></script>
 <script type="text/javascript" src="js/node_script.js"></script>
+<script type="text/javascript" src="js/dialog.js"></script>
 </body>
 </html>

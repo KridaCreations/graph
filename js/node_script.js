@@ -126,7 +126,6 @@ function join(from,to,event)
 	else if(connection_label.selectedIndex === 1)
 	{
 		new_line.setAttribute("marker-end","url(#arrow)");
-		console.log(new_line.getAttribute("marker-end"));
 		from.connections[to.id]={"node":to,"line":new_line};
 		to.other_connections[from.id]={"node":from,"line":new_line};
 		new_line.detail = {};
@@ -145,13 +144,12 @@ function join(from,to,event)
 		new_line.detail.end = to;
 		new_line.detail.both = true;
 		new_line.detail.weight = null;
-		dialog_appear(this);
+		dialog_appear(new_line);
 		new_line.addEventListener("click",line_click);
 	}
 	else if(connection_label.selectedIndex === 3)
 	{
 		new_line.setAttribute("marker-end","url(#arrow)");
-		console.log(new_line.getAttribute("marker-end"));
 		from.connections[to.id]={"node":to,"line":new_line};
 		to.other_connections[from.id]={"node":from,"line":new_line};
 		new_line.detail = {};
@@ -159,24 +157,15 @@ function join(from,to,event)
 		new_line.detail.end = to;
 		new_line.detail.both = false;
 		new_line.detail.weight = null;
-		dialog_appear(this);
+		dialog_appear(new_line);
 		new_line.addEventListener("click",line_click);
 	}
 
 }
 
-function dialog_appear(line)
-{
-	var dialog = document.querySelector("#dialog");
-	dialog.show();
-}
 
-function hide_dialog()
-{
-	console.log("here");
-	dialog.close();
-}
-dialog_hide.addEventListener("click",hide_dialog);
+
+
 
 
 

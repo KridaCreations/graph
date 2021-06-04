@@ -9,6 +9,7 @@ var graph = document.querySelector("#graph");
 var draw_area = document.querySelector("#draw_area");
 var dialog = document.querySelector("#dialog");
 var dialog_hide = document.querySelector("#hide");
+var dialog_connect = document.querySelector("#connect");
 var foccused_node = null;
 
 
@@ -74,7 +75,6 @@ function graph_mouse_over(event)
 			var p_y = 0;
 			if (event.target.nodeName === "line")
 			{
-				console.log("true");
 				var present_node = foccused_node;
 			}	
 			else
@@ -93,14 +93,31 @@ function graph_mouse_over(event)
 			for (node in foccused_node.connections)
 			{
 				var pair = foccused_node.connections[node];
-				pair.line.setAttribute("x1" , `${event.offsetX - node_drag_offsetX + p_x + 25 }px` );
-				pair.line.setAttribute("y1" , `${event.offsetY  - node_drag_offsetY + p_y + 25 }px` );
+				pair.line.setAttribute("x1" , event.offsetX - node_drag_offsetX + p_x + 25  );
+				pair.line.setAttribute("y1" , event.offsetY  - node_drag_offsetY + p_y + 25  );
+				pair.line.setAttribute("x2" , pair.node.offsetLeft + 25 );
+				pair.line.setAttribute("y2" , pair.node.offsetTop + 25 );
+
+				if (!(pair.line.detail.weight === null))
+				{
+					var x_pos = (event.offsetX - node_drag_offsetX + p_x + 25  + Number(pair.line.getAttribute("x2")))/2;
+					var y_pos = (event.offsetY  - node_drag_offsetY + p_y + 25  + Number(pair.line.getAttribute("y2")))/2;
+					pair.line.detail.weight_rect.setAttribute("x", x_pos-7.5);
+					pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
+				}
 			}
 			for (node in foccused_node.other_connections)
 			{
 				var pair = foccused_node.other_connections[node];
-				pair.line.setAttribute("x2" , `${event.offsetX - node_drag_offsetX + p_x + 25 }px` );
-				pair.line.setAttribute("y2" , `${event.offsetY  - node_drag_offsetY + p_y + 25 }px` );
+				pair.line.setAttribute("x2" ,event.offsetX - node_drag_offsetX + p_x + 25  );
+				pair.line.setAttribute("y2" , event.offsetY  - node_drag_offsetY + p_y + 25  );
+				if (!(pair.line.detail.weight === null))
+				{
+					var x_pos = (event.offsetX - node_drag_offsetX + p_x + 25  + Number(pair.line.getAttribute("x1")))/2;
+					var y_pos = (event.offsetY  - node_drag_offsetY + p_y + 25  + Number(pair.line.getAttribute("y1")))/2;
+					pair.line.detail.weight_rect.setAttribute("x", x_pos-7.5);
+					pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
+				}
 			}
 
 		}
