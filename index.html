@@ -8,7 +8,7 @@
 <body style="padding: 0px; margin: 0px;">
 
 	<h1 >GraphAlgorithmVisualizer</h1>
-	<div id = "control-panel" >
+	<div id = "control-panel"  >
 		<div class="options">
 			<label class = "radio_buttons">ADD<input  type="radio" name="mode" checked="true" id="add_button"></label>
 			<label class = "radio_buttons">DELETE<input type="radio" name="mode" id="delete_button"></label>
@@ -16,15 +16,15 @@
 			<label class = "radio_buttons">FOCUS<input type="radio" name="mode" id="focus_button"></label>
 			<label class = "radio_buttons">MOVE<input type="radio" name="mode" id="move_button"></label>
 		</div>
-		<label class="options">Connection Type
-			<select >
+		<label  class="options" >Connection Type
+			<select id = "connections" name = "connections">
 				<option>Bidirectional Unweighted</option>
-				<option>directional Unweighted</option>
-				<option>Bidirectional weighted</option>
+				<option >directional Unweighted</option>
+				<option  selected>Bidirectional weighted</option>
 				<option>directional weighted</option>
 			</select>
 		</label>
-		<div class="options">
+		<div id = "algorithms" class="options">
 			<label>Algorithm
 				<select name="EightiesFave">
 					<option>Breadth First Search</option>
@@ -41,18 +41,30 @@
 		</div>
 
 	</div>
+	
 	<div id="graph-container"  style="">
 		<div  id="graph" >
 			
 		</div>
 		<!-- x = "0" y = "0" height = "1" width = "1" -->
 		<svg  x = "0" y = "0" height = "100" width = "100" id = "draw_area" xmlns="http://www.w3.org/2000/svg" >
-		
+			<defs>
+			    <marker id="arrow" markerWidth="10" markerHeight="10" refX="13" refY="3" orient="auto" markerUnits="strokeWidth">
+			    	<path d="M0,0 L0,6 L9,3 z" fill="#f00" />
+			    </marker>
+		  	</defs>
 		</svg>
 	</div>
-
+	<dialog id="dialog" style="position : fixed; left: 100px; top: 300px; width:50%;background-color:#F4FFEF;border:1px dotted black;">  
+			<p>
+				<q>I am so clever that sometimes I don't understand a single word of what I am saying.   
+				</q> 
+			</p>  
+		<button id="hide">Close</button>  
+	</dialog>
 <script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript" src="js/node_script.js"></script>
+
 <script type="text/javascript" src="js/line_script.js"></script>
+<script type="text/javascript" src="js/node_script.js"></script>
 </body>
 </html>

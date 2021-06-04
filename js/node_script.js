@@ -1,11 +1,21 @@
 function node_click(event)
 {
-	// event.stopPropagation();
 	if (event.currentTarget === event.target)
 	{
 		if (delete_button.checked === true)
 		{
+			for (node in this.connections)
+			{
+				var pair = this.connections[node];
+				line_delete(pair.line)
+			}
+			for (node in this.other_connections)
+			{
+				var pair = this.other_connections[node];
+				line_delete(par.line)
+			}
 			this.remove();
+
 		}
 		else if (focus_button.checked === true)
 		{
@@ -46,7 +56,8 @@ function node_click(event)
 
 	}
 }
-
+  
+  
 function node_mouse_down(event)
 {
 	if (!(event.currentTarget === event.target))
@@ -101,18 +112,71 @@ function join(from,to,event)
 	new_line.setAttribute("y1" , from.offsetTop+25);
 	new_line.setAttribute("x2" , to.offsetLeft+25);
 	new_line.setAttribute("y2" , to.offsetTop+25);
-	from.connections[to.id]={"node":to,"line":new_line};
-	to.connections[from.id]={"node":from,"line":new_line};
-	new_line.detail = {};
-	new_line.detail.start = from;
-	new_line.detail.end = to;
-	new_line.detail.both = true;
-	new_line.addEventListener("click",line_click);
-	// console.log(this.pressed);
+	if (connection_label.selectedIndex === 0)
+	{
+		from.connections[to.id]={"node":to,"line":new_line};
+		to.connections[from.id]={"node":from,"line":new_line};
+		new_line.detail = {};
+		new_line.detail.start = from;
+		new_line.detail.end = to;
+		new_line.detail.both = true;
+		new_line.detail.weight = null;
+		new_line.addEventListener("click",line_click);
+	}
+	else if(connection_label.selectedIndex === 1)
+	{
+		new_line.setAttribute("marker-end","url(#arrow)");
+		console.log(new_line.getAttribute("marker-end"));
+		from.connections[to.id]={"node":to,"line":new_line};
+		to.other_connections[from.id]={"node":from,"line":new_line};
+		new_line.detail = {};
+		new_line.detail.start = from;
+		new_line.detail.end = to;
+		new_line.detail.both = false;
+		new_line.detail.weight = null;
+		new_line.addEventListener("click",line_click);
+	}
+	else if (connection_label.selectedIndex === 2)
+	{
+		from.connections[to.id]={"node":to,"line":new_line};
+		to.connections[from.id]={"node":from,"line":new_line};
+		new_line.detail = {};
+		new_line.detail.start = from;
+		new_line.detail.end = to;
+		new_line.detail.both = true;
+		new_line.detail.weight = null;
+		dialog_appear(this);
+		new_line.addEventListener("click",line_click);
+	}
+	else if(connection_label.selectedIndex === 3)
+	{
+		new_line.setAttribute("marker-end","url(#arrow)");
+		console.log(new_line.getAttribute("marker-end"));
+		from.connections[to.id]={"node":to,"line":new_line};
+		to.other_connections[from.id]={"node":from,"line":new_line};
+		new_line.detail = {};
+		new_line.detail.start = from;
+		new_line.detail.end = to;
+		new_line.detail.both = false;
+		new_line.detail.weight = null;
+		dialog_appear(this);
+		new_line.addEventListener("click",line_click);
+	}
+
 }
 
+function dialog_appear(line)
+{
+	var dialog = document.querySelector("#dialog");
+	dialog.show();
+}
 
-
+function hide_dialog()
+{
+	console.log("here");
+	dialog.close();
+}
+dialog_hide.addEventListener("click",hide_dialog);
 
 
 

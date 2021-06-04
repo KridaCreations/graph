@@ -4,9 +4,15 @@ var delete_button = document.querySelector("#delete_button");
 var connect_button = document.querySelector("#connect_button");
 var focus_button = document.querySelector("#focus_button");
 var graph_container = document.querySelector("#graph-container");
+var connection_label = document.querySelector("#connections");
 var graph = document.querySelector("#graph");
 var draw_area = document.querySelector("#draw_area");
+var dialog = document.querySelector("#dialog");
+var dialog_hide = document.querySelector("#hide");
 var foccused_node = null;
+
+
+
 graph_container.addEventListener("click",graph_click);
 graph_container.addEventListener("mousemove",graph_mouse_over);
 var node_number = -1;
@@ -66,7 +72,6 @@ function graph_mouse_over(event)
 		{
 			var p_x = 0;
 			var p_y = 0;
-			// console.log(event.target.nodeName);
 			if (event.target.nodeName === "line")
 			{
 				console.log("true");
@@ -83,21 +88,19 @@ function graph_mouse_over(event)
 				present_node = present_node.parentNode;
 			}
 
-			// foccused_node.style.left = `${event.offsetX + p_x -25}px`;
-			// foccused_node.style.top = `${event.offsetY  + p_y - 25}px`;
-
 			foccused_node.style.left = `${event.offsetX - node_drag_offsetX + p_x }px`;
 			foccused_node.style.top = `${event.offsetY  - node_drag_offsetY + p_y }px`;
 			for (node in foccused_node.connections)
 			{
-				// console.log("error" + event.offsetY);
 				var pair = foccused_node.connections[node];
-				// pair.line.setAttribute("x1" , `${foccused_node.style.left}px` );
-				// pair.line.setAttribute("y1" , `${foccused_node.style.top}px`  );
 				pair.line.setAttribute("x1" , `${event.offsetX - node_drag_offsetX + p_x + 25 }px` );
 				pair.line.setAttribute("y1" , `${event.offsetY  - node_drag_offsetY + p_y + 25 }px` );
-				pair.line.setAttribute("x2" , pair.node.offsetLeft + 25);
-				pair.line.setAttribute("y2" , pair.node.offsetTop + 25);
+			}
+			for (node in foccused_node.other_connections)
+			{
+				var pair = foccused_node.other_connections[node];
+				pair.line.setAttribute("x2" , `${event.offsetX - node_drag_offsetX + p_x + 25 }px` );
+				pair.line.setAttribute("y2" , `${event.offsetY  - node_drag_offsetY + p_y + 25 }px` );
 			}
 
 		}
