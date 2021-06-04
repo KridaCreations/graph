@@ -11,11 +11,6 @@ svg {
 	pointer-events: none;
 }
 
-line{
-	stroke:skyblue;
-	stroke-width:4;
-	pointer-events:all;
-}
 
 #graph-container
 {
@@ -84,8 +79,8 @@ line{
 }
 
 .node{
+	user-select: none;
 	pointer-events:all;
-	/*pointer-events:all;*/
 	overflow: visible;
 	font font-weight: bold;
 	cursor: pointer;

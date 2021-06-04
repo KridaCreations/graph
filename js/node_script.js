@@ -55,6 +55,8 @@ function node_mouse_down(event)
 	}
 	if (move_button.checked === true)
 	{
+		var line_style = document.querySelector("#line_sheet");
+		line_style.setAttribute("href" ,"css/line_style_move_mode.css" );
 		this.pressed = true;
 		node_drag_offsetX = event.offsetX;
 		node_drag_offsetY = event.offsetY;
@@ -78,6 +80,8 @@ function node_mouse_up(event)
 {
 	if (move_button.checked === true)
 	{
+		var line_style = document.querySelector("#line_sheet");
+		line_style.setAttribute("href" ,"css/line_style_normal_mode.css" );
 		if (this.pressed === true)
 		{
 			this.pressed = false;

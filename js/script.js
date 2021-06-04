@@ -16,9 +16,13 @@ function graph_click(event){
 	var present_node = event.target;
 	while( !(event.currentTarget === present_node))
 	{
-		p_x += present_node.offsetLeft;
-		p_y += present_node.offsetTop;
-		present_node = present_node.parentNode;
+		if (present_node !== null)
+		{
+			p_x += present_node.offsetLeft;
+			p_y += present_node.offsetTop;
+			present_node = present_node.parentNode;
+			break;
+		}
 	}
 	event.stopPropagation();
 	if (event.currentTarget === present_node)
@@ -62,9 +66,10 @@ function graph_mouse_over(event)
 		{
 			var p_x = 0;
 			var p_y = 0;
-			console.log(event.target.nodeName);
+			// console.log(event.target.nodeName);
 			if (event.target.nodeName === "line")
 			{
+				console.log("true");
 				var present_node = foccused_node;
 			}	
 			else
