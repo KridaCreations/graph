@@ -14,6 +14,10 @@ function node_click(event)
 				var pair = this.other_connections[node];
 				line_delete(pair.line)
 			}
+			if (foccused_node === this)
+			{
+				foccused_node = null;
+			}
 			this.remove();
 
 		}

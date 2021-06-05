@@ -11,12 +11,19 @@ var dialog = document.querySelector("#dialog");
 var dialog_hide = document.querySelector("#hide");
 var dialog_connect = document.querySelector("#connect");
 var foccused_node = null;
-
+document.nodes = {};
 
 
 graph_container.addEventListener("click",graph_click);
 graph_container.addEventListener("mousemove",graph_mouse_over);
 var node_number = -1;
+
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+
+
 function graph_click(event){
 	var p_x = 0;
 	var p_y = 0;
@@ -42,24 +49,37 @@ function graph_click(event){
 		if (add_button.checked === true)
 		{
 			node_number+=1;
-			var new_node = document.createElement("div");
-			new_node.id = "node" + node_number;
-			graph.append(new_node);
-			new_node.connections = {};
-			new_node.other_connections = {};
-			new_node.className += "node";
-			new_node.textContent = node_number;
-			new_node.pressed = false;
-			new_node.style=`left:${event.offsetX + p_x - 25}px;top: ${event.offsetY + p_y -25}px;`;
-			new_node.addEventListener('click',node_click);
-			new_node.addEventListener('mouseup',node_mouse_up);
-			new_node.addEventListener('mousedown',node_mouse_down);
-			
+			position_x = event.offsetX + p_x - 25;
+			position_y = event.offsetY + p_y - 25;
+			// add_node(node_number,event,p_y,p_x);
+			add_node(node_number,position_y,position_x);			
 		}
 
 	}
 		
 };
+
+
+
+function add_node(id_no,position_y,position_x)
+{
+	var new_node = document.createElement("div");
+	// new_node.id = "node" + node_number;
+	new_node.id = "node" + id_no;
+	graph.append(new_node);
+	new_node.connections = {};
+	new_node.other_connections = {};
+	new_node.className += "node";
+	// new_node.textContent = node_number;
+	new_node.textContent = id_no;
+	new_node.pressed = false;
+	new_node.style=`left:${position_x}px;top: ${position_y}px;`;
+	new_node.addEventListener('click',node_click);
+	new_node.addEventListener('mouseup',node_mouse_up);
+	new_node.addEventListener('mousedown',node_mouse_down);
+	document.nodes[new_node.id] = new_node;
+	return new_node;
+}
 
 var node_drag_offsetX;
 var node_drag_offsetY;

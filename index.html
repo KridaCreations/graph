@@ -56,6 +56,16 @@
 		  	</defs>
 		</svg>
 	</div>
+	<div id = coding_area class="disappeared">
+		<button id="code_appear"></button>
+		<div >Graph-Generation Script editor<button id="generate">Generate</button><button id="clear">Clear</button></div>
+		<textarea spellcheck="false" id = "code_editor" type="textarea" rows="5" cols="50" placeholder="Add the Graph-Generation-Script .......">1 2 3 4
+3 4 1 1
+5 6 3 4
+7 8 1 1</textarea>
+		<div><textarea id = code_editor_output type="textarea" rows="5" cols="5" readonly="true" placeholder="Output......."></textarea>
+		</div>
+	</div>
 	<dialog id="dialog" >  
 			<div>
 				<label>
@@ -77,5 +87,6 @@
 <script type="text/javascript" src="js/line_script.js"></script>
 <script type="text/javascript" src="js/node_script.js"></script>
 <script type="text/javascript" src="js/dialog.js"></script>
+<script type="text/javascript" src="js/button.js"></script>
 </body>
 </html>

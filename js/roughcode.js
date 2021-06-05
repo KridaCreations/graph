@@ -362,3 +362,20 @@ function dragEnter(ev)
 	new_rect.setAttribute("height" , 15);
 	dialog.line.detail.weight_rect = new_rect;
 	dialog.close();
+
+
+
+
+
+	// var new_node = document.createElement("div");
+			// new_node.id = "node" + node_number;
+			// graph.append(new_node);
+			// new_node.connections = {};
+			// new_node.other_connections = {};
+			// new_node.className += "node";
+			// new_node.textContent = node_number;
+			// new_node.pressed = false;
+			// new_node.style=`left:${event.offsetX + p_x - 25}px;top: ${event.offsetY + p_y -25}px;`;
+			// new_node.addEventListener('click',node_click);
+			// new_node.addEventListener('mouseup',node_mouse_up);
+			// new_node.addEventListener('mousedown',node_mouse_down);

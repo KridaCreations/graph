@@ -26,15 +26,108 @@ body
 	border-radius: 10px;
 }
 
-/*text{
-	stroke: white;
-}*/
-
 svg {
 	pointer-events: none;
 	overflow: visible;
 }
 
+
+.disappeared
+{
+
+	right:-613px;
+}
+
+.appeared
+{
+	right: 0px;
+}
+
+#coding_area
+{
+	transition-property: right;
+	transition-duration: 0.3s;
+	transition-timing-function: ease;
+	color: #33001a;
+	font-weight: bolder;
+	overflow:none;
+	border-radius: 10px;
+	position: fixed;
+	background: #cc6699;
+	box-sizing: border-box;
+	border: 5px solid darkviolet;
+	padding: 30px;
+	top: 100px;	
+}
+
+#coding_area>button:hover
+{
+	backgroun d: red;
+}
+
+#coding_area>div
+{
+	font-weight: bold;
+}
+#coding_area>button
+{
+	width: 30px;
+	height: 60px;
+	position: absolute;
+	left: -35px;
+	top: 160px;
+	border-radius: 10px;
+	border: 4px solid black;
+}
+
+#coding_area>div>button:hover
+{
+	background: red;
+}
+
+#coding_area>div>button
+{
+	height: 30px;
+	margin-left: 7px;
+	left: -35px;
+	top: 160px;
+	font-weight: bolder;
+	border-radius: 10px;
+	border: 4px solid black;
+}
+
+textarea:focus
+{
+	
+	outline: none;
+}
+
+#code_editor
+{
+	box-sizing: border-box;
+	spellcheck : "false";
+	border-radius: 10px;
+	height: 200px;
+	width: 100%;
+	background: #52527a;
+	color: orange;
+	font-size: 1.5em;
+	font-weight: bolder;
+
+}
+
+
+#code_editor_output
+{
+	box-sizing: border-box;
+	border-radius: 10px;
+	background: #52527a;
+	width: 100%;
+	color: orange;
+	font-size: 1.5em;
+	font-weight: bolder;
+
+}
 
 #graph-container
 {
@@ -43,7 +136,7 @@ svg {
 	background: #cccccc;
 	border: 4px solid black;
 	border-radius: 6px;
-	width: 1200; 
+	width: 1501.2px; 
 	height: 550px; 
 	padding-left: 0px;
 }
@@ -119,7 +212,7 @@ svg {
 
 .node:hover {
 	background: lightseagreen;
-	transform: scale(1.3);
+	transform: scale(1.2);
 }
 
 @keyframes slide-up {
