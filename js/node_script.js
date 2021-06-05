@@ -105,6 +105,14 @@ function node_mouse_up(event)
 
 function join(from,to,event)
 {
+	if (!(from.connections[to.id] === undefined))
+	{
+		return;
+	}
+	if (!(to.connections[from.id] === undefined))
+	{
+		return;
+	}
 	var new_line = document.createElementNS("http://www.w3.org/2000/svg","line");
 	new_line.className += " svg_graphics";
 	draw_area.append(new_line);

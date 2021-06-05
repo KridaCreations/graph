@@ -21,5 +21,9 @@ function line_delete(line)
 		delete start.connections[end];
 		delete end.other_connections[start];
 	}
+	if (!(line.detail.weight === null))
+	{
+		line.detail.weight_rect.remove();
+	}
 	line.remove();
 }
