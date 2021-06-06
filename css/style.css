@@ -29,7 +29,6 @@ body
 svg {
 	pointer-events: none;
 	overflow: visible;
-	transform-box: fill-box;
 }
 
 
@@ -138,7 +137,7 @@ textarea:focus
 	background: #cccccc;
 	border: 4px solid black;
 	border-radius: 6px;
-	width: 1501.2px; 
+	width: 1526px; 
 	height: 510px; 
 	padding-left: 0px;
 }
@@ -150,12 +149,20 @@ textarea:focus
 
 #draw_area
 {
-	left: 0;
-	top: 0;
 	margin:0px; 
 	padding: 0px;
 	overflow: visible;
+	pointer-events: none;
+	overflow: visible;
 }
+
+#draw_area_container
+{
+	 transform-origin: top left; 
+	 position: absolute;
+}
+
+
 
 .radio_buttons:hover , .smooth:focus
 {

@@ -13,13 +13,13 @@ function line_delete(line)
 	var end = line.detail.end;
 	if(line.detail.both === true)
 	{
-		delete end.connections[start];
-		delete start.connections[end];
+		delete end.connections[start.id];
+		delete start.connections[end.id];
 	}
 	else
 	{
-		delete start.connections[end];
-		delete end.other_connections[start];
+		delete start.connections[end.id];
+		delete end.other_connections[start.id];
 	}
 	if (!(line.detail.weight === null))
 	{

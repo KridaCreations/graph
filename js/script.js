@@ -6,6 +6,7 @@ var focus_button = document.querySelector("#focus_button");
 var graph_container = document.querySelector("#graph-container");
 var connection_label = document.querySelector("#connections");
 var graph = document.querySelector("#graph");
+var draw_area_container = document.querySelector("#draw_area_container");
 var draw_area = document.querySelector("#draw_area");
 var dialog = document.querySelector("#dialog");
 var dialog_hide = document.querySelector("#hide");
@@ -43,6 +44,7 @@ function zoom_board(graph,ev_wrt_con_x,ev_wrt_con_y,prev_scale,to_scale)
 		  var prev_dis_x = -(g_pos.left  - ev_wrt_con_x);
 		  var prev_dis_y = -(g_pos.top  - ev_wrt_con_y);
 		  graph.style.transform = (`scale(${to_scale})`);
+		  draw_area_container.style.transform = (`scale(${to_scale})`);
 		  var pre_scale = to_scale;
 		  var pre_dis_x = ((prev_dis_x)/(prev_scale))*to_scale;
 		  var pre_dis_y = ((prev_dis_y)/(prev_scale))*to_scale;
@@ -52,6 +54,8 @@ function zoom_board(graph,ev_wrt_con_x,ev_wrt_con_y,prev_scale,to_scale)
 		  g_pos.left = g_pos.left + diff_x;
 		  graph.style.top = `${g_pos.top}px`;
 		  graph.style.left = `${g_pos.left}px`;
+		  draw_area_container.style.top = `${g_pos.top}px`;
+		  draw_area_container.style.left = `${g_pos.left}px`;
 }
 
 
@@ -75,11 +79,6 @@ function graph_click(event)
 	}
 		
 };
-
-
-
-
-
 
 
 function add_node(id_no,position_y,position_x)
