@@ -12,48 +12,65 @@ var dialog_hide = document.querySelector("#hide");
 var dialog_connect = document.querySelector("#connect");
 var foccused_node = null;
 document.nodes = {};
+var scale = 1;
+var g_pos = {"left" : 0,"top" : 0};
 
-
+graph_container.addEventListener("wheel",graph_wheel);
 graph_container.addEventListener("click",graph_click);
 graph_container.addEventListener("mousemove",graph_mouse_over);
+
 var node_number = -1;
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
 
+function graph_wheel(event)
+{
+		var con_pos_x = graph_container.getBoundingClientRect().left;
+		var con_pos_y = graph_container.getBoundingClientRect().top;
+		var ev_wrt_con_x = event.clientX - con_pos_x;
+		var ev_wrt_con_y = event.clientY - con_pos_y;
+		var prev_scale = scale;
+		scale += event.deltaY * -0.0001;
+	  scale = Math.min(Math.max(.125, scale), 4);
+	  zoom_board(graph,ev_wrt_con_x,ev_wrt_con_y,prev_scale,scale);
+}
 
 
-function graph_click(event){
-	var p_x = 0;
-	var p_y = 0;
-	var present_node = event.target;
-	while( !(event.currentTarget === present_node))
-	{
-		if (!(present_node === null))
-		{
-			p_x += present_node.offsetLeft;
-			p_y += present_node.offsetTop;
-			present_node = present_node.parentNode;
-			
-		}
-		else
-		{
-			return;
-		}
-	}
+function zoom_board(graph,ev_wrt_con_x,ev_wrt_con_y,prev_scale,to_scale)
+{
+		  var prev_dis_x = -(g_pos.left  - ev_wrt_con_x);
+		  var prev_dis_y = -(g_pos.top  - ev_wrt_con_y);
+		  graph.style.transform = (`scale(${to_scale})`);
+		  var pre_scale = to_scale;
+		  var pre_dis_x = ((prev_dis_x)/(prev_scale))*to_scale;
+		  var pre_dis_y = ((prev_dis_y)/(prev_scale))*to_scale;
+		  var diff_x = prev_dis_x - pre_dis_x;
+		  var diff_y = prev_dis_y - pre_dis_y;
+		  g_pos.top = g_pos.top + diff_y;
+		  g_pos.left = g_pos.left + diff_x;
+		  graph.style.top = `${g_pos.top}px`;
+		  graph.style.left = `${g_pos.left}px`;
+}
+
+
+function graph_click(event)
+{
+	var con_pos_x = graph_container.getBoundingClientRect().left ;
+	var con_pos_y = graph_container.getBoundingClientRect().top;
+	var ev_wrt_con_x = event.clientX - con_pos_x;
+	var ev_wrt_con_y = event.clientY - con_pos_y;
+
 	event.stopPropagation();
-	if (event.currentTarget === present_node)
+	if (add_button.checked === true)
 	{
-		
-		if (add_button.checked === true)
-		{
-			node_number+=1;
-			position_x = event.offsetX + p_x - 25;
-			position_y = event.offsetY + p_y - 25;
-			// add_node(node_number,event,p_y,p_x);
-			add_node(node_number,position_y,position_x);			
-		}
+		node_number+=1;
+		var dgcc_x = graph.getBoundingClientRect().left - graph_container.getBoundingClientRect().left;
+		var dgcc_y = graph.getBoundingClientRect().top - graph_container.getBoundingClientRect().top;
+		var calc_x = (ev_wrt_con_x - dgcc_x)/scale;
+		var calc_y = (ev_wrt_con_y - dgcc_y)/scale;
+		add_node(node_number,calc_y-25,calc_x-25);
 
 	}
 		
@@ -61,16 +78,18 @@ function graph_click(event){
 
 
 
+
+
+
+
 function add_node(id_no,position_y,position_x)
 {
 	var new_node = document.createElement("div");
-	// new_node.id = "node" + node_number;
 	new_node.id = "node" + id_no;
 	graph.append(new_node);
 	new_node.connections = {};
 	new_node.other_connections = {};
 	new_node.className += "node";
-	// new_node.textContent = node_number;
 	new_node.textContent = id_no;
 	new_node.pressed = false;
 	new_node.style=`left:${position_x}px;top: ${position_y}px;`;
@@ -78,6 +97,7 @@ function add_node(id_no,position_y,position_x)
 	new_node.addEventListener('mouseup',node_mouse_up);
 	new_node.addEventListener('mousedown',node_mouse_down);
 	document.nodes[new_node.id] = new_node;
+
 	return new_node;
 }
 

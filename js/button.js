@@ -101,6 +101,14 @@ function generate_graph(gen_array)
 
 function join_node_format(from,to,type,length)
 {
+	if (!(from.connections[to.id] === undefined))
+	{
+		return;
+	}
+	if (!(to.connections[from.id] === undefined))
+	{
+		return;
+	}
 	var new_line = document.createElementNS("http://www.w3.org/2000/svg","line");
 	new_line.className += " svg_graphics";
 	draw_area.append(new_line);
@@ -141,7 +149,6 @@ function join_node_format(from,to,type,length)
 		new_line.detail.both = true;
 		new_line.detail.weight = null;
 		add_length_tag(new_line,length);
-		// dialog_appear(new_line);
 		new_line.addEventListener("click",line_click);
 	}
 	else if (type === 4) 
@@ -154,7 +161,6 @@ function join_node_format(from,to,type,length)
 		new_line.detail.end = to;
 		new_line.detail.both = false;
 		new_line.detail.weight = null;
-		// dialog_appear(new_line);
 		add_length_tag(new_line,length);
 		new_line.addEventListener("click",line_click);
 	}

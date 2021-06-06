@@ -379,3 +379,62 @@ function dragEnter(ev)
 			// new_node.addEventListener('click',node_click);
 			// new_node.addEventListener('mouseup',node_mouse_up);
 			// new_node.addEventListener('mousedown',node_mouse_down);
+
+
+
+
+			// graph.style.transformOrigin = ev_pos_x + "px " + ev_pos_y + "px";
+		// graph.setAttribute("transform-origin",`${ev_pos_y}px ${ev_pos_x}px`);
+		// graph.style["transform-origin"] = ev_pos_x;
+		// graph.style["transform-origin"] = ev_pos_y;
+		// graph.setAttribute("transform-origin",`top left`);
+
+
+
+
+
+
+
+
+///old function for addition of node
+
+function graph_click(event){
+	var p_x = 0;
+	var p_y = 0;
+	var present_node = event.target;
+	while( !(event.currentTarget === present_node))
+	{
+		if (!(present_node === null))
+		{
+			p_x += present_node.offsetLeft;
+			p_y += present_node.offsetTop;
+			present_node = present_node.parentNode;
+			
+		}
+		else
+		{
+			return;
+		}
+	}
+
+	var con_pos_x = graph_container.getBoundingClientRect().left ;
+	var con_pos_y = graph_container.getBoundingClientRect().top;
+	var ev_wrt_con_x = event.clientX - con_pos_x;
+	var ev_wrt_con_y = event.clientY - con_pos_y;
+
+	event.stopPropagation();
+	if (event.currentTarget === present_node)
+	{
+		
+		if (add_button.checked === true)
+		{
+			node_number+=1;
+			position_x = event.offsetX + p_x - 25;
+			position_y = event.offsetY + p_y - 25;
+			add_node(node_number,position_y,position_x);	
+
+		}
+
+	}
+		
+};
