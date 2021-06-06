@@ -114,37 +114,31 @@ function graph_mouse_over(event)
 	{
 		if(foccused_node.pressed === true)
 		{
-			var p_x = 0;
-			var p_y = 0;
-			if (event.target.nodeName === "line")
-			{
-				var present_node = foccused_node;
-			}	
-			else
-			{
-				present_node = event.target;
-			}
-			while( !(event.currentTarget === present_node))
-			{
-				p_x += present_node.offsetLeft;
-				p_y += present_node.offsetTop;
-				present_node = present_node.parentNode;
-			}
+			var con_pos_x = graph_container.getBoundingClientRect().left ;
+			var con_pos_y = graph_container.getBoundingClientRect().top;
+			var ev_wrt_con_x = event.clientX - con_pos_x;
+			var ev_wrt_con_y = event.clientY - con_pos_y;
+			var dgcc_x = graph.getBoundingClientRect().left - graph_container.getBoundingClientRect().left;
+			var dgcc_y = graph.getBoundingClientRect().top - graph_container.getBoundingClientRect().top;
+			var calc_x = (ev_wrt_con_x - dgcc_x)/scale;
+			var calc_y = (ev_wrt_con_y - dgcc_y)/scale;
+			calc_y -= node_drag_offsetY;
+			calc_x -= node_drag_offsetX;
+			foccused_node.style.left = `${calc_x}px`;
+			foccused_node.style.top = `${calc_y}px`;
 
-			foccused_node.style.left = `${event.offsetX - node_drag_offsetX + p_x }px`;
-			foccused_node.style.top = `${event.offsetY  - node_drag_offsetY + p_y }px`;
 			for (node in foccused_node.connections)
 			{
 				var pair = foccused_node.connections[node];
-				pair.line.setAttribute("x1" , event.offsetX - node_drag_offsetX + p_x + 25  );
-				pair.line.setAttribute("y1" , event.offsetY  - node_drag_offsetY + p_y + 25  );
+				pair.line.setAttribute("x1" , calc_x+ 25  );
+				pair.line.setAttribute("y1" , calc_y+ 25  );
 				pair.line.setAttribute("x2" , pair.node.offsetLeft + 25 );
 				pair.line.setAttribute("y2" , pair.node.offsetTop + 25 );
 
 				if (!(pair.line.detail.weight === null))
 				{
-					var x_pos = (event.offsetX - node_drag_offsetX + p_x + 25  + Number(pair.line.getAttribute("x2")))/2;
-					var y_pos = (event.offsetY  - node_drag_offsetY + p_y + 25  + Number(pair.line.getAttribute("y2")))/2;
+					var x_pos = (calc_x + 25  + Number(pair.line.getAttribute("x2")))/2;
+					var y_pos = (calc_y + 25  + Number(pair.line.getAttribute("y2")))/2;
 					pair.line.detail.weight_rect.setAttribute("x", x_pos-7.5);
 					pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
 				}
@@ -152,12 +146,12 @@ function graph_mouse_over(event)
 			for (node in foccused_node.other_connections)
 			{
 				var pair = foccused_node.other_connections[node];
-				pair.line.setAttribute("x2" ,event.offsetX - node_drag_offsetX + p_x + 25  );
-				pair.line.setAttribute("y2" , event.offsetY  - node_drag_offsetY + p_y + 25  );
+				pair.line.setAttribute("x2" ,calc_x + 25  );
+				pair.line.setAttribute("y2" ,calc_y + 25  );
 				if (!(pair.line.detail.weight === null))
 				{
-					var x_pos = (event.offsetX - node_drag_offsetX + p_x + 25  + Number(pair.line.getAttribute("x1")))/2;
-					var y_pos = (event.offsetY  - node_drag_offsetY + p_y + 25  + Number(pair.line.getAttribute("y1")))/2;
+					var x_pos = (calc_x + 25  + Number(pair.line.getAttribute("x1")))/2;
+					var y_pos = (calc_y + 25  + Number(pair.line.getAttribute("y1")))/2;
 					pair.line.detail.weight_rect.setAttribute("x", x_pos-7.5);
 					pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
 				}

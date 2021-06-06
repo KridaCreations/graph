@@ -132,7 +132,7 @@ textarea:focus
 #graph-container
 {
 	box-sizing: border-box;
-	overflow: scroll; 
+	overflow: hidden; 
 	position :relative;
 	background: #cccccc;
 	border: 4px solid black;
@@ -158,6 +158,7 @@ textarea:focus
 
 #draw_area_container
 {
+	pointer-events: none;
 	 transform-origin: top left; 
 	 position: absolute;
 }
