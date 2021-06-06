@@ -12,18 +12,38 @@ var dialog = document.querySelector("#dialog");
 var dialog_hide = document.querySelector("#hide");
 var dialog_connect = document.querySelector("#connect");
 var foccused_node = null;
-document.nodes = {};
+var node_number = -1;
 var scale = 1;
 var g_pos = {"left" : 0,"top" : 0};
+var graph_pressed = false;
+document.nodes = {};
 
 graph_container.addEventListener("wheel",graph_wheel);
 graph_container.addEventListener("click",graph_click);
 graph_container.addEventListener("mousemove",graph_mouse_over);
-
-var node_number = -1;
+graph_container.addEventListener("mouseup",graph_mouse_up);
+graph_container.addEventListener("mousedown",graph_mouse_down);
+graph_container.addEventListener("mouseover",graph_mouse_over);
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+function graph_mouse_down()
+{
+	console.log("down");
+	if(event.button === 1 )
+	{
+		graph_pressed = true;
+	}
+}
+
+function graph_mouse_up()
+{
+	if (graph_pressed === true)
+	{
+		graph_pressed = false;
+	}
 }
 
 function graph_wheel(event)
@@ -61,6 +81,12 @@ function zoom_board(graph,ev_wrt_con_x,ev_wrt_con_y,prev_scale,to_scale)
 
 function graph_click(event)
 {
+
+	if (event.button === 1)
+	{
+		return;
+	}
+
 	var con_pos_x = graph_container.getBoundingClientRect().left ;
 	var con_pos_y = graph_container.getBoundingClientRect().top;
 	var ev_wrt_con_x = event.clientX - con_pos_x;
@@ -106,6 +132,16 @@ var node_drag_offsetY;
 function graph_mouse_over(event)
 {
 	
+	if (graph_pressed === true)
+	{
+		g_pos.top += event.movementY;
+		g_pos.left += event.movementX;
+		graph.style.top = `${g_pos.top}px`;
+		graph.style.left = `${g_pos.left}px`;
+		draw_area_container.style.top = `${g_pos.top}px`;
+		draw_area_container.style.left = `${g_pos.left}px`;
+		return;
+	}
 	if (foccused_node === null)
 	{
 		return;

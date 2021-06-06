@@ -129,6 +129,9 @@ textarea:focus
 
 }
 
+
+
+
 #graph-container
 {
 	box-sizing: border-box;
@@ -215,6 +218,8 @@ textarea:focus
 
 #graph
 {
+	/*transition-property: left,right;
+	transition-duration: 0.012s;*/
 	position: absolute;
 	left: 0px;
 	top: 0px;
