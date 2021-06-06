@@ -117,11 +117,13 @@ function add_node(id_no,position_y,position_x)
 	new_node.className += "node";
 	new_node.textContent = id_no;
 	new_node.pressed = false;
+	new_node.title = new_node.id;
 	new_node.style=`left:${position_x}px;top: ${position_y}px;`;
 	new_node.addEventListener('click',node_click);
 	new_node.addEventListener('mouseup',node_mouse_up);
 	new_node.addEventListener('mousedown',node_mouse_down);
 	document.nodes[new_node.id] = new_node;
+
 
 	return new_node;
 }

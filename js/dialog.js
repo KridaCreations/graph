@@ -28,6 +28,8 @@ function connect_dialog()
 	var new_group = document.createElementNS("http://www.w3.org/2000/svg","svg");
 	var new_rect = document.createElementNS("http://www.w3.org/2000/svg","rect");
 	var new_text = document.createElementNS("http://www.w3.org/2000/svg","text");
+	var title = document.createElementNS("http://www.w3.org/2000/svg","title");
+	new_group.append(title);
 	new_text.setAttribute("dominant-baseline","middle");
 	new_text.setAttribute("text-anchor","middle");
 	new_text.textContent = "H";
@@ -48,6 +50,7 @@ function connect_dialog()
 	new_rect.setAttribute("height" , 30);
 	new_text.textContent = num_input.value;
 	dialog.line.detail.weight_rect = new_group;
+	title.textContent = num_input.value;
 	dialog.line.detail.weight = num_input.value;
 	dialog.close();
 }
