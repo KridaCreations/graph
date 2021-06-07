@@ -2,6 +2,7 @@ var add_button = document.querySelector("#add_button");
 var move_button = document.querySelector("#move_button");
 var delete_button = document.querySelector("#delete_button");
 var connect_button = document.querySelector("#connect_button");
+var center_button = document.querySelector("#center_button")
 var focus_button = document.querySelector("#focus_button");
 var graph_container = document.querySelector("#graph-container");
 var connection_label = document.querySelector("#connections");
@@ -12,12 +13,16 @@ var dialog = document.querySelector("#dialog");
 var dialog_hide = document.querySelector("#hide");
 var dialog_connect = document.querySelector("#connect");
 var foccused_node = null;
-var node_number = -1;
+var node_number = 0;
+var no_of_nodes = 0
 var scale = 1;
+var container_center = {"left" : 763,"top" : 205};
 var g_pos = {"left" : 0,"top" : 0};
 var graph_pressed = false;
 document.nodes = {};
+var center_of_nodes = {"left" : 0, "top" : 0};
 
+center_button.addEventListener("click",position_graph);
 graph_container.addEventListener("wheel",graph_wheel);
 graph_container.addEventListener("click",graph_click);
 graph_container.addEventListener("mousemove",graph_mouse_over);
@@ -28,6 +33,42 @@ graph_container.addEventListener("mouseover",graph_mouse_over);
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
+
+function position_graph(event)
+{
+	if (!(foccused_node === null))
+	{
+		event.stopPropagation();
+		g_pos.left = container_center.left - ((foccused_node.pos.left + 25) * scale);
+		g_pos.top = container_center.top - ((foccused_node.pos.top + 25) * scale);
+		graph.style.top = `${g_pos.top}px`;
+		graph.style.left = `${g_pos.left}px`;
+		draw_area_container.style.top = `${g_pos.top}px`;
+		draw_area_container.style.left = `${g_pos.left}px`;
+	}
+	else if(no_of_nodes === 0)
+	{
+		g_pos.left = container_center.left - (container_center.left * scale);
+		g_pos.top = container_center.top - (container_center.top * scale);
+		graph.style.top = `${g_pos.top}px`;
+		graph.style.left = `${g_pos.left}px`;
+		draw_area_container.style.top = `${g_pos.top}px`;
+		draw_area_container.style.left = `${g_pos.left}px`;
+	}
+	else
+	{
+		g_pos.left = container_center.left - ((center_of_nodes.left + 25) * scale);
+		g_pos.top = container_center.top - ((center_of_nodes.top + 25) * scale);
+		graph.style.top = `${g_pos.top}px`;
+		graph.style.left = `${g_pos.left}px`;
+		draw_area_container.style.top = `${g_pos.top}px`;
+		draw_area_container.style.left = `${g_pos.left}px`;
+	}
+
+
+
+}
+
 
 function graph_mouse_down()
 {
@@ -82,6 +123,11 @@ function zoom_board(graph,ev_wrt_con_x,ev_wrt_con_y,prev_scale,to_scale)
 function graph_click(event)
 {
 
+	if(event.target === center_button)
+	{
+		return;
+	} 
+
 	if (event.button === 1)
 	{
 		return;
@@ -96,6 +142,7 @@ function graph_click(event)
 	if (add_button.checked === true)
 	{
 		node_number+=1;
+		no_of_nodes += 1;
 		var dgcc_x = graph.getBoundingClientRect().left - graph_container.getBoundingClientRect().left;
 		var dgcc_y = graph.getBoundingClientRect().top - graph_container.getBoundingClientRect().top;
 		var calc_x = (ev_wrt_con_x - dgcc_x)/scale;
@@ -112,12 +159,17 @@ function add_node(id_no,position_y,position_x)
 	var new_node = document.createElement("div");
 	new_node.id = "node" + id_no;
 	graph.append(new_node);
+	new_node.pos = {"left":position_x,"top":position_y};
 	new_node.connections = {};
 	new_node.other_connections = {};
 	new_node.className += "node";
 	new_node.textContent = id_no;
 	new_node.pressed = false;
 	new_node.title = new_node.id;
+	center_of_nodes.left = ((center_of_nodes.left * (no_of_nodes-1)) + position_x)/no_of_nodes;
+	center_of_nodes.top = ((center_of_nodes.top * (no_of_nodes-1)) + position_y)/no_of_nodes;
+	console.log("left: "+position_x+" , top: "+position_y);
+	console.log(center_of_nodes);
 	new_node.style=`left:${position_x}px;top: ${position_y}px;`;
 	new_node.addEventListener('click',node_click);
 	new_node.addEventListener('mouseup',node_mouse_up);
@@ -162,8 +214,12 @@ function graph_mouse_over(event)
 			var calc_y = (ev_wrt_con_y - dgcc_y)/scale;
 			calc_y -= node_drag_offsetY;
 			calc_x -= node_drag_offsetX;
+			center_of_nodes.left = ((center_of_nodes.left * no_of_nodes) - foccused_node.left + calc_x)/no_of_nodes;
+			center_of_nodes.top = ((center_of_nodes.top * no_of_nodes) - foccused_node.top + calc_y)/no_of_nodes;
 			foccused_node.style.left = `${calc_x}px`;
 			foccused_node.style.top = `${calc_y}px`;
+			foccused_node.pos.left = calc_x;
+			foccused_node.pos.top = calc_y;
 
 			for (node in foccused_node.connections)
 			{

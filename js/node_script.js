@@ -18,6 +18,9 @@ function node_click(event)
 			{
 				foccused_node = null;
 			}
+			no_of_nodes -= 1;
+			center_of_nodes.left = ((center_of_nodes.left * (no_of_nodes + 1)) - this.pos.left)/no_of_nodes;
+			center_of_nodes.top = ((center_of_nodes.top * (no_of_nodes + 1)) - this.pos.top)/no_of_nodes;
 			this.remove();
 
 		}
