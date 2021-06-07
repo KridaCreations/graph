@@ -214,8 +214,8 @@ function graph_mouse_over(event)
 			var calc_y = (ev_wrt_con_y - dgcc_y)/scale;
 			calc_y -= node_drag_offsetY;
 			calc_x -= node_drag_offsetX;
-			center_of_nodes.left = ((center_of_nodes.left * no_of_nodes) - foccused_node.left + calc_x)/no_of_nodes;
-			center_of_nodes.top = ((center_of_nodes.top * no_of_nodes) - foccused_node.top + calc_y)/no_of_nodes;
+			center_of_nodes.left = ((center_of_nodes.left * no_of_nodes) - foccused_node.pos.left + calc_x)/no_of_nodes;
+			center_of_nodes.top = ((center_of_nodes.top * no_of_nodes) - foccused_node.pos.top + calc_y)/no_of_nodes;
 			foccused_node.style.left = `${calc_x}px`;
 			foccused_node.style.top = `${calc_y}px`;
 			foccused_node.pos.left = calc_x;
