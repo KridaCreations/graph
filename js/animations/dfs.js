@@ -10,7 +10,7 @@ function bake_dfs()
 	dfs(foccused_node);
 	anim_array.push(["done",foccused_node]);
 	baked_animation = 0;
-	anim_position.max = anim_array.length;
+	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);
 }
@@ -26,9 +26,9 @@ function change_to_anim_stage_dfs(stage)
 		}
 		current_stage = stage;
 	}
-	else if ((pre_stage > stage) && (stage > -1))
+	else if ((pre_stage > stage) && (stage >= -1))
 	{
-		for(i = pre_stage;i > stage;i--)
+		for(i = pre_stage-1;i >= stage;i--)
 		{
 			console.log(anim_array[i]);
 			perform_dfs_fast_back(i,anim_array);
@@ -61,12 +61,13 @@ function dfs(node)
 function play_dfs(stage,anim_array)
 {
 	
-	current_stage = stage+1;
-	change_anim_position(stage+1);
+	
 	if (stage === anim_array.length)
 	{
 		return;
 	}
+	current_stage = stage;
+	change_anim_position(stage);
 	perform_dfs(stage,anim_array);
 	function sleep (time) {
   		return new Promise((resolve) => current_timer = setTimeout(resolve, time));
@@ -82,30 +83,43 @@ function play_dfs(stage,anim_array)
 
 function perform_dfs_fast_back(stage,anim_array)
 {
-	if (anim_array[stage][0] === "start")
+	console.log(current_stage);
+	console.log(typeof stage);
+	console.log(stage);
+	console.log(anim_array.length);
+	console.log(anim_array)
+	if (stage+1 === anim_array.length)
 	{
-		anim_array[stage][1].style.removeProperty("background-color");
+		return;
 	}
-	else if (anim_array[stage][0] === "go")
+	if (anim_array[stage+1][0] === "start")
 	{
-		anim_array[stage-1][1].style["background-color"] = "yellow";
-		anim_array[stage][1].style.removeProperty("background-color");
-		anim_array[stage-1][1].connections[anim_array[stage][1].id].line.style.removeProperty("stroke");
+		anim_array[stage+1][1].style.removeProperty("background-color");
 	}
-	else if (anim_array[stage][0] === "done")
+	else if (anim_array[stage+1][0] === "go")
 	{
-		anim_array[stage][1].style["background-color"] = "yellow";
+		anim_array[stage+1-1][1].style["background-color"] = "yellow";
+		anim_array[stage+1][1].style.removeProperty("background-color");
+		anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
 	}
-	else if (anim_array[stage][0] === "return")
+	else if (anim_array[stage+1][0] === "done")
 	{
-		anim_array[stage][1].style["background-color"] = "green";
-		anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] = "blue";
+		anim_array[stage+1][1].style["background-color"] = "yellow";
+	}
+	else if (anim_array[stage+1][0] === "return")
+	{
+		anim_array[stage+1][1].style["background-color"] = "green";
+		anim_array[stage+1][1].connections[anim_array[stage+1-1][1].id].line.style["stroke"] = "blue";
 	}
 }
 
 
 function perform_dfs_fast(stage,anim_array)
 {
+	if (stage === -1)
+	{
+		return;
+	}
 	if (anim_array[stage][0] === "start")
 	{
 		anim_array[stage][1].style["background-color"] = "yellow";
@@ -129,7 +143,14 @@ function perform_dfs_fast(stage,anim_array)
 
 function perform_dfs(stage,anim_array)
 {
-
+	stage = Number(stage);
+	console.log(typeof stage);
+	console.log(stage);
+	console.log(anim_array);
+	if (stage === -1)
+	{
+		return;
+	}
 	if (anim_array[stage][0] === "start")
 	{
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
