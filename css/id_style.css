@@ -25,7 +25,6 @@
 {
 	background-color: #67e4de;
 	font-size: 1.7em;
-	/*transform: scale(1.2);*/
 }
 
 #dialog
@@ -144,8 +143,6 @@
 
 #draw_area_container
 {
-	/*transition-property: left,top,transform;*/
-	/*transition-duration: 0.05s,0.05s,0.05s;*/
 	pointer-events: none;
 	transform-origin: top left; 
 	position: absolute;
@@ -156,7 +153,8 @@
 	border-radius: 10px;
 	user-select: none;
 	position: relative;
-	width:700px ;
+	/*width:700px ;*/
+	width: 100%;
 	box-sizing: border-box;
 	border: 5px solid lightgreen;
 	height: 120px;
@@ -168,8 +166,6 @@
 
 #graph
 {
-	/*transition-property: left,top,transform;*/
-	/*transition-duration: 0.05s,0.05s,0.05s;*/
 	position: absolute;
 	left: 0px;
 	top: 0px;

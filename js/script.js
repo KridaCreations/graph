@@ -72,7 +72,6 @@ function position_graph(event)
 
 function graph_mouse_down()
 {
-	console.log("down");
 	if(event.button === 1 )
 	{
 		graph_pressed = true;
@@ -168,8 +167,6 @@ function add_node(id_no,position_y,position_x)
 	new_node.title = new_node.id;
 	center_of_nodes.left = ((center_of_nodes.left * (no_of_nodes-1)) + position_x)/no_of_nodes;
 	center_of_nodes.top = ((center_of_nodes.top * (no_of_nodes-1)) + position_y)/no_of_nodes;
-	console.log("left: "+position_x+" , top: "+position_y);
-	console.log(center_of_nodes);
 	new_node.style=`left:${position_x}px;top: ${position_y}px;`;
 	new_node.addEventListener('click',node_click);
 	new_node.addEventListener('mouseup',node_mouse_up);

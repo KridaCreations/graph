@@ -76,8 +76,8 @@ function generate_graph(gen_array)
 		var node_to;
 		if (document.nodes.hasOwnProperty(node_name) === false)
 		{
-			var x = getRndInteger(-spread*50,spread*50);
-			var y = getRndInteger(-spread*50,spread*50);
+			var x = getRndInteger(-spread*20,spread*20);
+			var y = getRndInteger(-spread*20,spread*20);
 			node_from = add_node(gen_array[format][0],250+y,750+x);
 		}	
 		else
@@ -87,8 +87,8 @@ function generate_graph(gen_array)
 		node_name = "node" + gen_array[format][1];
 		if (document.nodes.hasOwnProperty(node_name) === false)
 		{
-			x = getRndInteger(-spread*50,spread*50);
-			y = getRndInteger(-spread*50,spread*50);
+			x = getRndInteger(-spread*20,spread*20);
+			y = getRndInteger(-spread*20,spread*20);
 			node_to = add_node(gen_array[format][1],250+y,750+x);
 		}
 		else

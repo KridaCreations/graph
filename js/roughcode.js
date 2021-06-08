@@ -495,3 +495,100 @@ var p_x = 0;
 					pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
 				}
 			}
+
+
+
+
+
+
+
+
+
+function perform(stage,anim_array)
+{
+	if (anim_array[stage][0] === "start")
+	{
+		anim_array[stage][1].style["background-color"] = "yellow";
+	}
+	else if (anim_array[stage][0] === "go")
+	{	
+		var stage1 = stage-1;
+		var animation_node1 =  anim_array[stage-1][1].animate(
+			  [
+			    {"background-color" : anim_array[stage-1][1].style["background-color"] },
+			    {"background-color" : "green"}
+			  ],1000
+			);
+		animation_node1.onfinish = function()
+		{
+			 anim_array[stage1][1].style["background-color"] = "green";
+		};
+		// anim_array[stage-1][1].style["background-color"] = "green";
+		var stage2 = stage;
+		var animation_node2 =  anim_array[stage][1].animate(
+			  [
+			    {"background-color" : anim_array[stage][1].style["background-color"] },
+			    {"background-color" : "yellow"}
+			  ],1000
+			);
+		animation_node2.onfinish = function()
+		{
+			 anim_array[stage2][1].style["background-color"] = "yellow";
+		};
+		
+		// anim_array[stage][1].style["background-color"] = "yellow";
+		var animation_line = anim_array[stage-1][1].connections[anim_array[stage][1].id].line.animate(
+			  [
+			    {stroke : "saddlebrown" },
+			    {stroke : "blue"}
+			  ],1000
+			);
+		animation_line.onfinish = function()
+		{
+			anim_array[stage1][1].connections[anim_array[stage][1].id].line.style.stroke = "blue";
+		};
+		
+	}
+	else if (anim_array[stage][0] === "done")
+	{
+		var stage1 = stage;
+		var animation_node1 =  anim_array[stage][1].animate(
+			  [
+			    {"background-color" : anim_array[stage][1].style["background-color"] },
+			    {"background-color" : "green"}
+			  ],1000
+			);
+		animation_node1.onfinish = function()
+		{
+			 anim_array[stage1][1].style["background-color"] = "blue";
+		};
+		// anim_array[stage][1].style["background-color"] = "blue";
+	}
+	else if (anim_array[stage][0] === "return")
+	{
+		var stage1 = stage
+		var animation_node1 =  anim_array[stage][1].animate(
+			  [
+			    {"background-color" : anim_array[stage][1].style["background-color"] },
+			    {"background-color" : "yellow"}
+			  ],1000
+			);
+		animation_node1.onfinish = function()
+		{
+			 anim_array[stage1][1].style["background-color"] = "yellow";
+		};
+		// anim_array[stage][1].style["background-color"] = "yellow";
+		var animation_line = anim_array[stage][1].connections[anim_array[stage-1][1].id].line.animate(
+			  [
+			    {stroke : "blue" },
+			    {stroke : "green"}
+			  ],1000
+			);
+		animation_line.onfinish = function()
+		{
+			anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style.stroke = "green";
+		};
+		// anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style.stroke = "green";
+	}
+}
+
