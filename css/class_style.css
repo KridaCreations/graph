@@ -41,7 +41,7 @@
 .options
 {
 	text-shadow: 0.1px 0.2px black;
-	float: left;
+	/*float: left;*/
 	font-stretch: ultra-expanded;
 	font-weight: bold;
 	margin: 7px;

@@ -19,8 +19,9 @@ var scale = 1;
 var container_center = {"left" : 763,"top" : 205};
 var g_pos = {"left" : 0,"top" : 0};
 var graph_pressed = false;
-document.nodes = {};
 var center_of_nodes = {"left" : 0, "top" : 0};
+
+document.nodes = {};
 
 center_button.addEventListener("click",position_graph);
 graph_container.addEventListener("wheel",graph_wheel);
@@ -30,6 +31,11 @@ graph_container.addEventListener("mouseup",graph_mouse_up);
 graph_container.addEventListener("mousedown",graph_mouse_down);
 graph_container.addEventListener("mouseover",graph_mouse_over);
 
+function clearArray(array) {
+  while (array.length) {
+    array.pop();
+  }
+}
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }

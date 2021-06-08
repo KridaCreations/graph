@@ -18,15 +18,19 @@
 			<label class = "radio_buttons">FOCUS<input type="radio" name="mode" id="focus_button"></label>
 			<label class = "radio_buttons">MOVE<input type="radio" name="mode" id="move_button"></label>
 			<label class = "radio_buttons">CONNECT<input type="radio" name="mode" id="connect_button"></label>
+			<div style="margin-top: 6px;">
+				<label  class="options" style="margin-top: 6px; margin-left: 0px; padding-left: 0px;">Connection Type
+					<select id = "connections" name = "connections">
+						<option>Bidirectional Unweighted</option>
+						<option selected>directional Unweighted</option>
+						<option  >Bidirectional weighted</option>
+						<option>directional weighted</option>
+					</select>
+				</label>
+			</div>
 		</div>
-		<label  class="options" >Connection Type
-			<select id = "connections" name = "connections">
-				<option>Bidirectional Unweighted</option>
-				<option selected>directional Unweighted</option>
-				<option  >Bidirectional weighted</option>
-				<option>directional weighted</option>
-			</select>
-		</label>
+	</div>
+	<div id = "control-panel" style="float: left;" >
 		<div  class="options">
 			<label>Algorithm
 				<select id = "algorithms">
@@ -40,16 +44,22 @@
 					<option>Finding Bridges</option>
 				</select>
 				<button id="bake">Bake Animation</button>
-				<button id="play">Play Animation</button>
-				<button id="stop">Stop Animation</button>
-				<input id="speed_slider" value = '3' type="range" name="speed"
-						min="1" max="10" step="1">
-				<label id = "speed_label">1.5</label>
+				<!-- <button id="play">Play Animation</button> -->
+				<!-- <button id="stop">Stop Animation</button> -->
+				<div>
+					<label>Delay<input id="speed_slider" value = '3' style="margin: 0px;" type="range" name="speed" min="1" max="10" step="1">
+					<label id = "speed_label">1.5</label></label>
+				</div>
 			</label>
 		</div>
-
+		<div>
+			<button><</button>
+			<button id = "play">Play</button>
+			<button>></button>
+			<input id="animation_slider" value = '3' type="range" name="animation_slider" min="-1" max="10" step="1">
+			<label id = "animation_label" readonly = "true" >1.5</label>
+		</div>
 	</div>
-	
 	<div id="graph-container"  style="">
 		<button type="button" name="F"  id = "center_button">F</button>
 		<!-- x = "0" y = "0" height = "1" width = "1" -->

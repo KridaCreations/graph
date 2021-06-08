@@ -4,14 +4,41 @@ function bake_dfs()
 	{
 		return;
 	}
+	clearArray(anim_array);
 	visited_node[foccused_node.id] = 1;
 	anim_array.push(["start",foccused_node]);
 	dfs(foccused_node);
 	anim_array.push(["done",foccused_node]);
 	baked_animation = 0;
-	for(command in anim_array)
+	anim_position.max = anim_array.length;
+	current_stage = -1;
+	change_anim_position(current_stage);
+}
+
+function change_to_anim_stage_dfs(stage)
+{
+	var pre_stage = current_stage;
+	if ((pre_stage < stage) && (stage < anim_array.length))
 	{
-		console.log(anim_array[command]);
+		for(i = pre_stage+1;i <= stage;i++)
+		{
+			perform_dfs_fast(i,anim_array);	
+		}
+		current_stage = stage;
+	}
+	else if ((pre_stage > stage) && (stage > -1))
+	{
+		for(i = pre_stage;i > stage;i--)
+		{
+			console.log(anim_array[i]);
+			perform_dfs_fast_back(i,anim_array);
+		}
+		current_stage = stage;
+	}
+	else if(stage === -1)
+	{
+		anim_array[stage+1][1].style.removeProperty("background-color");
+		current_stage = stage;
 	}
 }
 
@@ -33,25 +60,76 @@ function dfs(node)
 
 function play_dfs(stage,anim_array)
 {
-	console.log("stage "+ stage+ " playing after " + (delay*1000));
+	
+	current_stage = stage+1;
+	change_anim_position(stage+1);
 	if (stage === anim_array.length)
 	{
 		return;
 	}
-	perform(stage,anim_array);
+	perform_dfs(stage,anim_array);
 	function sleep (time) {
-  		return new Promise((resolve) => setTimeout(resolve, time));
+  		return new Promise((resolve) => current_timer = setTimeout(resolve, time));
 	}
 
-	// Usage!
-	sleep(delay * 1000).then(() => {
+
+	sleep(delay * 1000).then(() => 
+	{
 	    play_dfs(stage+1,anim_array);
 	});
 }
 
 
-function perform(stage,anim_array)
+function perform_dfs_fast_back(stage,anim_array)
 {
+	if (anim_array[stage][0] === "start")
+	{
+		anim_array[stage][1].style.removeProperty("background-color");
+	}
+	else if (anim_array[stage][0] === "go")
+	{
+		anim_array[stage-1][1].style["background-color"] = "yellow";
+		anim_array[stage][1].style.removeProperty("background-color");
+		anim_array[stage-1][1].connections[anim_array[stage][1].id].line.style.removeProperty("stroke");
+	}
+	else if (anim_array[stage][0] === "done")
+	{
+		anim_array[stage][1].style["background-color"] = "yellow";
+	}
+	else if (anim_array[stage][0] === "return")
+	{
+		anim_array[stage][1].style["background-color"] = "green";
+		anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] = "blue";
+	}
+}
+
+
+function perform_dfs_fast(stage,anim_array)
+{
+	if (anim_array[stage][0] === "start")
+	{
+		anim_array[stage][1].style["background-color"] = "yellow";
+	}
+	else if (anim_array[stage][0] === "go")
+	{	
+		anim_array[stage-1][1].style["background-color"] = "green";
+		anim_array[stage][1].style["background-color"] = "yellow";
+		anim_array[stage-1][1].connections[anim_array[stage][1].id].line.style["stroke"] = "blue";	
+	}
+	else if (anim_array[stage][0] === "done")
+	{
+		anim_array[stage][1].style["background-color"] = "blue";
+	}
+	else if (anim_array[stage][0] === "return")
+	{
+		anim_array[stage][1].style["background-color"] = "yellow";
+		anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] = "green";
+	}
+}
+
+function perform_dfs(stage,anim_array)
+{
+
 	if (anim_array[stage][0] === "start")
 	{
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
@@ -61,7 +139,6 @@ function perform(stage,anim_array)
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage-1][1].connections[anim_array[stage][1].id].line,"stroke","blue",(delay*transition_factor) * 1000,true);
-		animate_property(anim_array[stage-1][1].connections[anim_array[stage][1].id].line,"stroke-width",8,(delay*transition_factor) * 1000,true);
 		
 	}
 	else if (anim_array[stage][0] === "done")
@@ -72,6 +149,5 @@ function perform(stage,anim_array)
 	{
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);
-		animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke-width",8,(delay*transition_factor) * 1000,true);
 	}
 }

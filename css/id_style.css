@@ -153,12 +153,12 @@
 	border-radius: 10px;
 	user-select: none;
 	position: relative;
-	/*width:700px ;*/
-	width: 100%;
+	width:550px ;
+	/*width: 100%;*/
 	box-sizing: border-box;
 	border: 5px solid lightgreen;
 	height: 120px;
-	margin: 5px 0px 5px 0px;
+	margin: 5px 5px 5px 0px;
 	color: darkgreen;
 	padding: 10px;
 	padding-top: 5px;

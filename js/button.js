@@ -60,7 +60,7 @@ function generate()
 		}
 		gen_array.push(words.map(Number));
 	}
-	console.log(gen_array);
+	// console.log(gen_array);
 	generate_graph(gen_array);
 
 }
