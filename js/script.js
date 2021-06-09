@@ -94,6 +94,11 @@ function graph_mouse_up()
 
 function graph_wheel(event)
 {
+		if (event.target.parentNode === document.querySelector('#scroll_box')) {
+			event.stopPropagation();
+			return;
+		}
+		// console.log(event.target.parentNode);
 		var con_pos_x = graph_container.getBoundingClientRect().left;
 		var con_pos_y = graph_container.getBoundingClientRect().top;
 		var ev_wrt_con_x = event.clientX - con_pos_x;

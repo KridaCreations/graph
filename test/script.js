@@ -1,358 +1,127 @@
-var cake = document.getElementById('eat-me');
-var bottle = document.getElementById('bottle');
-
-// Keyframes for bouncing the controls
-var tryMeKeys = [
-  { transform: 'translateY(0) scale(1, 1) rotate(0)', easing: 'ease-in' },
-  { transform: 'translateY(0) scale(1.1, .9) rotate(0)' },
-  { transform: 'translateY(-10%) scale(.9, 1.1) rotate(0)', offset: .4 },
-  { transform: 'translateY(-10%) scale(1, 1) rotate(10deg)', offset: .5 },
-  { transform: 'translateY(-10%) scale(1, 1) rotate(-10deg)', offset: .7 },
-  { transform: 'translateY(-10%) scale(1,1) rotate(0deg)', offset: .8, easing: 'ease-in' },
-  { transform: 'translateY(0) scale(1, 1) rotate(0)' }
-];
-
-// Functions that animates the cake and bottle
-function trytheCake(){
-  cake.animate(tryMeKeys, { id: 'bounce', delay: 7000, duration: 2000, iterations: 2 });
-}
-trytheCake();
-trytheCakeTimer = setInterval(trytheCake, 12000);
-
-function trytheBottle(){
-  bottle.animate(tryMeKeys, { id: 'bounce', duration: 2000, iterations: 2 }); 
-}
-trytheBottleTimer = setInterval(trytheBottle, 12000);  
-
-// Growing and shrinking Alice
-var aliceChange = document.getElementById('alice').animate(
-  [
-    { transform: 'translate(-50%, -50%) scale(.5)' },
-    { transform: 'translate(-50%, -50%) scale(2)' }   
-  ], { 
-    duration: 8000, 
-    easing: 'ease-in-out', 
-    fill: 'both'
-  });
-
-aliceChange.pause();
-aliceChange.currentTime = aliceChange.effect.timing.duration / 2 ;
-
-var stopPlayingAlice = function() {
-  aliceChange.pause();
-  nommingCake.pause();
-  drinking.pause();
-};
-
-var ponytail = document.getElementById('ponytail');
-var ponytailTiming = {
-  duration: 250, 
-  direction: 'alternate',
-  iterations: 2
+document.querySelector("#top").addEventListener("click",to_top);
+document.querySelector("#bottom").addEventListener("click",to_bottom);
+var to_element = document.querySelector("#a1");
+var scroll_box = document.querySelector("#scroll_box");
+function to_top (argument) {
+  console.log(typeof scroll_box.scrollTop);
+  console.log(scroll_box["scrollTop"]);
+  scrollTopoint(scroll_box,0,3000);
 }
 
-var nommingCake = document.getElementById('eat-me_sprite').animate(
-[
-  { transform: 'translateY(0)' },
-  { transform: 'translateY(-80%)' }   
-], {
-  fill: 'forwards',
-  easing: 'steps(4, end)',
-  duration: aliceChange.effect.timing.duration / 2
-});
-nommingCake.pause();
-
-var growAlice = function() {
-  aliceChange.playbackRate = 1;
-  aliceChange.play();
-  // stop jiggling the cake.
-  clearInterval(trytheCakeTimer);
-  if (cake.getAnimations()[0]){
-    cake.getAnimations()[0].cancel();
-  }
-
-  nommingCake.play();
-  
-  ponytail.animate(
-  [
-    { transform: 'scale(1, 1) rotate(0)' },
-    { transform: 'scale(.85, 1.15) rotate(2deg)', easing: 'cubic-bezier(.35,.97,.13,1.14)' }   
-  ], ponytailTiming);
-  
+function to_bottom (argument) {
+  console.log(typeof scroll_box.scrollTop);
+  console.log(scroll_box["scrollTop"]);
+  scrollTopoint(scroll_box,300,3000);
 }
 
-var drinking = document.getElementById('liquid').animate(
-[
-  { height: '100%' },
-  { height: '0' }   
-], {
-  fill: 'forwards',
-  duration: aliceChange.effect.timing.duration / 2
-});
-drinking.pause();
-
-var shrinkAlice = function() {
-  aliceChange.playbackRate = -1;
-  aliceChange.play();
-  // stop jiggling the bottle.
-  clearInterval(trytheBottleTimer);
-  if (bottle.getAnimations()[0]){
-    bottle.getAnimations()[0].cancel();
-  }
-
-  drinking.play()
-
-  ponytail.animate(
-  [
-    { transform: 'scale(1,1) rotate(0)' },
-    { transform: 'scale(1.15, .85) rotate(2deg)', easing: 'cubic-bezier(.35,.97,.13,1.14)' } 
-  ], ponytailTiming);
-}
-
-// On tap or click, Alice will change size.
-cake.addEventListener("mousedown", growAlice, false);
-cake.addEventListener("touchstart", growAlice, false);
-cake.addEventListener("mouseup", stopPlayingAlice, false);
-cake.addEventListener("mouseout", stopPlayingAlice, false);
-cake.addEventListener("touchend", stopPlayingAlice, false);
 
 
-bottle.addEventListener("mousedown", shrinkAlice, false);
-bottle.addEventListener("touchstart", shrinkAlice, false);
-bottle.addEventListener("mouseup", stopPlayingAlice, false);
-bottle.addEventListener("mouseout", stopPlayingAlice, false);
-bottle.addEventListener("touchend", stopPlayingAlice, false);
-
-
-// When either drink me or eat me animations finish, the game is "over."
-// You get a different ending depending on how big or small Alice is
-// (that is to say how far along her animation timeline is!)
-var endGame = function() {
-  // get Alice's timeline's playhead location
-  var alicePlayhead = aliceChange.currentTime;
-  var aliceTimeline = aliceChange.effect.activeDuration;
-  
-  stopPlayingAlice();
-
-  // depending on which third it falls into
-  var aliceHeight = alicePlayhead/aliceTimeline;
-
-  if (aliceHeight <= .333){
-    // Alice got smaller!
-    showEndings.play();
-    showSmall.play();
-    exclaming.play();
-    armWave.play();
-    aliceShrank.play();
-    bringUI.effect.timing.delay = 2000;
-    bringUI.play();
-  } else if (aliceHeight >= .666) {
-    // Alice got bigger!
-    showEndings.play();
-    showCrying.play();
-    pool.play();
-    tears.forEach(function(el) {  
-      el.playState = 'playing';
-    });
-    bringUI.effect.timing.delay = 2000;
-    bringUI.play();
-  } else {
-    // Alice didn't change significantly    
-    bringUI.effect.timing.delay = 0;
-    bringUI.play();
-  }
-  
-}
-
-// When the cake or runs out... 
-nommingCake.onfinish = endGame;
-drinking.onfinish = endGame;
-
-// ...or Alice reaches the end of her animation
-aliceChange.onfinish = endGame;
-
-// Reset the 3 animations: alice, the bottle, and the cupcake
-var restartGame = function() {
-  aliceChange.currentTime = aliceChange.effect.timing.duration / 2;  
-  nommingCake.currentTime = 0;
-  drinking.currentTime = 0;
-}
-
-/* Crying Ending */
-var tearsFalling = [
-  { transform: 'translate3D(0, 0, 0)' }, 
-  { transform: 'translate3D(0, 2850%, 0)' }, 
-];
-
-var getRandomMsRange = function(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-var tears = document.querySelectorAll('.tear');
-tears = Array.prototype.slice.call(tears);
-
-var pool = document.getElementById("pool").animate(
-[
-  { transform: 'scale(.8)' }, 
-  { transform: 'scale(1)' }, 
-], 
+function animate_property(element,property,final_value,duration,permanent)
 {
-  duration: 10000,
-  fill: 'forwards'
-});
-pool.pause();
-
-tears.forEach(function(el) {  
-  el.animate(
-    tearsFalling, 
+  var animation =  element.animate(
+      [
+        {property : element.style[property] },
+        {property : final_value}
+      ],duration
+    );
+  animation.onfinish = function()
+  {
+    if (permanent === true)
     {
-      delay: getRandomMsRange(-1000, 1000), // randomized for each tear
-      duration: getRandomMsRange(2000, 6000), // randomized for each tear
-      iterations: Infinity,
-      easing: "cubic-bezier(0.6, 0.04, 0.98, 0.335)"
-    });
-  el.playState = 'paused';
-});
+      element.style[property] = final_value;
+    }
+  };
+}
 
-/* Small Ending */
-var omgDuration = 600;
 
-var exclaming = document.getElementById("exclaim").animate(
-  [  
-    { opacity: 0 }, 
-    { opacity: 1 },
-    { opacity: 1 }
-  ], 
+function animate_property(element,property,final_value,duration,permanent)
+{
+  var animation =  element.animate(
+      [
+        {property : element[property] },
+        {property : final_value}
+      ],duration
+    );
+  console.log(animation );
+  animation.onfinish = function()
   {
-    easing: 'steps(2, end)',
-    iterations: Infinity,
-    direction: 'alternate',
-    duration: omgDuration
-  }
-);
-exclaming.pause();
-
-var armWave = document.getElementById("alice_arm").animate([  
-    { transform: 'rotate(10deg)' }, 
-    { transform: 'rotate(-40deg)' }
-  ], 
-  {
-    easing: 'steps(2, end)',
-    iterations: Infinity,
-    direction: 'alternate',
-    duration: omgDuration
-  }
-);
-armWave.pause();
-
-var aliceShrank = document.getElementById("alice_too-small").animate([  
-    { transform: 'translateX(-50%) scale(1.1)' }, 
-    { transform: 'translateX(-50%) scale(1)' }
-  ], 
-  {
-    easing: easeOut,
-    duration: 600,
-    fill: 'forwards'
-  }
-);
-aliceShrank.pause();
-
-/* Ending UI */
-/* Pull #learn-more into space when  */
-var learnMoreButton = document.getElementById("learn-more_button");
-
-var seeLearnMore = document.getElementById("ending-ui_panels").animate([
-  { opacity: 1, transform: 'translateX(0)'}, 
-  { opacity: 0, transform: 'translateX(0)', offset: .33 }, 
-  { opacity: 0, transform: 'translateX(-66.67%)', offset: .66},
-  { opacity: 1, transform: 'translateX(-66.67%)'}
-], {
-  duration: 400,
-  easing: 'cubic-bezier(0.23, 1, 0.32, 1)',
-  fill: 'forwards'
-});
-seeLearnMore.pause();
-
-var learnMore = function(e) {
-  e.preventDefault();
-  seeLearnMore.play();
+    if (permanent === true)
+    {
+      element[property] = final_value;
+    }
+  };
 }
 
-learnMoreButton.addEventListener("click", learnMore);
-learnMoreButton.addEventListener("touchStart", learnMore);
 
-// hide content 
-var hide = function(element) {
-  element.style.pointerEvents = 'none';
+// function scrollTopoint (element,to,duration) {
+//      var currentTime = 0;
+//      var timer = setInterval(scroll, 100/6);
+//      console.log("timer "+ timer);
+//      var scroll_increment = ((to - element.scrollTop)*(100/6))/duration;
+//      var case1 = false;
+//      var case2 = false;
+//      function scroll(timer)
+//      {
+//         element.scrollTop +=  scroll_increment;
+//         currentTime += (100/6);
+        
+//         console.log("scrollTop "+element.scrollTop + " duration " + currentTime);
+//         console.log("to "+to + " duration "+duration );
+//         console.log("scroll_increment " +scroll_increment + " time_increment "+(100/6));
+//         console.log(Math.abs(element.scrollTop - to) );
+//         console.log("-----step-----");
+//         if (currentTime >= duration)
+//         {
+//           case1 = true;
+//         }
+//         if (Math.abs(element.scrollTop - to)<=Math.abs(scroll_increment))
+//         {
+//           case2 = true;
+//         }
+//         if ((case1 === true) && (case2 === true))
+//         {
+//           console.log("clear");
+//           clear_timer();
+//         }
+//      }
+//      function clear_timer()
+//      {
+//       console.log("scrollTop "+element.scrollTop);
+//       console.log("to "+to );
+//       console.log("scroll_increment " +scroll_increment);
+//       console.log(Math.abs(element.scrollTop - to));
+//       console.log("-----step-----");
+//       clearInterval(timer);
+//      }
+
+//   }
+
+
+function scrollTopoint (element,to,duration) {
+  console.log("here");
+  var start = element.scrollTop,
+      change = to - start,
+      currentTime = 0,
+      increment = 10;
+
+  var animateScroll = function(){
+    console.log("offset "+to_element.offsetTop);
+    console.log("scroll_box "+scroll_box.scrollTop);
+    currentTime += increment;
+    var val = Math.easeInOutQuad(currentTime,start,change,duration);
+    element.scrollTop = val;
+    if (currentTime < duration) {
+      setTimeout(animateScroll, increment);
+
+    }
+  };
+  animateScroll();
 }
 
-// set animation back at the start then pause
-var resetAnimation = function(animation) {
-  animation.currentTime = 0;
-  animation.pause();
-}
-
-/* Buttons reset the page's interactions. */
-var easeIn = "cubic-bezier(0.755, 0.05, 0.855, 0.06)";
-var easeOut = "cubic-bezier(0.23, 1, 0.32, 1)";
-var durationFade = 300;
-var keysFade = [
-  { opacity: 0 },
-  { opacity: 1 }
-];
-var timingFade = {
-  duration: durationFade,
-  fill: "forwards",
-  easing: easeIn  
-}
-
-var timingFadeDelayed = {
-  duration: durationFade,
-  fill: "forwards",
-  easing: easeIn,
-  delay: durationFade
-}
-
-var showEndings = document.getElementById("endings").animate(keysFade, timingFade);
-showEndings.pause();
-
-var showCrying = document.getElementById("end-in-tears").animate(keysFade, timingFadeDelayed);
-showCrying.pause();
-
-var showSmall = document.getElementById("end-too-small").animate(keysFade, timingFadeDelayed);
-showSmall.pause();
-
-var endingUI = document.getElementById("ending-ui");
-var bringUI = endingUI.animate(keysFade, timingFade);
-bringUI.pause();
-hide(endingUI);
-
-bringUI.onfinish = function() {
-  endingUI.style.pointerEvents = 'auto';
+Math.easeInOutQuad = function (t,b,c,d) {
+  console.log("here");
+  t /= d/2;
+    if (t<1) return c/2*t*t + b;
+    t--;
+    return -c/2 * (t*(t-2)-1) + b;
 };
-
-var resetAllTheThings = function() {
-  resetAnimation(seeLearnMore);
-  resetAnimation(drinking);
-  resetAnimation(nommingCake);
-  resetAnimation(showCrying);
-  resetAnimation(showSmall);
-  resetAnimation(showEndings);
-  resetAnimation(exclaming);
-  resetAnimation(armWave);
-  resetAnimation(aliceShrank);
-  resetAnimation(pool);
-  tears.forEach(function(el) {  
-    el.playState = "paused";
-    el.currentTime = 0;
-  });
-  resetAnimation(bringUI);
-  hide(endingUI);
-  aliceChange.currentTime = aliceChange.effect.timing.duration / 2;
-  aliceChange.pause();
-}
-
-Array.prototype.forEach.call(document.getElementsByClassName("play-again"), function(button) {
-  button.addEventListener("click", resetAllTheThings);
-  button.addEventListener("touchStart", resetAllTheThings);
-});

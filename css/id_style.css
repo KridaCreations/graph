@@ -1,8 +1,22 @@
+#scroll_box{
+	position: relative;
+	height: 280px;
+	width: 150px;
+	background: ghostwhite;
+	left: 20px;
+	top: 80px;
+	border-radius: 3px;
+	border: 4px solid seagreen;
+	overflow-y: scroll;
+	z-index: 999;
+
+}
+
 #center_button
 {
 	font-size: 1.3em;
 	font-weight: bold;
-	position: relative;
+	position: absolute;
 	cursor: pointer;
 	left: 20px;
 	width: 50px;
@@ -25,6 +39,7 @@
 {
 	background-color: #67e4de;
 	font-size: 1.7em;
+	
 }
 
 #dialog
@@ -175,4 +190,5 @@
 	height: 100px;
 	margin:0px; 
 	padding: 0px;  
+	z-index: 1;
 }

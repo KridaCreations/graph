@@ -57,12 +57,33 @@
 			<button id = "play">Play</button>
 			<button>></button>
 			<input id="animation_slider" value = '3' type="range" name="animation_slider" min="-1" max="10" step="1">
-			<label id = "animation_label" readonly = "true" >1.5</label>
-		</div>
+			<label id = "animation_label" readonly = "true" >1.5  <button id="to_top">TOP</button><button id="to_bottom">BOTTOM</button><button id="Add_node">Add</button><button id="Delete_node">delete</button></label>
+		</div> 
 	</div>
 	<div id="graph-container"  style="">
 		<button type="button" name="F"  id = "center_button">F</button>
-		<!-- x = "0" y = "0" height = "1" width = "1" -->
+		<div id="scroll_box">
+			<!-- <div id="a1" class="scroll_box_element">Abhishek1</div>
+		    <div id="a2" class="scroll_box_element">Abhishek2</div>
+		    <div id="a3" class="scroll_box_element">Abhishek3</div>
+		    <div id="a4" class="scroll_box_element">Abhishek4</div>
+		    <div id="a5" class="scroll_box_element">Abhishek5</div>
+		    <div id="a6" class="scroll_box_element">Abhishek6</div>
+		    <div id="a7" class="scroll_box_element">Abhishek7</div>
+		    <div id="a8" class="scroll_box_element">Abhishek8</div>
+		    <div id="a9" class="scroll_box_element">Abhishek9</div>
+		    <div id="a10" class="scroll_box_element">Abhishek10</div>
+		    <div id="a11" class="scroll_box_element">Abhishek11</div>
+		    <div id="a12" class="scroll_box_element">Abhishek12</div>
+		    <div id="a13" class="scroll_box_element">Abhishek13</div>
+		    <div id="a14" class="scroll_box_element">Abhishek14</div>
+		    <div id="a15" class="scroll_box_element">Abhishek15</div>
+		    <div id="a16" class="scroll_box_element">Abhishek16</div>
+		    <div id="a17" class="scroll_box_element">Abhishek17</div>
+		    <div id="a18" class="scroll_box_element">Abhishek18</div>
+		    <div id="a19" class="scroll_box_element">Abhishek19</div>
+		    <div id="a20" class="scroll_box_element">Abhishek20</div> -->
+		</div>
 		<div id = "draw_area_container" style="left: 0.4px; top: 0.4px;">
 			<svg  x = "0" y = "0" height = "100" width = "100" id = "draw_area" xmlns="http://www.w3.org/2000/svg" >
 				<defs>
@@ -126,6 +147,7 @@
 		<button id="hide">Close</button>
 		<button id="connect">Connect</button>   
 	</dialog>
+	
 <script type="text/javascript" src="js/script.js"></script>
 
 <script type="text/javascript" src="js/line_script.js"></script>
@@ -134,5 +156,6 @@
 <script type="text/javascript" src="js/button.js"></script>
 <script type="text/javascript" src="js/animation.js"></script>
 <script type="text/javascript" src="js/animations/dfs.js"></script>
+<script type="text/javascript" src="js/animations/bfs.js"></script>
 </body>
 </html>
