@@ -15,15 +15,20 @@ var anim_label = document.querySelector("#animation_label");
 var current_timer = null;
 var is_playing = false;
 var scroll_box = document.querySelector("#scroll_box");
-var to_top_button = document.querySelector("#to_top");
-var to_bottom_button = document.querySelector("#to_bottom");
-var delete_node_button = document.querySelector("#Delete_node");
-var add_node_button = document.querySelector("#Add_node");
+// var to_top_button = document.querySelector("#to_top");
+// var to_bottom_button = document.querySelector("#to_bottom");
+// var delete_node_button = document.querySelector("#Delete_node");
+// var add_node_button = document.querySelector("#Add_node");
+var forward_button = document.querySelector("#forward_button");
+var back_button = document.querySelector("#back_button");
 
-add_node_button.addEventListener("click",add_node_func);
-delete_node_button.addEventListener("click",delete_node_func);
-to_top_button.addEventListener("click",to_top);
-to_bottom_button.addEventListener("click",to_bottom);
+
+forward_button.addEventListener("click",move_forward);
+back_button.addEventListener("click",move_back);
+// add_node_button.addEventListener("click",add_node_func);
+// delete_node_button.addEventListener("click",delete_node_func);
+// to_top_button.addEventListener("click",to_top);
+// to_bottom_button.addEventListener("click",to_bottom);
 anim_position.addEventListener("input" , animation_slider_input);
 speed_slider.addEventListener("input" , speed_slider_input);
 bake_button.addEventListener("click" , bake_animation);
@@ -42,9 +47,54 @@ function add_node_func(name)
 	}
 }
 
+function move_back (argument) {
+	if (baked_animation === null)
+	{
+		alert("error occured\npossible errors:-\n1)no animation baked \n2)broken animation: you might have edited the graph after baking animation")
+		return;
+	}
+	is_playing = false
+	play_button.textContent = "Play";
+	clearTimeout(current_timer);
+	var anim_value = Number(current_stage-1);
+	change_anim_position(anim_value);
+	anim_label.textContent = current_stage-1;
+	if (baked_animation === 0)
+	{
+		change_to_anim_stage_dfs(anim_value);
+	}
+	else if (baked_animation === 1)
+	{
+		change_to_anim_stage_bfs(anim_value);
+	}
+	
+}
+
+function move_forward (argument) {
+	if (baked_animation === null)
+	{
+		alert("error occured\npossible errors:-\n1)no animation baked \n2)broken animation: you might have edited the graph after baking animation")
+		return;
+	}
+	is_playing = false
+	play_button.textContent = "Play";
+	clearTimeout(current_timer);
+	var anim_value = Number(current_stage+1);
+	change_anim_position(anim_value);
+	anim_label.textContent = current_stage+1;
+	if (baked_animation === 0)
+	{
+		change_to_anim_stage_dfs(anim_value);
+	}
+	else if (baked_animation === 1)
+	{
+		change_to_anim_stage_bfs(anim_value);
+	}
+	
+}
+
 function delete_node_func (event) 
 {
-	console.log("deleting");
 	if (scroll_box.childElementCount <= 7) {
 		delete_from_point(scroll_box,0,0);
 	}
@@ -113,7 +163,6 @@ function add_to_point(element,to,duration,name) {
 			    { transform: new_div.style["transform"]},
 			    { transform: 'scale(1)'}
 			  ], delay*1000*transition_factor);
-			    	console.log(new_div.style["transform"]);
 			scale_anim.onfinish = function ()
 			{
 				new_div.style["transform"] = 'scale(1)';
@@ -147,8 +196,6 @@ function scrollTopoint (element,to,duration) {
     }
     else
     {
-
-    	console.log("ende");
     }
   };
   animateScroll();
@@ -170,7 +217,6 @@ function speed_slider_input(value)
 
 function animation_slider_input()
 {
-	console.log("input");
 	if (baked_animation === null)
 	{
 		alert("error occured\npossible errors:-\n1)no animation baked \n2)broken animation: you might have edited the graph after baking animation")
@@ -201,6 +247,9 @@ function bake_animation(event)
 	{
 		bake_bfs();
 	}
+	else {
+				alert("Animation not available\nAbhishek kumar hasn't coded them yet\n only these animations are available for now \n1)depth first traversal\n2)breadth first traversal");
+	}
 
 }
 
@@ -223,6 +272,7 @@ function play_animation(event)
 		{
 			play_bfs(current_stage,anim_array);
 		}
+		
 		
 
 	}

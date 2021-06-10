@@ -4,6 +4,7 @@ var delete_button = document.querySelector("#delete_button");
 var connect_button = document.querySelector("#connect_button");
 var center_button = document.querySelector("#center_button")
 var focus_button = document.querySelector("#focus_button");
+var recolor_button = document.querySelector("#recolor_button");
 var graph_container = document.querySelector("#graph-container");
 var connection_label = document.querySelector("#connections");
 var graph = document.querySelector("#graph");
@@ -20,9 +21,12 @@ var container_center = {"left" : 763,"top" : 205};
 var g_pos = {"left" : 0,"top" : 0};
 var graph_pressed = false;
 var center_of_nodes = {"left" : 0, "top" : 0};
+// var nodes = {}
+
 
 document.nodes = {};
 
+recolor_button.addEventListener("click",recolor_graph);
 center_button.addEventListener("click",position_graph);
 graph_container.addEventListener("wheel",graph_wheel);
 graph_container.addEventListener("click",graph_click);
@@ -31,7 +35,24 @@ graph_container.addEventListener("mouseup",graph_mouse_up);
 graph_container.addEventListener("mousedown",graph_mouse_down);
 graph_container.addEventListener("mouseover",graph_mouse_over);
 
-
+function recolor_graph () {
+	anim_position.max = anim_array.length-1;
+	current_stage = -1;
+	change_anim_position(current_stage);
+	is_playing = false
+	play_button.textContent = "Play";
+	clearTimeout(current_timer);
+	scroll_box.textContent = "";
+	for (node in document.nodes)
+	{
+		var c_node = document.nodes[node];
+		c_node.style.removeProperty("background-color");
+		for(lines in c_node.connections)
+		{
+			c_node.connections[lines].line.style.removeProperty("stroke");
+		}
+	}
+}
 
 function position_graph(event)
 {
@@ -176,6 +197,7 @@ function add_node(id_no,position_y,position_x)
 	new_node.addEventListener('mouseup',node_mouse_up);
 	new_node.addEventListener('mousedown',node_mouse_down);
 	document.nodes[new_node.id] = new_node;
+	// nodes[new_node.id] = new_node;
 
 
 	return new_node;

@@ -33,6 +33,7 @@
 	transition-property: background-color, letter-spacing,transform,font-size;
  	transition-duration: 0.5s ,0.3s,0.3s,0.3s;
  	transition-timing-function: ease, ease,ease;
+ 	z-index: 999;
 }
 
 #center_button:hover

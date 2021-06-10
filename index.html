@@ -17,18 +17,19 @@
 			<label class = "radio_buttons">DELETE<input type="radio" name="mode" id="delete_button"></label>
 			<label class = "radio_buttons">FOCUS<input type="radio" name="mode" id="focus_button"></label>
 			<label class = "radio_buttons">MOVE<input type="radio" name="mode" id="move_button"></label>
-			<label class = "radio_buttons">CONNECT<input type="radio" name="mode" id="connect_button"></label>
-			<div style="margin-top: 6px;">
-				<label  class="options" style="margin-top: 6px; margin-left: 0px; padding-left: 0px;">Connection Type
-					<select id = "connections" name = "connections">
-						<option>Bidirectional Unweighted</option>
-						<option selected>directional Unweighted</option>
-						<option  >Bidirectional weighted</option>
-						<option>directional weighted</option>
-					</select>
-				</label>
-			</div>
+			<label class = "radio_buttons">CONNECT<input type="radio" name="mode" id="connect_button"></label>	
 		</div>
+		<div style="margin-top: 6px;">
+			<label  class="options" style="margin-top: 6px; margin-left: 0px; padding-left: 0px;">Connection Type
+				<select id = "connections" name = "connections">
+					<option>Bidirectional Unweighted</option>
+					<option selected>directional Unweighted</option>
+					<option  >Bidirectional weighted</option>
+					<option>directional weighted</option>
+				</select>
+			</label>
+		</div>
+		<button id="recolor_button" title="clear all the coloring created by animations">Recolor</button>
 	</div>
 	<div id = "control-panel" style="float: left;" >
 		<div  class="options">
@@ -53,11 +54,11 @@
 			</label>
 		</div>
 		<div>
-			<button><</button>
+			<button id="back_button"><</button>
 			<button id = "play">Play</button>
-			<button>></button>
+			<button id="forward_button">></button>
 			<input id="animation_slider" value = '3' type="range" name="animation_slider" min="-1" max="10" step="1">
-			<label id = "animation_label" readonly = "true" >1.5  <button id="to_top">TOP</button><button id="to_bottom">BOTTOM</button><button id="Add_node">Add</button><button id="Delete_node">delete</button></label>
+			<label id = "animation_label" readonly = "true" >1.5  <!-- <button id="to_top">TOP</button><button id="to_bottom">BOTTOM</button><button id="Add_node">Add</button><button id="Delete_node">delete</button> --></label>
 		</div> 
 	</div>
 	<div id="graph-container"  style="">

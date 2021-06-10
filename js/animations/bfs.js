@@ -1,10 +1,12 @@
 var queue = new Queue();
 function bake_bfs()
 {
+	recolor_graph();
 	if (foccused_node === null)
 	{
 		return;
 	}
+	recolor_graph();
 	queue.clear();
 	clearArray(anim_array);
 	clearObject(visited_node);
@@ -16,7 +18,6 @@ function bake_bfs()
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);
-	console.log(anim_array);
 }
 
 function change_to_anim_stage_bfs(stage)
@@ -34,7 +35,6 @@ function change_to_anim_stage_bfs(stage)
 	{
 		for(i = pre_stage-1;i >= stage;i--)
 		{
-			console.log(anim_array[i]);
 			perform_bfs_fast_back(i,anim_array);
 		}
 		current_stage = stage;
@@ -67,8 +67,6 @@ function bfs(node)
 
 function play_bfs(stage,anim_array)
 {
-	console.log("start playing");
-	console.log(anim_array.length);
 	if (stage === anim_array.length)
 	{
 		return;
@@ -86,7 +84,6 @@ function play_bfs(stage,anim_array)
 }
 function perform_bfs(stage,anim_array)
 {
-	console.log(stage);
 	stage = Number(stage);
 	if (stage === -1)
 	{
@@ -120,7 +117,6 @@ function perform_bfs(stage,anim_array)
 		animate_property(scroll_box.firstElementChild,"background-color","lightseagreen",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);	
 	}
-	console.log(stage);
 }
 
 function perform_bfs_fast_back(stage,anim_array)

@@ -1,10 +1,12 @@
 function bake_dfs()
 {
+
 	if (foccused_node === null)
 	{
 		alert("please choose a starting node\nyou can do this by foccusing on the start node ");
 		return;
 	}
+	recolor_graph();
 	clearArray(anim_array);
 	clearObject(visited_node);
 	visited_node[foccused_node.id] = 1;
@@ -12,7 +14,6 @@ function bake_dfs()
 	dfs(foccused_node);
 	anim_array.push(["done",foccused_node]);
 	baked_animation = 0;
-	console.log(anim_array);
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);
@@ -33,7 +34,6 @@ function change_to_anim_stage_dfs(stage)
 	{
 		for(i = pre_stage-1;i >= stage;i--)
 		{
-			console.log(anim_array[i]);
 			perform_dfs_fast_back(i,anim_array);
 		}
 		current_stage = stage;

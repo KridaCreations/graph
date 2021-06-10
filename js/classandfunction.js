@@ -14,7 +14,6 @@ function clearObject(object)
     }
 }
 
-// console.log("hello");
 // Queue class
 class Queue
 {
