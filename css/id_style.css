@@ -54,6 +54,7 @@
 	font-weight: bolder;
 	border: 4px solid yellow;
 	border-radius: 10px;
+	z-index: 40;
 }
 
 #coding_area
