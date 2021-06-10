@@ -21,6 +21,7 @@ function node_click(event)
 			no_of_nodes -= 1;
 			center_of_nodes.left = ((center_of_nodes.left * (no_of_nodes + 1)) - this.pos.left)/no_of_nodes;
 			center_of_nodes.top = ((center_of_nodes.top * (no_of_nodes + 1)) - this.pos.top)/no_of_nodes;
+			baked_animation = null;
 			this.remove();
 
 		}
@@ -120,6 +121,7 @@ function join(from,to,event)
 	{
 		return;
 	}
+	baked_animation = null;
 	var new_line = document.createElementNS("http://www.w3.org/2000/svg","line");
 	new_line.className += " svg_graphics";
 	draw_area.append(new_line);

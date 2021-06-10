@@ -3,7 +3,8 @@
 	border: 2px solid palevioletred;
 	width: 100%;
 	overflow-x: hidden;
-	background: gray;
+	background: palevioletred;
+	border:2px solid yellow;
 	overflow-y: hidden;
 	text-align: center;
 	padding-left: 4px;

@@ -2,14 +2,17 @@ function bake_dfs()
 {
 	if (foccused_node === null)
 	{
+		alert("please choose a starting node\nyou can do this by foccusing on the start node ");
 		return;
 	}
 	clearArray(anim_array);
+	clearObject(visited_node);
 	visited_node[foccused_node.id] = 1;
 	anim_array.push(["start",foccused_node]);
 	dfs(foccused_node);
 	anim_array.push(["done",foccused_node]);
 	baked_animation = 0;
+	console.log(anim_array);
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);
@@ -60,8 +63,6 @@ function dfs(node)
 
 function play_dfs(stage,anim_array)
 {
-	
-	
 	if (stage === anim_array.length)
 	{
 		return;
@@ -83,11 +84,6 @@ function play_dfs(stage,anim_array)
 
 function perform_dfs_fast_back(stage,anim_array)
 {
-	console.log(current_stage);
-	console.log(typeof stage);
-	console.log(stage);
-	console.log(anim_array.length);
-	console.log(anim_array)
 	if (stage+1 === anim_array.length)
 	{
 		return;
@@ -144,9 +140,6 @@ function perform_dfs_fast(stage,anim_array)
 function perform_dfs(stage,anim_array)
 {
 	stage = Number(stage);
-	console.log(typeof stage);
-	console.log(stage);
-	console.log(anim_array);
 	if (stage === -1)
 	{
 		return;

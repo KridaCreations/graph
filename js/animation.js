@@ -30,16 +30,15 @@ bake_button.addEventListener("click" , bake_animation);
 play_button.addEventListener("click" , play_animation);
 count = 0;
 
-function add_node_func(event)
+function add_node_func(name)
 {
-	console.log("here");
 	if(scroll_box.childElementCount < 7)
 	{
-		add_to_point(scroll_box,0,0,"abhishek");
+		add_to_point(scroll_box,0,0,name);
 	}
 	else
 	{
-		add_to_point(scroll_box,(scroll_box.childElementCount-7+1)*40,(delay*1000)*transition_factor,"abhishek");
+		add_to_point(scroll_box,(scroll_box.childElementCount-7+1)*40,(delay*1000)*transition_factor,name);
 	}
 }
 
@@ -89,16 +88,15 @@ function delete_from_point (element,to,duration) {
 
 
 function add_to_point(element,to,duration,name) {
-  	var start = element.scrollTop;
-    change = to - start;
-    currentTime = 0;
-    increment = 10;
-    var new_div = document.createElement("div");
-    new_div.style.transform =(`scale(${0})`);
+  var start = element.scrollTop;
+  change = to - start;
+  currentTime = 0;
+  increment = 10;
+  var new_div = document.createElement("div");
+  new_div.style.transform =(`scale(${0})`);
 	new_div.className = "scroll_box_element";
-	// count+=1;
-	new_div.id = name + count;
-	new_div.textContent = name+count;
+	new_div.id = name;
+	new_div.textContent = name;
 	element.append(new_div);
   	var animateScroll =function()
   	{
@@ -173,16 +171,23 @@ function speed_slider_input(value)
 function animation_slider_input()
 {
 	console.log("input");
+	if (baked_animation === null)
+	{
+		alert("error occured\npossible errors:-\n1)no animation baked \n2)broken animation: you might have edited the graph after baking animation")
+		return;
+	}
 	is_playing = false
 	play_button.textContent = "Play";
 	clearTimeout(current_timer);
 	var anim_value = Number(anim_position.value);
-	// console.log(typeof anim_position.value);
-	// console.log(anim_position.value);
 	anim_label.textContent = anim_position.value;
 	if (baked_animation === 0)
 	{
 		change_to_anim_stage_dfs(anim_value);
+	}
+	else if (baked_animation === 1)
+	{
+		change_to_anim_stage_bfs(anim_value);
 	}
 }
 
@@ -192,10 +197,21 @@ function bake_animation(event)
 	{
 		bake_dfs();
 	}
+	else if (algorithm_label.selectedIndex === 1)
+	{
+		bake_bfs();
+	}
+
 }
 
 function play_animation(event)
-{	if (is_playing === false)
+{	
+	if (baked_animation === null)
+	{
+		alert("error occured\npossible errors:-\n1)no animation baked \n2)broken animation: you might have edited the graph after baking animation")
+		return;
+	}
+	if (is_playing === false)
 	{
 		is_playing = true;
 		play_button.textContent = "Stop";
@@ -203,6 +219,12 @@ function play_animation(event)
 		{
 			play_dfs(current_stage,anim_array);
 		}
+		else if (baked_animation === 1)
+		{
+			play_bfs(current_stage,anim_array);
+		}
+		
+
 	}
 	else if(is_playing === true)
 	{

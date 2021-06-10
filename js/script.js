@@ -31,14 +31,7 @@ graph_container.addEventListener("mouseup",graph_mouse_up);
 graph_container.addEventListener("mousedown",graph_mouse_down);
 graph_container.addEventListener("mouseover",graph_mouse_over);
 
-function clearArray(array) {
-  while (array.length) {
-    array.pop();
-  }
-}
-function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) ) + min;
-}
+
 
 function position_graph(event)
 {
@@ -98,7 +91,6 @@ function graph_wheel(event)
 			event.stopPropagation();
 			return;
 		}
-		// console.log(event.target.parentNode);
 		var con_pos_x = graph_container.getBoundingClientRect().left;
 		var con_pos_y = graph_container.getBoundingClientRect().top;
 		var ev_wrt_con_x = event.clientX - con_pos_x;
@@ -166,6 +158,7 @@ function graph_click(event)
 
 function add_node(id_no,position_y,position_x)
 {
+	baked_animation = null;
 	var new_node = document.createElement("div");
 	new_node.id = "node" + id_no;
 	graph.append(new_node);

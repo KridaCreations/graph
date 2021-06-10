@@ -2,6 +2,7 @@ function line_click()
 {
 	if (delete_button.checked === true)
 	{
+		baked_animation = null;
 		line_delete(this);
 	}
 }
