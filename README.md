@@ -7,6 +7,8 @@ work in progress(WIP)
 current demo
 https://kridacreations.github.io/graph/
 
+https://algorithmvisualizer.bitbucket.io/
+
 
 this is a tool to draw graph and visualize the various algorithms on it 
 
