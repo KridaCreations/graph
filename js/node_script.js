@@ -22,8 +22,10 @@ function node_click(event)
 			center_of_nodes.left = ((center_of_nodes.left * (no_of_nodes + 1)) - this.pos.left)/no_of_nodes;
 			center_of_nodes.top = ((center_of_nodes.top * (no_of_nodes + 1)) - this.pos.top)/no_of_nodes;
 			baked_animation = null;
-			delete nodes[this.id];
+			console.log(document.nodes);
 			this.remove();
+			delete document.nodes[this.id];
+			console.log(document.nodes);
 
 		}
 		else if (focus_button.checked === true)
@@ -132,31 +134,32 @@ function join(from,to,event)
 	new_line.setAttribute("y2" , to.offsetTop+25);
 	if (connection_label.selectedIndex === 0)
 	{
-		from.connections[to.id]={"node":to,"line":new_line};
-		to.connections[from.id]={"node":from,"line":new_line};
+		
 		new_line.detail = {};
 		new_line.detail.start = from;
 		new_line.detail.end = to;
 		new_line.detail.both = true;
 		new_line.detail.weight = null;
 		new_line.addEventListener("click",line_click);
+		from.connections[to.id]={"node":to,"line":new_line};
+		to.connections[from.id]={"node":from,"line":new_line};
 	}
 	else if(connection_label.selectedIndex === 1)
 	{
 		new_line.setAttribute("marker-end","url(#arrow)");
-		from.connections[to.id]={"node":to,"line":new_line};
-		to.other_connections[from.id]={"node":from,"line":new_line};
+		
 		new_line.detail = {};
 		new_line.detail.start = from;
 		new_line.detail.end = to;
 		new_line.detail.both = false;
 		new_line.detail.weight = null;
 		new_line.addEventListener("click",line_click);
+		from.connections[to.id]={"node":to,"line":new_line};
+		to.other_connections[from.id]={"node":from,"line":new_line};
 	}
 	else if (connection_label.selectedIndex === 2)
 	{
-		from.connections[to.id]={"node":to,"line":new_line};
-		to.connections[from.id]={"node":from,"line":new_line};
+		
 		new_line.detail = {};
 		new_line.detail.start = from;
 		new_line.detail.end = to;
@@ -164,12 +167,13 @@ function join(from,to,event)
 		new_line.detail.weight = null;
 		dialog_appear(new_line);
 		new_line.addEventListener("click",line_click);
+		from.connections[to.id]={"node":to,"line":new_line};
+		to.connections[from.id]={"node":from,"line":new_line};
 	}
 	else if(connection_label.selectedIndex === 3)
 	{
 		new_line.setAttribute("marker-end","url(#arrow)");
-		from.connections[to.id]={"node":to,"line":new_line};
-		to.other_connections[from.id]={"node":from,"line":new_line};
+		
 		new_line.detail = {};
 		new_line.detail.start = from;
 		new_line.detail.end = to;
@@ -177,6 +181,8 @@ function join(from,to,event)
 		new_line.detail.weight = null;
 		dialog_appear(new_line);
 		new_line.addEventListener("click",line_click);
+		from.connections[to.id]={"node":to,"line":new_line};
+		to.other_connections[from.id]={"node":from,"line":new_line};
 	}
 
 }

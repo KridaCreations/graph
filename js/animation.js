@@ -15,20 +15,12 @@ var anim_label = document.querySelector("#animation_label");
 var current_timer = null;
 var is_playing = false;
 var scroll_box = document.querySelector("#scroll_box");
-// var to_top_button = document.querySelector("#to_top");
-// var to_bottom_button = document.querySelector("#to_bottom");
-// var delete_node_button = document.querySelector("#Delete_node");
-// var add_node_button = document.querySelector("#Add_node");
 var forward_button = document.querySelector("#forward_button");
 var back_button = document.querySelector("#back_button");
 
 
 forward_button.addEventListener("click",move_forward);
 back_button.addEventListener("click",move_back);
-// add_node_button.addEventListener("click",add_node_func);
-// delete_node_button.addEventListener("click",delete_node_func);
-// to_top_button.addEventListener("click",to_top);
-// to_bottom_button.addEventListener("click",to_bottom);
 anim_position.addEventListener("input" , animation_slider_input);
 speed_slider.addEventListener("input" , speed_slider_input);
 bake_button.addEventListener("click" , bake_animation);
@@ -246,6 +238,10 @@ function bake_animation(event)
 	else if (algorithm_label.selectedIndex === 1)
 	{
 		bake_bfs();
+	}
+	else if (algorithm_label.selectedIndex === 2)
+	{
+		bake_dijsktra();
 	}
 	else {
 				alert("Animation not available\nAbhishek kumar hasn't coded them yet\n only these animations are available for now \n1)depth first traversal\n2)breadth first traversal");

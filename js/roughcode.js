@@ -627,3 +627,45 @@ function perform(stage,anim_array)
 3 4 1 1 
 6 5 1 1 
 4 5 1 1
+
+
+
+
+///moving nodes old code
+
+// center_of_nodes.left = ((center_of_nodes.left * no_of_nodes) - foccused_node.pos.left + calc_x)/no_of_nodes;
+			// center_of_nodes.top = ((center_of_nodes.top * no_of_nodes) - foccused_node.pos.top + calc_y)/no_of_nodes;
+			// foccused_node.style.left = `${calc_x}px`;
+			// foccused_node.style.top = `${calc_y}px`;
+			// foccused_node.pos.left = calc_x;
+			// foccused_node.pos.top = calc_y;
+
+			// for (node in foccused_node.connections)
+			// {
+			// 	var pair = foccused_node.connections[node];
+			// 	pair.line.setAttribute("x1" , calc_x+ 25  );
+			// 	pair.line.setAttribute("y1" , calc_y+ 25  );
+			// 	pair.line.setAttribute("x2" , pair.node.offsetLeft + 25 );
+			// 	pair.line.setAttribute("y2" , pair.node.offsetTop + 25 );
+
+			// 	if (!(pair.line.detail.weight === null))
+			// 	{
+			// 		var x_pos = (calc_x + 25  + Number(pair.line.getAttribute("x2")))/2;
+			// 		var y_pos = (calc_y + 25  + Number(pair.line.getAttribute("y2")))/2;
+			// 		pair.line.detail.weight_rect.setAttribute("x", x_pos-7.5);
+			// 		pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
+			// 	}
+			// }
+			// for (node in foccused_node.other_connections)
+			// {
+			// 	var pair = foccused_node.other_connections[node];
+			// 	pair.line.setAttribute("x2" ,calc_x + 25  );
+			// 	pair.line.setAttribute("y2" ,calc_y + 25  );
+			// 	if (!(pair.line.detail.weight === null))
+			// 	{
+			// 		var x_pos = (calc_x + 25  + Number(pair.line.getAttribute("x1")))/2;
+			// 		var y_pos = (calc_y + 25  + Number(pair.line.getAttribute("y1")))/2;
+			// 		pair.line.detail.weight_rect.setAttribute("x", x_pos-7.5);
+			// 		pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
+			// 	}
+			// }

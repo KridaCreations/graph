@@ -1,7 +1,7 @@
 var queue = new Queue();
 function bake_bfs()
 {
-	recolor_graph();
+	// recolor_graph();
 	if (foccused_node === null)
 	{
 		return;
