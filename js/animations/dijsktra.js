@@ -50,7 +50,6 @@ function dijsktra (node)
 				anim_array.push(["appear",pair.node]);
 				anim_array.push(["add_pre_dis",pair.node,curr_dis]);
 				anim_array.push(["add_new_dis",pair.node,new_dis]);
-// anim_array.push(["solve",pair_node]);
 				if (curr_dis === undefined)
 				{
 					distance[pair.node.id] = new_dis;
