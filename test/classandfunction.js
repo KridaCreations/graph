@@ -3,6 +3,19 @@ function clearArray(array) {
     array.pop();
   }
 }
+
+function unit_function(value)
+{
+    if (value<0) 
+    {
+        return 0;
+    }
+    else
+    {
+        return value;
+    }
+} 
+
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }

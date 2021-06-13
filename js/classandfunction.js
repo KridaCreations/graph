@@ -3,6 +3,19 @@ function clearArray(array) {
     array.pop();
   }
 }
+
+function unit_function(value)
+{
+    if (value<0) 
+    {
+        return 0;
+    }
+    else
+    {
+        return value;
+    }
+}   
+
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -234,7 +247,32 @@ class Heap
     }
 
 }
+function scrollTopoint (element,to,duration) {
+  var start = element.scrollTop,
+      change = to - start,
+      currentTime = 0,
+      increment = 10;
 
+  var animateScroll = function(){
+    currentTime += increment;
+    var val = Math.easeInOutQuad(currentTime,start,change,duration);
+    element.scrollTop = val;
+    if (currentTime < duration) {
+      setTimeout(animateScroll, increment);
+    }
+    else
+    {
+    }
+  };
+  animateScroll();
+}
+
+Math.easeInOutQuad = function (t,b,c,d) {
+  t /= d/2;
+    if (t<1) return c/2*t*t + b;
+    t--;
+    return -c/2 * (t*(t-2)-1) + b;
+};
 
 // Queue class
 class Queue

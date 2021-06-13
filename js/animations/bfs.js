@@ -119,6 +119,50 @@ function perform_bfs(stage,anim_array)
 	}
 }
 
+function perform_bfs_fast(stage,anim_array)
+{
+	if (stage === -1)
+	{
+		return;
+	}
+	if (anim_array[stage][0] === "add")
+	{
+		var new_div = document.createElement("div");
+		new_div.className = "scroll_box_element";
+		new_div.id = anim_array[stage][1].id;
+		new_div.textContent = anim_array[stage][1].id;
+		scroll_box.append(new_div);
+		if(scroll_box.childElementCount >= 7)
+		{
+			scroll_box.scrollTop = (scroll_box.childElementCount-7+1)*40;
+		}
+	}
+	else if (anim_array[stage][0] === "remove") 
+	{
+		scroll_box.scrollTop = 0;
+		scroll_box.firstElementChild.remove();
+	}
+	else if (anim_array[stage][0] === "go") {
+		anim_array[stage-1][1].style["background-color"] = "green";
+		anim_array[stage][1].style["background-color"] = "yellow";
+		anim_array[stage-1][1].connections[anim_array[stage][1].id].line.style["stroke"] = "blue";
+	}
+	else if (anim_array[stage][0] === "return")
+	{
+		anim_array[stage-1][1].style["background-color"] = "green";
+		anim_array[stage][1].style["background-color"] = "yellow";
+		anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] = "green";
+	}
+	else if (anim_array[stage][0] === "done")
+	{
+		anim_array[stage][1].style["background-color"] = "blue";
+	}
+	else if (anim_array[stage][0] === "jump") 
+	{
+		scroll_box.firstElementChild.style["background-color"] = "lightseagreen";
+		anim_array[stage][1].style["background-color"] = "yellow";
+	}
+}
 function perform_bfs_fast_back(stage,anim_array)
 {
 	if (stage+1 === anim_array.length)
@@ -136,7 +180,8 @@ function perform_bfs_fast_back(stage,anim_array)
 		new_div.className = "scroll_box_element";
 		new_div.id = anim_array[stage+1][1].id;
 		new_div.textContent = anim_array[stage+1][1].id;
-		scroll_box.append(new_div);
+		// scroll_box.append(new_div);
+		scroll_box.prepend(new_div)
 		if(scroll_box.childElementCount >= 7)
 		{
 			scroll_box.scrollTop = (scroll_box.childElementCount-7+1)*40;
@@ -172,48 +217,5 @@ function perform_bfs_fast_back(stage,anim_array)
 }
 
 
-function perform_bfs_fast(stage,anim_array)
-{
-	if (stage === -1)
-	{
-		return;
-	}
-	if (anim_array[stage][0] === "add")
-	{
-		var new_div = document.createElement("div");
-		new_div.className = "scroll_box_element";
-		new_div.id = anim_array[stage][1].id;
-		new_div.textContent = anim_array[stage][1].id;
-		scroll_box.append(new_div);
-		if(scroll_box.childElementCount >= 7)
-		{
-			scroll_box.scrollTop = (scroll_box.childElementCount-7+1)*40;
-		}
-	}
-	else if (anim_array[stage][0] === "remove") 
-	{
-		scroll_box.scrollTop = 0;
-		scroll_box.lastElementChild.remove();
-	}
-	else if (anim_array[stage][0] === "go") {
-		anim_array[stage-1][1].style["background-color"] = "green";
-		anim_array[stage][1].style["background-color"] = "yellow";
-		anim_array[stage-1][1].connections[anim_array[stage][1].id].line.style["stroke"] = "blue";
-	}
-	else if (anim_array[stage][0] === "return")
-	{
-		anim_array[stage-1][1].style["background-color"] = "green";
-		anim_array[stage][1].style["background-color"] = "yellow";
-		anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] = "green";
-	}
-	else if (anim_array[stage][0] === "done")
-	{
-		anim_array[stage][1].style["background-color"] = "blue";
-	}
-	else if (anim_array[stage][0] === "jump") 
-	{
-		scroll_box.firstElementChild.style["background-color"] = "lightseagreen";
-		anim_array[stage][1].style["background-color"] = "yellow";
-	}
-}
+
 
