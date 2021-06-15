@@ -174,7 +174,7 @@ class ScrollHeap
         }
         else
         {
-            this.add_to_point((scroll_box.childElementCount-7+1)*40,(delay*1000)*transition_factor,element,value);
+            this.add_to_point((this.scroll_box.childElementCount-7+1)*40,(delay*1000)*transition_factor,element,value);
         }
     }
     push(element,value)

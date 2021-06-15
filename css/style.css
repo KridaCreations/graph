@@ -6,7 +6,14 @@ h1{
 	box-sizing: border-box; 
 	border-radius: 10px;
 	margin: 0px;
-	/*visibility: ;*/
+	box-sizing: border-box;
+	position: absolute;
+	left: 5%;
+	top: 2%;
+	width: 90%;
+	background: lightseagreen;
+	z-index: 23;
+	/*style="position: absolute; left:5%; top:2%; width: 90%; background: lightseagreen; z-index: 23;"*/
 }
 
 svg {
@@ -17,6 +24,9 @@ svg {
 body
 {
 	background-color: floralwhite;
+	margin: 0px;
+	padding: 0px;  
+	overflow: hidden;
 }
 
 textarea:focus

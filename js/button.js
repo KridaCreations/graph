@@ -1,6 +1,45 @@
 var coding_appear_button = document.querySelector("#code_appear");
+var animation_panel_button = document.querySelector("#animation_panel_button") 
+var tools_panel_button = document.querySelector("#tools_panel_button")
+var animation_panel = document.querySelector("#animation_panel");
+var tools_panel = document.querySelector("#tools_panel");
+
+tools_panel_button.visible = false;
+animation_panel_button.visible = false;
 coding_appear_button.visible = false;
+
 coding_appear_button.addEventListener("click",animate_code_area);
+animation_panel_button.addEventListener("click",appear_animation_panel);
+tools_panel_button.addEventListener("click",appear_tools_panel);
+
+function appear_tools_panel (argument) 
+{
+	if (tools_panel_button.visible === false) 
+	{
+		animate_property(tools_panel,"left","20px",300,true);
+		tools_panel_button.visible = true;
+	}
+	else 
+	{
+		animate_property(tools_panel,"left","-500px",300,true);
+		tools_panel_button.visible = false;
+	}
+}
+
+function appear_animation_panel(argument)
+{
+	if (animation_panel_button.visible === false) 
+	{
+		animate_property(animation_panel,"left","960px",300,true);
+		animation_panel_button.visible = true;
+	}
+	else 
+	{
+		animate_property(animation_panel,"left","1490px",300,true);
+		animation_panel_button.visible = false;
+	}
+}
+
 
 function animate_code_area()
 {

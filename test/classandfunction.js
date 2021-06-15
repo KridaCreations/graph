@@ -134,16 +134,13 @@ class Heap
     }
     change_value(element,new_value)
     {
-        // console.log("inside change " +new_value+" " +this.items[this.position[element]].value);
         if (new_value < this.items[this.position[element]].value)
         { 
-            // console.log("up");
             this.items[this.position[element]].value = new_value;
             return this.bubble_up(this.position[element]);
         }
         else if (new_value > this.items[this.position[element]].value ) 
         {
-            // console.log("down");
             this.items[this.position[element]].value = new_value;
             return this.bubble_down(this.position[element]);
         }

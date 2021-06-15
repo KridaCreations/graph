@@ -7,61 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="css/class_style.css">
 	<link id="line_sheet" rel="stylesheet" type="text/css" href="css/line_style_normal_mode.css">
 </head>
-<body style="padding: 0px; margin: 5px 5px 5px 5px; overflow: hidden;">
-
-	<h1 >GraphAlgorithmVisualizer</h1>
-	
-	<div id = "control-panel" style="float: left;" >
-		<div class="options">
-			<label class = "radio_buttons">ADD<input  type="radio" name="mode" checked="true" id="add_button"></label>
-			<label class = "radio_buttons">DELETE<input type="radio" name="mode" id="delete_button"></label>
-			<label class = "radio_buttons">FOCUS<input type="radio" name="mode" id="focus_button"></label>
-			<label class = "radio_buttons">MOVE<input type="radio" name="mode" id="move_button"></label>
-			<label class = "radio_buttons">CONNECT<input type="radio" name="mode" id="connect_button"></label>	
-		</div>
-		<div style="margin-top: 6px;">
-			<label  class="options" style="margin-top: 6px; margin-left: 0px; padding-left: 0px;">Connection Type
-				<select id = "connections" name = "connections">
-					<option>Bidirectional Unweighted</option>
-					<option selected>directional Unweighted</option>
-					<option  >Bidirectional weighted</option>
-					<option>directional weighted</option>
-				</select>
-			</label>
-		</div>
-		<button id="recolor_button" title="clear all the coloring created by animations">Recolor</button>
-		<button id="layout_button" title="clear all the coloring created by animations">Layout</button>
-	</div>
-	<div id = "control-panel" style="float: left;" >
-		<div  class="options">
-			<label>Algorithm
-				<select id = "algorithms">
-					<option>Depth First Search</option>
-					<option>Breadth First Search</option>
-					<option>Dijsktra Algorithm</option>
-					<option>Bellman Ford Algorithm</option>
-					<option>Kruskal Algorithm</option>
-					<option>Prims's Algorithm</option>
-					<option>Articulation Points</option>
-					<option>Finding Bridges</option>
-				</select>
-				<button id="bake">Bake Animation</button>
-				<!-- <button id="play">Play Animation</button> -->
-				<!-- <button id="stfffop">Stop Animation</button> -->
-				<div>
-					<label>Delay<input id="speed_slider" value = '3' style="margin: 0px;" type="range" name="speed" min="1" max="10" step="1">
-					<label id = "speed_label">1.5</label></label>
-				</div>
-			</label>
-		</div>
-		<div>
-			<button id="back_button"><</button>
-			<button id = "play">Play</button>
-			<button id="forward_button">></button>
-			<input id="animation_slider" value = '3' type="range" name="animation_slider" min="-1" max="10" step="1">
-			<label id = "animation_label" readonly = "true" >1.5  <!-- <button id="to_top">TOP</button><button id="to_bottom">BOTTOM</button><button id="Add_node">Add</button><button id="Delete_node">delete</button> --></label>
-		</div> 
-	</div>
+<body>
 	<div id="graph-container"  style="">
 		<div id = "detail_tab" style="left: 100px; top: 100px; transform: scale(0);">
 			<div id="curr_dis_tag" >
@@ -99,15 +45,10 @@
 			</svg>
 		</div>
 		<div  id="graph" style="left: 0.4px; top: 0.4px;">
-			<!-- <div id = "poiner" >
-				<svg x = "0" y = "0" height = "100" width = "100">
-					<path d="M0 0 L16 40 L32 0 L16 15 Z" style = "fill:seagreen;stroke:blueviolet;stroke-width:3 ;"/>
-				</svg>
-			</div> -->
 		</div>
 	</div>
 	<div id = coding_area class="disappeared">
-		<button id="code_appear"></button>
+		<button  id="code_appear"></button>
 		<div >Graph-Generation Script editor<button id="generate">Generate</button><button id="clear">Clear</button></div>
 		<textarea spellcheck="false" id = "code_editor" type="textarea" rows="5" cols="50" placeholder="Add the Graph-Generation-Script .......">1 2 3 98
 1 22 3 62
@@ -152,6 +93,66 @@
 		<button id="hide">Close</button>
 		<button id="connect">Connect</button>   
 	</dialog>
+	<!-- Header -->
+	<h1  >GraphAlgorithmVisualizer</h1>
+	<!-- Control Panel -->
+	<div id="tools_panel" class = "control-panel" style="   left: -500px; top:100px;" >
+		<button class="radio_buttons" id="tools_panel_button" class="panel_buttons" style="float: right; height: 100%; width: 30px;">T</button>
+		<div class="options" >
+			<label class = "radio_buttons">ADD<input  type="radio" name="mode" checked="true" id="add_button"></label>
+			<label class = "radio_buttons">DELETE<input type="radio" name="mode" id="delete_button"></label>
+			<label class = "radio_buttons">FOCUS<input type="radio" name="mode" id="focus_button"></label>
+			<label class = "radio_buttons">MOVE<input type="radio" name="mode" id="move_button"></label>
+			<label class = "radio_buttons">CONNECT<input type="radio" name="mode" id="connect_button"></label>	
+		</div>
+		<div style="margin-top: 10px;">
+			<label  class="options"  >Connection Type
+				<select id = "connections" name = "connections">
+					<option>Bidirectional Unweighted</option>
+					<option selected>directional Unweighted</option>
+					<option  >Bidirectional weighted</option>
+					<option>directional weighted</option>
+				</select>
+			</label>
+		</div>
+		<div class="options">
+			<button class="radio_buttons" id="recolor_button" style="font-weight: bolder;" title="clear all the coloring created by animations">Recolor</button>
+			<button class="radio_buttons" id="layout_button" style="font-weight: bolder;" title="clear all the coloring created by animations">Layout</button>
+		</div>
+		
+	</div>
+
+
+
+	<div id="animation_panel" class = "control-panel" style=" left: 1490px; top:100px; " >
+		<button class="radio_buttons" id="animation_panel_button" class="panel_buttons" style="float: left; height: 100%; width: 30px; margin-right: 20px;">A</button>
+		<div  class="options">
+			<label>Algorithm
+				<select  id = "algorithms">
+					<option>Depth First Search</option>
+					<option>Breadth First Search</option>
+					<option>Dijsktra Algorithm</option>
+					<option>Bellman Ford Algorithm</option>
+					<option>Kruskal Algorithm</option>
+					<option>Prims's Algorithm</option>
+					<option>Articulation Points</option>
+					<option>Finding Bridges</option>
+				</select>
+				<button class="radio_buttons" id="bake">Bake Animation</button>
+				<div>
+					<label>Delay<input id="speed_slider" value = '3' style="margin: 0px;" type="range" name="speed" min="1" max="10" step="1">
+					<label id = "speed_label">1.5</label></label>
+				</div>
+			</label>
+		</div>
+		<div class="options">
+			<button id="back_button" class="radio_buttons"><</button>
+			<button id = "play" class="radio_buttons">Play</button>
+			<button id="forward_button" class="radio_buttons">></button>
+			<input id="animation_slider" value = '3' type="range" name="animation_slider" min="-1" max="10" step="1">
+			<label id = "animation_label" readonly = "true" >1.5</label>
+		</div> 
+	</div>
 <script type="text/javascript" src="js/classandfunction.js"></script>
 <script type="text/javascript" src="js/scroll_heap.js"></script>
 <script type="text/javascript" src="js/script.js"></script>

@@ -1,10 +1,15 @@
 .scroll_box__heap_element
 {
   box-sizing:border-box;
-  /*border: 2px solid  black;*/
   height: 40px;
   text-align: center;
   margin-right: 2px;
+}
+
+.dijsktra_distance_tag
+{
+	position: absolute;
+	left: ;
 }
 
 .scroll_box__heap_element_name
@@ -66,7 +71,7 @@
 .radio_buttons:hover , .smooth:focus
 {
 	background-color: #67e4de;
-	transform: scale(1.2);
+	transform: scale(1.1);
 }
 
 
@@ -85,19 +90,42 @@
 	transition-property: background-color, letter-spacing,transform;
  	transition-duration: 0.5s ,0.3s,0.3s;
  	transition-timing-function: ease, ease,ease;
+ 	font-weight: bolder;
 }
 
 .options
 {
 	text-shadow: 0.1px 0.2px black;
-	/*float: left;*/
 	font-stretch: ultra-expanded;
 	font-weight: bold;
 	margin: 7px;
 	padding-left: 10px;
 }
 
+.panel_buttons
+{
+	height: 100%;
+}
 
+.control-panel
+{
+	position: absolute;
+	transition-property: right;
+	transition-property: left;
+	transition-duration: 0.3s;
+	border-radius: 10px;
+	user-select: none;
+	width:550px ;
+	background: palevioletred;
+	box-sizing: border-box;
+	border: 5px solid lightgreen;
+	height: 120px;
+	margin: 5px 5px 5px 0px;
+	color: darkgreen;
+	padding: 10px;
+	padding-top: 5px;
+	z-index: 23;
+}
 
 .node:hover {
 	background: lightseagreen;
@@ -127,5 +155,4 @@
 	border-radius: 50%; 
 	box-sizing:border-box; 
 	border:4px solid yellow;
-	/*z-index: 1;*/
 }

@@ -4,6 +4,7 @@ function bake_bfs()
 	// recolor_graph();
 	if (foccused_node === null)
 	{
+		alert("please choose a starting node\nyou can do this by foccusing on the start node ");
 		return;
 	}
 	recolor_graph();
@@ -15,7 +16,7 @@ function bake_bfs()
 	queue.enqueue(foccused_node);
 	bfs();
 	baked_animation = 1
-	scroll_box.visibility = 'visible';
+	scroll_box.style.visibility = 'visible';
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);

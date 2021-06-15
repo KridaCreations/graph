@@ -11,6 +11,7 @@ function bake_dijsktra()
 {
 	if (foccused_node === null)
 	{
+		alert("please choose a starting node\nyou can do this by foccusing on the start node ");
 		return;
 	}
 	recolor_graph();
@@ -31,7 +32,6 @@ function bake_dijsktra()
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	scroll_box_heap.style.visibility = 'visible';
-	// scroll_heap.hidden = "false";
 	change_anim_position(current_stage);
 }
 
@@ -266,17 +266,12 @@ function perform_dijsktra_fast_back(stage,anim_array)
 		if (anim_array[stage][0] === "add")
 		{
 			scroll_heap.reverse_bubble_change();				
-			// scroll_heap.bubble_changes.push([["bubble_up"]]);
-			// scroll_heap.bubble_up(scroll_heap.position[anim_array[stage-1][1].id]);
 		}
 		else if(anim_array[stage][0] === "change")
 		{
 			scroll_heap.reverse_bubble_change();
-			// scroll_heap.bubble_changes.push([["bubble_up"]]);
-			// scroll_heap.bubble_up(scroll_heap.position[anim_array[stage-1][1].id])
 		}
 
-		// detail_tag.style.transform = "scale(1)";
 		detail_tag.style.left = `${((anim_array[stage+1][1].pos.left+25)*scale)+g_pos.left}px`;
 		detail_tag.style.top = `${(anim_array[stage+1][1].pos.top*scale)+g_pos.top}px`;+1
 		detail_tag.style["transform"] = "scale(1)";

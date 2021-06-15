@@ -13,18 +13,18 @@ var draw_area = document.querySelector("#draw_area");
 var dialog = document.querySelector("#dialog");
 var dialog_hide = document.querySelector("#hide");
 var dialog_connect = document.querySelector("#connect");
+
 var foccused_node = null;
 var node_number = 0;
 var no_of_nodes = 0
 var scale = 1;
-var container_center = {"left" : 763,"top" : 205};
+var container_center = {"left" : 818,"top" : 375};
 var g_pos = {"left" : 0,"top" : 0};
 var graph_pressed = false;
 var center_of_nodes = {"left" : 0, "top" : 0};
-// var nodes = {}
-
 
 document.nodes = {};
+
 
 recolor_button.addEventListener("click",recolor_graph);
 center_button.addEventListener("click",position_graph);
@@ -111,6 +111,10 @@ function graph_mouse_up()
 function graph_wheel(event)
 {
 		if (event.target.parentNode === document.querySelector('#scroll_box')) {
+			event.stopPropagation();
+			return;
+		}
+		if (event.target.parentNode === document.querySelector('#scroll_box_heap')) {
 			event.stopPropagation();
 			return;
 		}
