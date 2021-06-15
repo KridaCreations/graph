@@ -2,6 +2,7 @@ class ScrollHeap
 {
     constructor(scroll_box)
     {
+        this.bubble_changes = [];
         this.scroll_box = scroll_box;
         this.items = [];
         this.position = {};
@@ -69,6 +70,16 @@ class ScrollHeap
         }
         console.log("print_completed");
     }
+    reverse_bubble_change()
+    {
+        var len_array = this.bubble_changes[this.bubble_changes.length-1].length
+        var arr = this.bubble_changes[this.bubble_changes.length-1];
+        for(var i = len_array-1;i>0;i--)
+        {
+            this.swap(arr[i][0],arr[i][0]);
+        }
+        this.bubble_changes.pop();
+    }
     change_value_fast(element,new_value)
     {
         if (this.is_element_visible(element) === false) 
@@ -99,27 +110,39 @@ class ScrollHeap
         delete this.position[top_element];
 
     }
-    delete_without_bubble_down(delay,transition_factor)
+    delete_without_bubble_down()
     {
         if(this.scroll_box.childElementCount < 7)
         {
-            console.log(transition_factor);
-            this.delete_from_point(0,0,transition_factor);
+            this.delete_from_point(0,0);
         }
         else
         {
-            this.delete_from_point(0,delay*1000,transition_factor);
+            this.delete_from_point(0,delay*transition_factor*1000);
         }
+    }
+    delete_from_last()
+    {
+        // console.log("here");
+        if(this.scroll_box.childElementCount >= 7)
+        {
+            this.scroll_box.scrollTop = 0;
+        }
+        var last_element = this.items[this.size()-1].node;
+        // this.swap(0,this.size()-1);
+        this.scroll_box.children[this.size()-1].remove();
+        this.items.pop();
+        delete this.position[last_element];
     }
     push_at_last(element,value)
     {
         var new_scroll_element = document.createElement("div");
-        new_scroll_element.className = "scroll_box_element";
+        new_scroll_element.className = "scroll_box__heap_element";
         var new_scroll_element_name = document.createElement("div");
-        new_scroll_element_name.className = "scroll_element_name";
+        new_scroll_element_name.className = "scroll_box__heap_element_name";
         new_scroll_element_name.textContent = element;
         var new_scroll_element_value = document.createElement("div");
-        new_scroll_element_value.className = "scroll_element_value";
+        new_scroll_element_value.className = "scroll_box__heap_element_value";
         new_scroll_element_value.textContent = value;
         this.scroll_box.append(new_scroll_element);
         new_scroll_element.append(new_scroll_element_name);
@@ -132,29 +155,26 @@ class ScrollHeap
             this.scroll_box.scrollTop = (this.scroll_box.childElementCount-7+1)*40;
         }
     }
-    change_value_without_bubble_down(element,new_value,delay,transition_factor)
+    change_value_without_bubble_down(element,new_value)
     {
-        // if (this.is_element_visible(element)) 
         if (this.is_element_visible(element)) 
         {
-            console.log(this.scroll_box.scrollTop);
-            console.log(this.get_scroll_value(element));
-            this.change_at_point(this.scroll_box.scrollTop,0,transition_factor,element,new_value);
+            this.change_at_point(this.scroll_box.scrollTop,0,element,new_value);
         }
         else 
         {
-            this.change_at_point(this.get_scroll_value(element),delay*1000,transition_factor,element,new_value);    
+            this.change_at_point(this.get_scroll_value(element),delay*1000*transition_factor,element,new_value);    
         }
     }
-    push_without_bubble_up(element,value,delay,transition_factor)
+    push_without_bubble_up(element,value)
     {
         if(this.scroll_box.childElementCount < 7)
         {
-            this.add_to_point(0,0,transition_factor,element,value);
+            this.add_to_point(0,0,element,value);
         }
         else
         {
-            this.add_to_point((scroll_box.childElementCount-7+1)*40,delay*1000,transition_factor,element,value);
+            this.add_to_point((scroll_box.childElementCount-7+1)*40,(delay*1000)*transition_factor,element,value);
         }
     }
     push(element,value)
@@ -194,7 +214,6 @@ class ScrollHeap
     }
     change_value(element,new_value)
     {
-        console.log("inside change " +new_value+" " +this.items[this.position[element]].value);
         if (new_value < this.items[this.position[element]].value)
         { 
             this.scroll_box.children[this.position[element]].children[1].textContent = new_value;
@@ -231,6 +250,7 @@ class ScrollHeap
             if (this.items[index].value > this.items[this.min_index(this.get_right_child(index),this.get_left_child(index))].value) 
             {
                 var new_index = this.min_index(this.get_right_child(index),this.get_left_child(index));
+                this.bubble_changes[this.bubble_changes.length-1].push([index,new_index]);
                 this.swap(index,new_index);
                 return this.bubble_down(new_index);
             }
@@ -240,6 +260,7 @@ class ScrollHeap
             if (this.items[index].value > this.items[this.get_left_child(index)].value) 
             {
                 var new_index = this.get_left_child(index);
+                this.bubble_changes[this.bubble_changes.length-1].push([index,new_index]);
                 this.swap(index,new_index);
                 return this.bubble_down(new_index);
             }
@@ -268,6 +289,7 @@ class ScrollHeap
         {
             return index;
         }
+        this.bubble_changes[this.bubble_changes.length-1].push([index,get_parent(index)]);
         this.swap(index,get_parent(index));
         return this.bubble_up(get_parent(index));
     }
@@ -276,7 +298,6 @@ class ScrollHeap
         var temp_node = this.items[index1].node;
         var temp_value = this.items[index1].value;
         var temp_pos = index1;
-
 
         this.scroll_box.children[index1].children[0].textContent = this.items[index2].node;
         this.scroll_box.children[index1].children[1].textContent = this.items[index2].value;
@@ -328,16 +349,15 @@ class ScrollHeap
             return (2*index + 2);
         }
     }
-    delete_from_point(to,duration,transition_factor) 
+    delete_from_point(to,duration) 
     {
-        console.log(transition_factor);
         var start = this.scroll_box.scrollTop;
         var change = to - start;
         var currentTime = 0;
         var increment = 10;
         var current_heap = this;
         var scroll_box = this.scroll_box;
-        var animateScroll =function(duration,transition_factor)
+        var animateScroll =function()
         {
             currentTime += increment;
             var val = Math.easeInOutQuad(currentTime,start,change,duration);
@@ -348,16 +368,16 @@ class ScrollHeap
             }
             else
             {
-                // console.log(data, ...args)
                 var scale_anim = scroll_box.firstElementChild.animate(
                   [
                     { transform: 'scale(1)'},
                     { transform: 'scale(0)'}
-                  ], 3*1000*transition_factor);
+                  ], delay*1000*transition_factor);
                 scale_anim.onfinish = function ()
                 {
                     // scroll_box.firstElementChild.remove();
                     var top_element = current_heap.items[0].node;
+                    // this.items[this.position[element]].value = new_value;
                     current_heap.swap(0,current_heap.size()-1);
                     scroll_box.children[current_heap.size()-1].remove();
                     current_heap.items.pop();
@@ -365,16 +385,15 @@ class ScrollHeap
                 };
             }
         };
-        animateScroll(duration,transition_factor);
+        animateScroll();
     }
-    change_at_point(to,duration,transition_factor,element,value) 
+    change_at_point(to,duration,element,value) 
     {
-        console.log(transition_factor);
         var start = this.scroll_box.scrollTop;
-        console.log("to "+to);
         var change = to - start;
         var currentTime = 0;
         var increment = 10;
+        var current_heap = this;
         var scroll_element = this.get_element(element);
         var scroll_box = this.scroll_box;
         var animateScroll =function()
@@ -395,16 +414,18 @@ class ScrollHeap
                   [
                     { fontSize: "1.3em"},
                     { fontSize: '0em'}
-                  ], 3*1000*transition_factor);
+                  ], delay*1000*transition_factor);
                 font_min.onfinish = function ()
                 {
                     scroll_element.children[1].style["fontSize"] = '0em';
                     scroll_element.children[1].textContent = value;
+                    current_heap.items[current_heap.position[element]].value = value;
+                    // this.items[this.position[element]].value = new_value;
                     var font_max = scroll_element.children[1].animate(
                       [
                         { fontSize: "0em"},
                         { fontSize: '1.3em'}
-                      ], 3*1000*transition_factor);
+                      ], delay*1000*transition_factor);
                     font_max.onfinish = function ()
                     {
                         scroll_element.children[1].style["fontSize"] = '1.3em';
@@ -412,27 +433,31 @@ class ScrollHeap
                 };
             }
         };
-        animateScroll(this,duration,transition_factor,scroll_element);
+        animateScroll();
     }
-    add_to_point(to,duration,transition_factor,element,value) 
+    add_to_point(to,duration,element,value) 
     {
-        console.log(transition_factor);
         var start = this.scroll_box.scrollTop;
         var change = to - start;
         var currentTime = 0;
         var increment = 10;
         var new_scroll_element = document.createElement("div");
-        new_scroll_element.style.transform =(`scale(${0})`);
-        new_scroll_element.className = "scroll_box_element";
+        // n
+        new_scroll_element.className = "scroll_box__heap_element";
         var new_scroll_element_name = document.createElement("div");
-        new_scroll_element_name.className = "scroll_element_name";
+        new_scroll_element_name.className = "scroll_box__heap_element_name";
         new_scroll_element_name.textContent = element;
         var new_scroll_element_value = document.createElement("div");
-        new_scroll_element_value.className = "scroll_element_value";
+        new_scroll_element_value.className = "scroll_box__heap_element_value";
         new_scroll_element_value.textContent = value;
         this.scroll_box.append(new_scroll_element);
         new_scroll_element.append(new_scroll_element_name);
         new_scroll_element.append(new_scroll_element_value);
+        new_scroll_element.style.transform =(`scale(${0})`);
+
+        this.items.push({"node":element,"value":value});
+        this.position[element] = this.size()-1;
+
         var scroll_box = this.scroll_box;
         var animateScroll =function()
         {
@@ -445,18 +470,19 @@ class ScrollHeap
             }
             else
             {
+                // new_scroll_element.style["transform"] = 'scale(0)';
                 var scale_anim = new_scroll_element.animate(
                   [
-                    { transform: new_scroll_element.style["transform"]},
+                    { transform: `scale(0)`},
                     { transform: 'scale(1)'}
-                  ], 3*1000*transition_factor);
+                  ], delay*1000*transition_factor);
                 scale_anim.onfinish = function ()
                 {
                     new_scroll_element.style["transform"] = 'scale(1)';
                 };
             }
         };
-        animateScroll(this,duration,transition_factor,new_scroll_element);
+        animateScroll();
     }
 
 }

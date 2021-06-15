@@ -38,7 +38,9 @@ function add_scroll_element(event)
 
 function delete_scroll_element () 
 {
-    scroll_heap.pop();
+    // scroll_heap.pop();
+    // scroll_heap.delete_from_top_fast();
+    scroll_heap.delete_without_bubble_down(3000,0.5);
 }
 
 function change_scroll_element () 

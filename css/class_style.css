@@ -1,3 +1,37 @@
+.scroll_box__heap_element
+{
+  box-sizing:border-box;
+  /*border: 2px solid  black;*/
+  height: 40px;
+  text-align: center;
+  margin-right: 2px;
+}
+
+.scroll_box__heap_element_name
+{
+  box-sizing: border-box;
+  border: 4px solid yellow;
+  border-radius: 10px;
+  background: palevioletred;
+  float: left;
+  width: 70%;
+  height: 100%;
+  font-size: 1.3em;
+}
+
+.scroll_box__heap_element_value
+{
+  box-sizing: border-box;
+  border: 4px solid yellow;
+  border-radius: 10px;
+  background: palevioletred;
+  height: 100%;
+  width:  30%;
+  float: left;
+  font-size: 1.3em;
+}
+
+
 .scroll_box_element{
 	height: 40px;
 	border: 2px solid palevioletred;

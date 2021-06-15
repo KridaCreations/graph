@@ -1,5 +1,54 @@
+#detail_tab
+{
+	position: absolute;
+	opacity: 100%;
+	z-index: 1000000;
+}
+
+#curr_dis_tag
+{
+	height: 50px;
+	width: 50px;
+	left: -65px;
+	top: -90px;
+	text-align: center;
+	overflow-wrap: break-word;
+	font-weight: bolder;
+	/*overflow: visible;*/
+	font-size: 0.8em;
+	color: white;
+	position: absolute;
+	/*background: deeppink;*/
+}
+#new_dis_tag
+{
+	height: 50px;
+	width: 50px;
+	left: 15px;
+	top: -90px;
+	text-align: center;
+	overflow-wrap: break-word;
+	font-weight: bolder;
+	/*overflow: visible;*/
+	font-size: 0.8em;
+	color: white;
+	position: absolute;
+	/*background: deeppink;*/
+}
+#scroll_box_heap
+{
+  position:absolute ;
+  background-color: gray;
+  height: 280px;
+  width: auto;
+  width: 300px;
+  left: 20px;
+  top: 80px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 #scroll_box{
-	position: relative;
+	position: absolute;
 	height: 280px;
 	width: 150px;
 	background: ghostwhite;

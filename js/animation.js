@@ -3,7 +3,7 @@ var play_button = document.querySelector("#play");
 var algorithm_label = document.querySelector("#algorithms");
 var current_stage = 0;
 var delay = 3;
-var transition_factor = 0.1;
+var transition_factor = 0.3;
 var baked_animation = null;
 var anim_array = [];
 var visited_node = [];
@@ -59,6 +59,10 @@ function move_back (argument) {
 	{
 		change_to_anim_stage_bfs(anim_value);
 	}
+	else if (baked_animation === 2)
+	{
+		change_to_anim_stage_dijsktra(anim_value);
+	}
 	
 }
 
@@ -81,6 +85,11 @@ function move_forward (argument) {
 	else if (baked_animation === 1)
 	{
 		change_to_anim_stage_bfs(anim_value);
+	}
+	else if (baked_animation === 2)
+	{
+		console.log("performing fast dijsktra");
+		change_to_anim_stage_dijsktra(anim_value);
 	}
 	
 }
@@ -227,6 +236,10 @@ function animation_slider_input()
 	{
 		change_to_anim_stage_bfs(anim_value);
 	}
+	else if (baked_animation === 2)
+	{
+		change_to_anim_stage_dijsktra(anim_value);
+	}
 }
 
 function bake_animation(event)
@@ -267,6 +280,10 @@ function play_animation(event)
 		else if (baked_animation === 1)
 		{
 			play_bfs(current_stage,anim_array);
+		}
+		else if (baked_animation === 2)
+		{
+			play_dijsktra(current_stage,anim_array);
 		}
 		
 		

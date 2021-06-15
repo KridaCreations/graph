@@ -176,25 +176,29 @@ function perform_bfs_fast_back(stage,anim_array)
 	}
 	else if (anim_array[stage+1][0] === "remove") 
 	{
+		
 		var new_div = document.createElement("div");
 		new_div.className = "scroll_box_element";
 		new_div.id = anim_array[stage+1][1].id;
 		new_div.textContent = anim_array[stage+1][1].id;
 		// scroll_box.append(new_div);
 		scroll_box.prepend(new_div)
+		scroll_box.firstElementChild.style["background-color"] = "lightseagreen";
 		if(scroll_box.childElementCount >= 7)
 		{
 			scroll_box.scrollTop = (scroll_box.childElementCount-7+1)*40;
 		}
 	}
 	else if (anim_array[stage+1][0] === "go") {
+		scroll_box.firstElementChild.style["background-color"] = "lightseagreen";
 		anim_array[stage+1-1][1].style["background-color"] = "yellow";
 		anim_array[stage+1][1].style.removeProperty("background-color");
 		anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
 	}
-	else if (anim_array[stage][0] === "return")
+	else if (anim_array[stage+1][0] === "return")
 	{
-		anim_array[stage+1][1].style["background-color"] = "yellow";
+		scroll_box.firstElementChild.style["background-color"] = "lightseagreen";
+		anim_array[stage][1].style["background-color"] = "yellow";
 		anim_array[stage+1][1].style["background-color"] = "green";
 		anim_array[stage+1][1].connections[anim_array[stage+1-1][1].id].line.style["stroke"] = "blue";
 	}

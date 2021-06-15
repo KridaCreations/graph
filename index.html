@@ -63,8 +63,31 @@
 		</div> 
 	</div>
 	<div id="graph-container"  style="">
+		<div id = "detail_tab" style="left: 100px; top: 100px;">
+			<div id="curr_dis_tag" >
+				<label>
+					Curr Dis
+				</label>
+				<div id="curr_dis_value">
+					65
+				</div>
+			</div>
+			<div id="new_dis_tag">
+				<label>
+					New Dis
+				</label>
+				<div id="curr_dis_value">
+					65
+				</div>
+			</div>
+			<svg x = "0" y = "0" height = "100" width = "100">
+				<path d="M-80 -100 L-80 -20 L-16 -20 L0 0 L16 -20 L80 -20 L80 -100 Z" style = "fill:lightseagreen;stroke:blueviolet;stroke-width:3 ;"/>
+			</svg>
+		</div>
+
 		<button type="button" name="F"  id = "center_button">F</button>
-		<div id="scroll_box"></div>
+		<div id="scroll_box" hidden="true"></div>
+		<div id="scroll_box_heap"></div>
 		<div id = "draw_area_container" style="left: 0.4px; top: 0.4px;">
 			<svg  x = "0" y = "0" height = "100" width = "100" id = "draw_area" xmlns="http://www.w3.org/2000/svg" >
 				<defs>
@@ -76,22 +99,40 @@
 			</svg>
 		</div>
 		<div  id="graph" style="left: 0.4px; top: 0.4px;">
-			<div id = "poiner" >
+			<!-- <div id = "poiner" >
 				<svg x = "0" y = "0" height = "100" width = "100">
 					<path d="M0 0 L16 40 L32 0 L16 15 Z" style = "fill:seagreen;stroke:blueviolet;stroke-width:3 ;"/>
 				</svg>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div id = coding_area class="disappeared">
 		<button id="code_appear"></button>
 		<div >Graph-Generation Script editor<button id="generate">Generate</button><button id="clear">Clear</button></div>
-		<textarea spellcheck="false" id = "code_editor" type="textarea" rows="5" cols="50" placeholder="Add the Graph-Generation-Script .......">0 1 4 4
-0 2 4 1
-1 4 4 4
-2 1 4 2
-2 3 4 4
-3 4 4 4</textarea>
+		<textarea spellcheck="false" id = "code_editor" type="textarea" rows="5" cols="50" placeholder="Add the Graph-Generation-Script .......">1 2 3 98
+1 22 3 62
+2 3 3 89
+2 22 3 58
+3 22 1 0
+3 14 3 57
+3 8 3 88
+4 22 3 87
+4 5 3 31
+5 6 3 26
+5 22 1 0
+6 22 3 28
+6 7 3 167
+7 22 3 76
+7 25 3 98
+8 9 3 12
+8 25 1 0
+9 25 3 25
+10 25 3 43
+10 16 3 62
+13 25 3 61
+13 16 3 73
+14 25 3 43
+16 25 3 15</textarea>
 		<div><textarea id = code_editor_output type="textarea" rows="5" cols="5" readonly="true" placeholder="Output......."></textarea>
 		</div>
 	</div>
@@ -112,6 +153,7 @@
 		<button id="connect">Connect</button>   
 	</dialog>
 <script type="text/javascript" src="js/classandfunction.js"></script>
+<script type="text/javascript" src="js/scroll_heap.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 
 <script type="text/javascript" src="js/line_script.js"></script>

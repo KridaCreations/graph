@@ -24,7 +24,7 @@ function spring_layout()
 			for(other_nodes in document.nodes)
 			{
 				var new_force = get_force(document.nodes[node],document.nodes[other_nodes]);
-				console.log("adding_force " + new_force.left);
+				// console.log("adding_force " + new_force.left);
 				force.left += new_force.left;
 				force.top += new_force.top; 
 			}
@@ -42,7 +42,7 @@ function spring_layout()
 		{
 			var left_displacement = document.nodes[node].pos.left + c4* (document.nodes[node].force.left);
 			var top_displacement = document.nodes[node].pos.top + c4* (document.nodes[node].force.top);
-			console.log("final_force " + force.left);
+			// console.log("final_force " + force.left);
 			move_node(document.nodes[node],left_displacement,top_displacement);
 		}
 	}
