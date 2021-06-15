@@ -30,6 +30,8 @@ function bake_dijsktra()
 	baked_animation = 2;
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
+	scroll_box_heap.style.visibility = 'visible';
+	// scroll_heap.hidden = "false";
 	change_anim_position(current_stage);
 }
 
@@ -238,14 +240,10 @@ function perform_dijsktra_fast_back(stage,anim_array)
 	else if (anim_array[stage+1][0] === "add_pre_dis") 
 	{
 		detail_tag.children[0].style.transform = "scale(0)";
-		// detail_tag.children[0].children[1].textContent = anim_array[stage][2];
-		// detail_tag.children[0].style["transform"] = "scale(1)";
 	}
 	else if (anim_array[stage+1][0] === "add_new_dis") 
 	{
 		detail_tag.children[1].style.transform = "scale(0)";
-		// detail_tag.children[1].children[1].textContent = anim_array[stage][2];
-		// detail_tag.children[1].style["transform"] = "scale(1)";
 	}
 	else if (anim_array[stage+1][0] === "solve") 
 	{
@@ -395,7 +393,14 @@ function dijsktra (node)
 				var new_dis = find_length(node,node.connections[nodes].node)+distance[node.id];
 				anim_array.push(["go",pair.node]);
 				anim_array.push(["appear",pair.node]);
-				anim_array.push(["add_pre_dis",pair.node,curr_dis]);
+				if (curr_dis === undefined) {
+					anim_array.push(["add_pre_dis",pair.node,"∞"]);
+				}
+				else
+				{
+					anim_array.push(["add_pre_dis",pair.node,curr_dis]);
+				}
+				
 				anim_array.push(["add_new_dis",pair.node,new_dis]);
 				if (curr_dis === undefined)
 				{

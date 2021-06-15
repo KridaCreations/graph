@@ -63,12 +63,12 @@
 		</div> 
 	</div>
 	<div id="graph-container"  style="">
-		<div id = "detail_tab" style="left: 100px; top: 100px;">
+		<div id = "detail_tab" style="left: 100px; top: 100px; transform: scale(0);">
 			<div id="curr_dis_tag" >
 				<label>
 					Curr Dis
 				</label>
-				<div id="curr_dis_value">
+				<div id="curr_dis_value" style="color:black;">
 					65
 				</div>
 			</div>
@@ -76,7 +76,7 @@
 				<label>
 					New Dis
 				</label>
-				<div id="curr_dis_value">
+				<div id="curr_dis_value" style="color:black;">
 					65
 				</div>
 			</div>
@@ -86,8 +86,8 @@
 		</div>
 
 		<button type="button" name="F"  id = "center_button">F</button>
-		<div id="scroll_box" hidden="true"></div>
-		<div id="scroll_box_heap"></div>
+		<div id="scroll_box" style="visibility: hidden;"></div>
+		<div id="scroll_box_heap" style="visibility: hidden;"></div>
 		<div id = "draw_area_container" style="left: 0.4px; top: 0.4px;">
 			<svg  x = "0" y = "0" height = "100" width = "100" id = "draw_area" xmlns="http://www.w3.org/2000/svg" >
 				<defs>

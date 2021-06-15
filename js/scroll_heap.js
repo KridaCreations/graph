@@ -76,7 +76,7 @@ class ScrollHeap
         var arr = this.bubble_changes[this.bubble_changes.length-1];
         for(var i = len_array-1;i>0;i--)
         {
-            this.swap(arr[i][0],arr[i][0]);
+            this.swap(arr[i][0],arr[i][1]);
         }
         this.bubble_changes.pop();
     }

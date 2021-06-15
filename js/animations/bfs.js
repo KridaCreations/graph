@@ -15,6 +15,7 @@ function bake_bfs()
 	queue.enqueue(foccused_node);
 	bfs();
 	baked_animation = 1
+	scroll_box.visibility = 'visible';
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);

@@ -36,6 +36,8 @@ graph_container.addEventListener("mousedown",graph_mouse_down);
 graph_container.addEventListener("mouseover",graph_mouse_over);
 
 function recolor_graph () {
+	scroll_box_heap.style.visibility = 'hidden';
+	scroll_box.style.visibility = 'hidden';
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);
