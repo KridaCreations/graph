@@ -50,7 +50,8 @@ function move_back (argument) {
 	clearTimeout(current_timer);
 	var anim_value = Number(current_stage-1);
 	change_anim_position(anim_value);
-	anim_label.textContent = current_stage-1;
+	// anim_label.textContent = current_stage-1;
+	anim_label.textContent = anim_position.value;
 	if (baked_animation === 0)
 	{
 		change_to_anim_stage_dfs(anim_value);
