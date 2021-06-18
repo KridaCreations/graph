@@ -1,3 +1,21 @@
+.detail_tab_style
+{
+	position: absolute;
+	opacity: 100%;
+	z-index: 1000;
+}
+
+.dis_tab_style
+{
+	position: absolute;
+	opacity: 100%;
+	z-index: 1000;
+	transform-origin: top left;
+	transition-property: transform;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in;
+}
+
 .scroll_box__heap_element
 {
   box-sizing:border-box;

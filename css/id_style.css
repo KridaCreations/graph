@@ -1,9 +1,14 @@
-#detail_tab
+
+#dist_tag
 {
-	position: absolute;
-	opacity: 100%;
-	z-index: 1000000;
+	text-align: center;
+	color: black;
+	/*position: absolute;*/
+	/*left: 0px;*/
+	/*top: 0px;*/
+	font-size: 2em;
 }
+
 
 #curr_dis_tag
 {
@@ -14,11 +19,9 @@
 	text-align: center;
 	overflow-wrap: break-word;
 	font-weight: bolder;
-	/*overflow: visible;*/
 	font-size: 0.8em;
 	color: white;
 	position: absolute;
-	/*background: deeppink;*/
 }
 #new_dis_tag
 {
@@ -29,11 +32,9 @@
 	text-align: center;
 	overflow-wrap: break-word;
 	font-weight: bolder;
-	/*overflow: visible;*/
 	font-size: 0.8em;
 	color: white;
 	position: absolute;
-	/*background: deeppink;*/
 }
 #scroll_box_heap
 {
@@ -191,11 +192,7 @@
 	overflow: hidden; 
 	position :relative;
 	background: #cccccc;
-	/*border: 4px solid black;*/
-	/*border-radius: 6px;*/
-	/*width: 1526px; */
 	width: 100%;
-	/*height:680px ;*/
 	height: 750px; 
 	padding-left: 0px;
 }

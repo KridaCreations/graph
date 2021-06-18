@@ -5,6 +5,7 @@ var connect_button = document.querySelector("#connect_button");
 var center_button = document.querySelector("#center_button")
 var focus_button = document.querySelector("#focus_button");
 var recolor_button = document.querySelector("#recolor_button");
+var clear_button = document.querySelector("#clear_button");
 var graph_container = document.querySelector("#graph-container");
 var connection_label = document.querySelector("#connections");
 var graph = document.querySelector("#graph");
@@ -25,7 +26,7 @@ var center_of_nodes = {"left" : 0, "top" : 0};
 
 document.nodes = {};
 
-
+clear_button.addEventListener("click",clear_graph);
 recolor_button.addEventListener("click",recolor_graph);
 center_button.addEventListener("click",position_graph);
 graph_container.addEventListener("wheel",graph_wheel);
@@ -36,12 +37,14 @@ graph_container.addEventListener("mousedown",graph_mouse_down);
 graph_container.addEventListener("mouseover",graph_mouse_over);
 
 function recolor_graph () {
+	hide_dis();
+	detail_tag.style.transform = "scale(0)";
 	scroll_box_heap.style.visibility = 'hidden';
 	scroll_box.style.visibility = 'hidden';
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);
-	is_playing = false
+	is_playing = false;
 	play_button.textContent = "Play";
 	clearTimeout(current_timer);
 	scroll_box.textContent = "";
@@ -204,9 +207,29 @@ function add_node(id_no,position_y,position_x)
 	new_node.addEventListener('click',node_click);
 	new_node.addEventListener('mouseup',node_mouse_up);
 	new_node.addEventListener('mousedown',node_mouse_down);
-	document.nodes[new_node.id] = new_node;
-	// nodes[new_node.id] = new_node;
 
+	//adding the detail tag
+	var new_detail_tag = document.createElement("div");
+	new_detail_tag.classList.add("dis_tab_style");
+	var new_svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+	new_svg.setAttribute("height",100);
+	new_svg.setAttribute("width",100);
+	var text_tab = document.createElementNS("http://www.w3.org/2000/svg","text")
+	text_tab.setAttribute("y",-40);
+	text_tab.setAttribute("text-anchor","middle");
+	var new_path = document.createElementNS("http://www.w3.org/2000/svg","path");
+	new_path.setAttribute("d","M0 0 L10 -20 L40 -20 L40 -60 L-40 -60 L-40 -20 L-10 -20 Z");
+	new_path.style = "fill:pink;stroke:blueviolet;stroke-width:3 ;";
+	
+	// text_tab.textContent = "1000";
+	new_svg.append(new_path);
+	new_svg.append(text_tab);
+	new_detail_tag.append(new_svg);
+	document.nodes[new_node.id] = new_node;
+	new_node.append(new_detail_tag);
+	new_detail_tag.style.left  = "25px";
+	new_detail_tag.style.top = "0px";
+	new_detail_tag.style.transform = "scale(0)";
 
 	return new_node;
 }
@@ -246,47 +269,9 @@ function graph_mouse_over(event)
 			calc_y -= node_drag_offsetY;
 			calc_x -= node_drag_offsetX;
 			move_node(foccused_node,calc_x,calc_y);
-			// center_of_nodes.left = ((center_of_nodes.left * no_of_nodes) - foccused_node.pos.left + calc_x)/no_of_nodes;
-			// center_of_nodes.top = ((center_of_nodes.top * no_of_nodes) - foccused_node.pos.top + calc_y)/no_of_nodes;
-			// foccused_node.style.left = `${calc_x}px`;
-			// foccused_node.style.top = `${calc_y}px`;
-			// foccused_node.pos.left = calc_x;
-			// foccused_node.pos.top = calc_y;
-
-			// for (node in foccused_node.connections)
-			// {
-			// 	var pair = foccused_node.connections[node];
-			// 	pair.line.setAttribute("x1" , calc_x+ 25  );
-			// 	pair.line.setAttribute("y1" , calc_y+ 25  );
-			// 	pair.line.setAttribute("x2" , pair.node.offsetLeft + 25 );
-			// 	pair.line.setAttribute("y2" , pair.node.offsetTop + 25 );
-
-			// 	if (!(pair.line.detail.weight === null))
-			// 	{
-			// 		var x_pos = (calc_x + 25  + Number(pair.line.getAttribute("x2")))/2;
-			// 		var y_pos = (calc_y + 25  + Number(pair.line.getAttribute("y2")))/2;
-			// 		pair.line.detail.weight_rect.setAttribute("x", x_pos-7.5);
-			// 		pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
-			// 	}
-			// }
-			// for (node in foccused_node.other_connections)
-			// {
-			// 	var pair = foccused_node.other_connections[node];
-			// 	pair.line.setAttribute("x2" ,calc_x + 25  );
-			// 	pair.line.setAttribute("y2" ,calc_y + 25  );
-			// 	if (!(pair.line.detail.weight === null))
-			// 	{
-			// 		var x_pos = (calc_x + 25  + Number(pair.line.getAttribute("x1")))/2;
-			// 		var y_pos = (calc_y + 25  + Number(pair.line.getAttribute("y1")))/2;
-			// 		pair.line.detail.weight_rect.setAttribute("x", x_pos-7.5);
-			// 		pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
-			// 	}
-			// }
-
 		}
 	}
 }
-
 
 function move_node (node_move,calc_x,calc_y) {
 	center_of_nodes.left = ((center_of_nodes.left * no_of_nodes) - node_move.pos.left + calc_x)/no_of_nodes;

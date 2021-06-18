@@ -4,6 +4,77 @@ function clearArray(array) {
   }
 }
 
+function show_dis()
+{
+    for (node in document.nodes)
+    {
+        var c_node = document.nodes[node];
+        c_node.children[0].children[0].children[1].textContent = "Inf";
+        c_node.children[0].style.transform = "scale(1)";
+    }
+}
+
+function hide_dis()
+{
+    for (node in document.nodes)
+    {
+        var c_node = document.nodes[node];
+        c_node.children[0].children[0].children[1].textContent = "∞";
+        c_node.children[0].style.transform = "scale(0)";
+    }
+}
+
+function clear_graph()
+{
+    foccused_node = null;
+    node_number = 0;
+    no_of_nodes = 0
+    scale = 1;
+    container_center = {"left" : 818,"top" : 375};
+    g_pos = {"left" : 0,"top" : 0};
+    graph_pressed = false;
+    center_of_nodes = {"left" : 0, "top" : 0};
+
+    graph.style.transform = (`scale(1)`);
+    draw_area_container.style.transform = (`scale(1)`);
+    graph.style.top = `${g_pos.top}px`;
+    graph.style.left = `${g_pos.left}px`;
+    draw_area_container.style.top = `${g_pos.top}px`;
+    draw_area_container.style.left = `${g_pos.left}px`;
+
+    baked_animation = null;
+    scroll_box_heap.style.visibility = 'hidden';
+    scroll_box.style.visibility = 'hidden';
+    anim_position.max = anim_array.length-1;
+    current_stage = -1;
+    change_anim_position(current_stage);
+    is_playing = false;
+    play_button.textContent = "Play";
+    clearTimeout(current_timer);
+    scroll_box.textContent = "";
+
+    queue.clear();
+    clearArray(anim_array);
+    clearObject(visited_node);
+    
+    for (node in document.nodes)
+    {
+        var c_node = document.nodes[node];
+        for (connection in c_node.connections)
+        {
+            var pair = c_node.connections[connection];
+            if (!(pair.line.detail.weight === null))
+            {
+                pair.line.detail.weight_rect.remove();
+            }
+            pair.line.remove();
+        }
+        document.nodes[node].remove();
+        delete document.nodes[node];
+    }
+}
+
+
 function unit_function(value)
 {
     if (value<0) 

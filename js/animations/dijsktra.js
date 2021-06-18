@@ -33,6 +33,7 @@ function bake_dijsktra()
 	current_stage = -1;
 	scroll_box_heap.style.visibility = 'visible';
 	change_anim_position(current_stage);
+	show_dis();
 }
 
 function play_dijsktra (stage,anim_array) 
@@ -82,9 +83,10 @@ function perform_dijsktra_fast(stage,anim_array)
 	{
 		return;
 	}
-	console.log("to "+anim_array[stage][0]);
+	// console.log("to "+anim_array[stage][0]);
 	if (anim_array[stage][0] === "add") 
 	{
+		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 		scroll_heap.push_at_last(anim_array[stage][1].id,anim_array[stage][2]);
 	}
 	else if (anim_array[stage][0] === "remove") 
@@ -148,8 +150,10 @@ function perform_dijsktra_fast(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "change")
 	{
-		console.log(anim_array[stage][1].id + " " + anim_array[stage][2]);
+		// console.log(anim_array[stage][1].id + " " + anim_array[stage][2]);
 		scroll_heap.change_value_fast(anim_array[stage][1].id,anim_array[stage][2]);
+		console.log("here");
+		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 	}
 	else if (anim_array[stage][0] === "disappear")
 	{
@@ -175,7 +179,7 @@ function perform_dijsktra_fast_back(stage,anim_array)
 	{
 		return;
 	}
-	console.log("back from "+anim_array[stage+1][0]);
+	// console.log("back from "+anim_array[stage+1][0]);
 	if (anim_array[stage+1][0] === "add")
 	{
 		scroll_heap.delete_from_last();
@@ -258,7 +262,7 @@ function perform_dijsktra_fast_back(stage,anim_array)
 	}
 	else if (anim_array[stage+1][0] === "change")
 	{
-		console.log(anim_array[stage+1][1].id + " " + anim_array[stage+1][4]);
+		// console.log(anim_array[stage+1][1].id + " " + anim_array[stage+1][4]);
 		scroll_heap.change_value_fast(anim_array[stage+1][1].id,anim_array[stage+1][4]);
 	}
 	else if (anim_array[stage+1][0] === "disappear")
@@ -288,6 +292,7 @@ function perform_dijsktra (stage,anim_array)
 	}
 	if (anim_array[stage][0] === "add")
 	{
+		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 		scroll_heap.push_without_bubble_up(anim_array[stage][1].id,anim_array[stage][2]);
 	}
 	else if (anim_array[stage][0] === "remove") 
@@ -352,6 +357,7 @@ function perform_dijsktra (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "change")
 	{
+		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 		scroll_heap.change_value_without_bubble_down(anim_array[stage][1].id,anim_array[stage][2]);
 	}
 	else if (anim_array[stage][0] === "disappear")

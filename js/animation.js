@@ -89,7 +89,7 @@ function move_forward (argument) {
 	}
 	else if (baked_animation === 2)
 	{
-		console.log("performing fast dijsktra");
+		// console.log("performing fast dijsktra");
 		change_to_anim_stage_dijsktra(anim_value);
 	}
 	
