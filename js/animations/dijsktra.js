@@ -52,7 +52,7 @@ function bake_dijsktra()
 	dijsktra();
 	baked_animation = 2;
 	// print_object(closest_node);
-	console.log(closest_node);
+	// console.log(closest_node);
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	scroll_box_heap.style.visibility = 'visible';
@@ -176,7 +176,7 @@ function perform_dijsktra_fast(stage,anim_array)
 	{
 		// console.log(anim_array[stage][1].id + " " + anim_array[stage][2]);
 		scroll_heap.change_value_fast(anim_array[stage][1].id,anim_array[stage][2]);
-		console.log("here");
+		// console.log("here");
 		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 	}
 	else if (anim_array[stage][0] === "disappear")

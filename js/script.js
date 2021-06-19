@@ -38,6 +38,7 @@ graph_container.addEventListener("mouseover",graph_mouse_over);
 
 function recolor_graph () {
 	hide_dis();
+	clear_yellow_lines();
 	detail_tag.style.transform = "scale(0)";
 	scroll_box_heap.style.visibility = 'hidden';
 	scroll_box.style.visibility = 'hidden';
@@ -121,6 +122,7 @@ function graph_mouse_up()
 
 function graph_wheel(event)
 {
+		// console.log(event.target);
 		if (event.target.parentNode === document.querySelector('#scroll_box')) {
 			event.stopPropagation();
 			return;
@@ -129,6 +131,15 @@ function graph_wheel(event)
 			event.stopPropagation();
 			return;
 		}
+		if (event.target.parentNode.parentNode === document.querySelector('#scroll_box_heap')) {
+			event.stopPropagation();
+			return;
+		}
+		if (event.target === document.querySelector('#scroll_box_heap')) {
+			event.stopPropagation();
+			return;
+		}
+		// console.log("here");
 		var con_pos_x = graph_container.getBoundingClientRect().left;
 		var con_pos_y = graph_container.getBoundingClientRect().top;
 		var ev_wrt_con_x = event.clientX - con_pos_x;

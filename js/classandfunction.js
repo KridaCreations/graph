@@ -17,9 +17,6 @@ function clear_yellow_lines()
 {
     for (var i = 0;i<yellow_lines.length;i++)
     {
-        console.log(yellow_lines[i][0].style.stroke);
-        console.log(yellow_lines[i][1]);
-        console.log("");
         yellow_lines[i][0].style.stroke = yellow_lines[i][1];
     }
     clearArray(yellow_lines);
@@ -65,7 +62,7 @@ function clear_graph()
     g_pos = {"left" : 0,"top" : 0};
     graph_pressed = false;
     center_of_nodes = {"left" : 0, "top" : 0};
-
+    recolor_graph();
     graph.style.transform = (`scale(1)`);
     draw_area_container.style.transform = (`scale(1)`);
     graph.style.top = `${g_pos.top}px`;

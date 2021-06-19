@@ -1,4 +1,5 @@
 h1{
+	pointer-events: none;
 	height: 60px;align-content: center; 
 	border: 3px solid black; 
 	padding-top: 5px;
@@ -13,6 +14,8 @@ h1{
 	width: 90%;
 	background: lightseagreen;
 	z-index: 23;
+	/*opacity: 50%;*/
+	background-color:rgba(255, 0, 0, 0.4);
 	/*style="position: absolute; left:5%; top:2%; width: 90%; background: lightseagreen; z-index: 23;"*/
 }
 
