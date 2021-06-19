@@ -7,6 +7,12 @@ class ScrollHeap
         this.items = [];
         this.position = {};
     }
+    clear()
+    {
+        clearArray(this.bubble_changes);
+        clearArray(this.items);
+        clearObject(this.position);
+    }
     get_element(element)
     {
         return this.scroll_box.children[this.position[element]];
@@ -54,6 +60,7 @@ class ScrollHeap
     {
         clearArray(this.items);
         clearObject(this.position);
+        clearArray(this.bubble_changes);
         this.scroll_box.innerHtml = "";
     }
     print()

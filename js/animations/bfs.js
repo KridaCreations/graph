@@ -16,7 +16,7 @@ function bake_bfs()
 	queue.enqueue(foccused_node);
 	bfs();
 	baked_animation = 1
-	console.log(anim_array);
+	// console.log(anim_array);
 	scroll_box.style.visibility = 'visible';
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;

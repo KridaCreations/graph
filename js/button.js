@@ -65,7 +65,7 @@ gen_button.addEventListener("click",generate);
 
 function clear_editor()
 {
-	console.log("here")
+	// console.log("here")
 	code_editor.value = "";
 }
 

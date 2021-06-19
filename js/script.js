@@ -47,7 +47,15 @@ function recolor_graph () {
 	is_playing = false;
 	play_button.textContent = "Play";
 	clearTimeout(current_timer);
+
+	heap.empty();
+	clearArray(anim_array);
+	clearObject(visited_node);
+	clearObject(distance);
+
 	scroll_box.textContent = "";
+	scroll_heap.empty();
+	baked_animation =  null;
 	for (node in document.nodes)
 	{
 		var c_node = document.nodes[node];
@@ -214,9 +222,15 @@ function add_node(id_no,position_y,position_x)
 	var new_svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
 	new_svg.setAttribute("height",100);
 	new_svg.setAttribute("width",100);
+
 	var text_tab = document.createElementNS("http://www.w3.org/2000/svg","text")
 	text_tab.setAttribute("y",-40);
 	text_tab.setAttribute("text-anchor","middle");
+
+	// var closest_node_tab = document.createElementNS("http://www.w3.org/2000/svg","text")
+	// text_tab.setAttribute("y",-20);
+	// text_tab.setAttribute("text-anchor","middle");
+
 	var new_path = document.createElementNS("http://www.w3.org/2000/svg","path");
 	new_path.setAttribute("d","M0 0 L10 -20 L40 -20 L40 -60 L-40 -60 L-40 -20 L-10 -20 Z");
 	new_path.style = "fill:pink;stroke:blueviolet;stroke-width:3 ;";
@@ -224,6 +238,10 @@ function add_node(id_no,position_y,position_x)
 	// text_tab.textContent = "1000";
 	new_svg.append(new_path);
 	new_svg.append(text_tab);
+	// new_svg.append(closest_node_tab);
+	// closest_node_tab.textContent = "A";
+
+
 	new_detail_tag.append(new_svg);
 	document.nodes[new_node.id] = new_node;
 	new_node.append(new_detail_tag);

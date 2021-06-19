@@ -2,6 +2,10 @@ function node_click(event)
 {
 	if (event.currentTarget === event.target)
 	{
+		if (baked_animation === 2) 
+		{
+			paint_shortest_dis(event.currentTarget.id);
+		}
 		if (delete_button.checked === true)
 		{
 			for (node in this.connections)
@@ -46,6 +50,10 @@ function node_click(event)
 				this.style.border= "4px solid green";
 				foccused_node = this;
 			}
+			// if (baked_animation === 2) 
+			// {
+			// 	paint_shortest_dis(this);
+			// }
 		}
 		else if (connect_button.checked === true)
 		{

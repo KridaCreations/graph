@@ -1,11 +1,31 @@
 var scroll_box_heap = document.querySelector("#scroll_box_heap");
 var detail_tag = document.querySelector("#detail_tab");
+var closest_node = {};
+var yellow_lines = []
 
 var heap = new Heap();
 var distance = {};
 
 
 var scroll_heap = new ScrollHeap(scroll_box_heap);
+
+
+function paint_shortest_dis(des_node_id)
+{
+	clear_yellow_lines();
+
+	while (!(closest_node[des_node_id] === null)) 
+	{
+		// console.log(closest_node[des_node_id]);
+		var curr_line = closest_node[des_node_id].connections[des_node_id].line;
+		yellow_lines.push([curr_line,curr_line.style.stroke]);
+		closest_node[des_node_id].connections[des_node_id].line.style.stroke = "yellow";
+		
+		
+		des_node_id = closest_node[des_node_id].id;
+	}
+}
+
 
 function bake_dijsktra()
 {
@@ -16,6 +36,7 @@ function bake_dijsktra()
 	}
 	recolor_graph();
 	heap.empty();
+	clearObject(closest_node);
 	clearArray(anim_array);
 	clearObject(visited_node);
 	clearObject(distance);
@@ -23,12 +44,15 @@ function bake_dijsktra()
 	{
 		distance[document.nodes] = null;
 	}
+	closest_node[foccused_node.id] = null;
 	anim_array.push(["add",foccused_node,0]);
 	distance[foccused_node.id] = 0;
 	visited_node[foccused_node.id] = 1;
 	heap.push(foccused_node.id,0);
 	dijsktra();
 	baked_animation = 2;
+	// print_object(closest_node);
+	console.log(closest_node);
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	scroll_box_heap.style.visibility = 'visible';
@@ -182,6 +206,8 @@ function perform_dijsktra_fast_back(stage,anim_array)
 	// console.log("back from "+anim_array[stage+1][0]);
 	if (anim_array[stage+1][0] === "add")
 	{
+		// console.log(anim_array[stage][1])
+		anim_array[stage+1][1].children[0].children[0].children[1].textContent = "Inf";
 		scroll_heap.delete_from_last();
 	}
 	else if (anim_array[stage+1][0] === "remove") 
@@ -263,6 +289,7 @@ function perform_dijsktra_fast_back(stage,anim_array)
 	else if (anim_array[stage+1][0] === "change")
 	{
 		// console.log(anim_array[stage+1][1].id + " " + anim_array[stage+1][4]);
+		anim_array[stage+1][1].children[0].children[0].children[1].textContent = anim_array[stage+1][4];
 		scroll_heap.change_value_fast(anim_array[stage+1][1].id,anim_array[stage+1][4]);
 	}
 	else if (anim_array[stage+1][0] === "disappear")
@@ -408,6 +435,7 @@ function dijsktra (node)
 					distance[pair.node.id] = new_dis;
 					anim_array.push(["solve",pair.node,"new_dis"]);
 					heap.push(pair.node.id,new_dis);
+					closest_node[pair.node.id] = node;
 					anim_array.push(["add",pair.node,new_dis]);
 				}
 				else if (curr_dis > new_dis)
@@ -415,6 +443,7 @@ function dijsktra (node)
 					distance[pair.node.id] = new_dis;
 					anim_array.push(["solve",pair.node,"new_dis"]);
 					heap.change_value(pair.node.id,new_dis);
+					closest_node[pair.node.id] = node;
 					anim_array.push(["change",pair.node,new_dis,heap.get_position(pair.node.id),curr_dis]);
 				}
 				else

@@ -4,6 +4,27 @@ function clearArray(array) {
   }
 }
 
+function print_object(object)
+{
+    for (key in object)
+    {
+        console.log(object[key]);
+    }
+    console.log("");
+}
+
+function clear_yellow_lines()
+{
+    for (var i = 0;i<yellow_lines.length;i++)
+    {
+        console.log(yellow_lines[i][0].style.stroke);
+        console.log(yellow_lines[i][1]);
+        console.log("");
+        yellow_lines[i][0].style.stroke = yellow_lines[i][1];
+    }
+    clearArray(yellow_lines);
+}
+
 function show_dis()
 {
     for (node in document.nodes)
@@ -11,6 +32,16 @@ function show_dis()
         var c_node = document.nodes[node];
         c_node.children[0].children[0].children[1].textContent = "Inf";
         c_node.children[0].style.transform = "scale(1)";
+    }
+}
+
+function set_all_dis(value)
+{
+    for (node in document.nodes)
+    {
+        var c_node = document.nodes[node];
+        c_node.children[0].children[0].children[1].textContent = value;
+        // c_node.children[0].style.transform = "scale(0)";
     }
 }
 
@@ -205,16 +236,16 @@ class Heap
     }
     change_value(element,new_value)
     {
-        console.log("inside change " +new_value+" " +this.items[this.position[element]].value);
+        // console.log("inside change " +new_value+" " +this.items[this.position[element]].value);
         if (new_value < this.items[this.position[element]].value)
         { 
-            console.log("up");
+            // console.log("up");
             this.items[this.position[element]].value = new_value;
             return this.bubble_up(this.position[element]);
         }
         else if (new_value > this.items[this.position[element]].value ) 
         {
-            console.log("down");
+            // console.log("down");
             this.items[this.position[element]].value = new_value;
             return this.bubble_down(this.position[element]);
         }
