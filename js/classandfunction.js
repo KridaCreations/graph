@@ -199,7 +199,7 @@ class Heap
         console.log("item list")
         for (var obj = 0; obj<this.items.length ; obj++)
         {
-            console.log(this.items[obj]);
+            console.log("node "+this.items[obj].node+" "+"value "+this.items[obj].value);
         }
         console.log("positions");
         for(obj in this.position)

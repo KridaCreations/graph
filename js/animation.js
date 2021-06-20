@@ -64,10 +64,15 @@ function move_back (argument) {
 	{
 		change_to_anim_stage_dijsktra(anim_value);
 	}
+	else if (baked_animation === 3)
+	{
+		change_to_anim_stage_prims(anim_value);
+	}
 	
 }
 
 function move_forward (argument) {
+	console.log("move_forward")
 	if (baked_animation === null)
 	{
 		alert("error occured\npossible errors:-\n1)no animation baked \n2)broken animation: you might have edited the graph after baking animation")
@@ -91,6 +96,11 @@ function move_forward (argument) {
 	{
 		// console.log("performing fast dijsktra");
 		change_to_anim_stage_dijsktra(anim_value);
+	}
+	else if (baked_animation === 3)
+	{
+		// console.log("performing fast dijsktra");
+		change_to_anim_stage_prims(anim_value);
 	}
 	
 }
@@ -241,6 +251,10 @@ function animation_slider_input()
 	{
 		change_to_anim_stage_dijsktra(anim_value);
 	}
+	else if (baked_animation === 3)
+	{
+		change_to_anim_stage_prims(anim_value);
+	}
 }
 
 function bake_animation(event)
@@ -256,6 +270,10 @@ function bake_animation(event)
 	else if (algorithm_label.selectedIndex === 2)
 	{
 		bake_dijsktra();
+	}
+	else if (algorithm_label.selectedIndex === 3)
+	{
+		bake_prims();
 	}
 	else {
 				alert("Animation not available\nAbhishek kumar hasn't coded them yet\n only these animations are available for now \n1)depth first traversal\n2)breadth first traversal");
@@ -285,6 +303,10 @@ function play_animation(event)
 		else if (baked_animation === 2)
 		{
 			play_dijsktra(current_stage,anim_array);
+		}
+		else if (baked_animation === 3)
+		{
+			play_prims(current_stage,anim_array);
 		}
 		
 		

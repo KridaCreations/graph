@@ -1,32 +1,7 @@
-var scroll_box_heap = document.querySelector("#scroll_box_heap");
-var detail_tag = document.querySelector("#detail_tab");
-var closest_node = {};
-var yellow_lines = []
-
-var heap = new Heap();
-var distance = {};
+var previous_connected_node = {};
 
 
-var scroll_heap = new ScrollHeap(scroll_box_heap);
-
-
-function paint_shortest_dis(des_node_id)
-{
-	clear_yellow_lines();
-
-	while (!(closest_node[des_node_id] === null)) 
-	{
-		var curr_line = closest_node[des_node_id].connections[des_node_id].line;
-		yellow_lines.push([curr_line,curr_line.style.stroke]);
-		closest_node[des_node_id].connections[des_node_id].line.style.stroke = "yellow";
-		
-		
-		des_node_id = closest_node[des_node_id].id;
-	}
-}
-
-
-function bake_dijsktra()
+function bake_prims()
 {
 	if (foccused_node === null)
 	{
@@ -39,6 +14,7 @@ function bake_dijsktra()
 	clearArray(anim_array);
 	clearObject(visited_node);
 	clearObject(distance);
+	clearObject(previous_connected_node);
 	for(node in document.nodes)
 	{
 		distance[document.nodes] = null;
@@ -48,8 +24,8 @@ function bake_dijsktra()
 	distance[foccused_node.id] = 0;
 	visited_node[foccused_node.id] = 1;
 	heap.push(foccused_node.id,0);
-	dijsktra();
-	baked_animation = 2;
+	prims();
+	baked_animation = 3;
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	scroll_box_heap.style.visibility = 'visible';
@@ -57,7 +33,7 @@ function bake_dijsktra()
 	show_dis();
 }
 
-function play_dijsktra (stage,anim_array) 
+function play_prims (stage,anim_array) 
 {
 	if (stage === anim_array.length)
 	{
@@ -65,24 +41,24 @@ function play_dijsktra (stage,anim_array)
 	}
 	current_stage = stage;
 	change_anim_position(stage);
-	perform_dijsktra(stage,anim_array);
+	perform_prims(stage,anim_array);
 	function sleep (time) {
   		return new Promise((resolve) => current_timer = setTimeout(resolve, time));
 	}
 	sleep(delay * 1000).then(() => 
 	{
-	    play_dijsktra(stage+1,anim_array);
+	    play_prims(stage+1,anim_array);
 	});
 }
 
-function change_to_anim_stage_dijsktra(stage)
+function change_to_anim_stage_prims(stage)
 {
 	var pre_stage = current_stage;
 	if ((pre_stage < stage) && (stage < anim_array.length))
 	{
 		for(i = pre_stage+1;i <= stage;i++)
 		{
-			perform_dijsktra_fast(i,anim_array);	
+			perform_prims_fast(i,anim_array);	
 		}
 		current_stage = stage;
 	}
@@ -90,13 +66,13 @@ function change_to_anim_stage_dijsktra(stage)
 	{
 		for(i = pre_stage-1;i >= stage;i--)
 		{
-			perform_dijsktra_fast_back(i,anim_array);
+			perform_prims_fast_back(i,anim_array);
 		}
 		current_stage = stage;
 	}
 
 }
-function perform_dijsktra_fast(stage,anim_array)
+function perform_prims_fast(stage,anim_array)
 {
 
 	stage = Number(stage);
@@ -106,6 +82,11 @@ function perform_dijsktra_fast(stage,anim_array)
 	}
 	if (anim_array[stage][0] === "add") 
 	{
+		if (!(stage === 0))
+		{
+			var line = anim_array[stage][3].connections[anim_array[stage][1].id].line;
+			line.style.stroke = "yellow";
+		}
 		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 		scroll_heap.push_at_last(anim_array[stage][1].id,anim_array[stage][2]);
 	}
@@ -123,7 +104,10 @@ function perform_dijsktra_fast(stage,anim_array)
 	{
 		anim_array[stage-1][1].style["background-color"] = "green";
 		anim_array[stage][1].style["background-color"] = "yellow";
-		anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] = "green";
+		if (!(anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] === "yellow"))
+		{
+			anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] = "green";
+		}
 	}
 	else if (anim_array[stage][0] === "done")
 	{
@@ -169,6 +153,12 @@ function perform_dijsktra_fast(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "change")
 	{
+		var line = anim_array[stage][5].connections[anim_array[stage][1].id].line;
+		line.style.stroke = "green";
+
+		var line = anim_array[stage][6].connections[anim_array[stage][1].id].line;
+		line.style.stroke = "yellow";
+
 		scroll_heap.change_value_fast(anim_array[stage][1].id,anim_array[stage][2]);
 		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 	}
@@ -189,7 +179,7 @@ function perform_dijsktra_fast(stage,anim_array)
 		detail_tag.style["transform"] = "scale(0)";
 	}
 }
-function perform_dijsktra_fast_back(stage,anim_array)
+function perform_prims_fast_back(stage,anim_array)
 {
 	
 	if (stage+1 === anim_array.length)
@@ -298,7 +288,7 @@ function perform_dijsktra_fast_back(stage,anim_array)
 }
 
 
-function perform_dijsktra (stage,anim_array) 
+function perform_prims (stage,anim_array) 
 {
 	stage = Number(stage);
 	if (stage === -1)
@@ -307,6 +297,11 @@ function perform_dijsktra (stage,anim_array)
 	}
 	if (anim_array[stage][0] === "add")
 	{
+		if (!(stage === 0))
+		{
+			var line = anim_array[stage][3].connections[anim_array[stage][1].id].line;
+			animate_property(line,"stroke","yellow",(delay*transition_factor) * 1000,true);
+		}
 		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 		scroll_heap.push_without_bubble_up(anim_array[stage][1].id,anim_array[stage][2]);
 	}
@@ -324,7 +319,10 @@ function perform_dijsktra (stage,anim_array)
 	{
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
-		animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);
+		if (!(anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] === "yellow"))
+		{
+			animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);
+		}
 	}
 	else if (anim_array[stage][0] === "done")
 	{
@@ -370,6 +368,12 @@ function perform_dijsktra (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "change")
 	{
+		var line = anim_array[stage][5].connections[anim_array[stage][1].id].line;
+		line.style.stroke = "green";
+
+		line = anim_array[stage][6].connections[anim_array[stage][1].id].line;
+		animate_property(line,"stroke","yellow",(delay*transition_factor) * 1000,true);
+
 		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
 		scroll_heap.change_value_without_bubble_down(anim_array[stage][1].id,anim_array[stage][2]);
 	}
@@ -391,7 +395,7 @@ function perform_dijsktra (stage,anim_array)
 	}
 }
 
-function dijsktra (node) 
+function prims (node) 
 {
 	while (!heap.isempty()) 
 	{	
@@ -406,17 +410,17 @@ function dijsktra (node)
 			if (!(visited_node[pair.node.id] === 1)) 
 			{
 				var curr_dis = distance[pair.node.id];
-				var new_dis = find_length(node,node.connections[nodes].node)+distance[node.id];
+				var new_dis = find_length(node,node.connections[nodes].node); //+distance[node.id];
 				anim_array.push(["go",pair.node]);
 				anim_array.push(["appear",pair.node]);
-				if (curr_dis === undefined) 
-				{
+				if (curr_dis === undefined) {
 					anim_array.push(["add_pre_dis",pair.node,"∞"]);
 				}
 				else
 				{
 					anim_array.push(["add_pre_dis",pair.node,curr_dis]);
 				}
+				
 				anim_array.push(["add_new_dis",pair.node,new_dis]);
 				if (curr_dis === undefined)
 				{
@@ -424,7 +428,8 @@ function dijsktra (node)
 					anim_array.push(["solve",pair.node,"new_dis"]);
 					heap.push(pair.node.id,new_dis);
 					closest_node[pair.node.id] = node;
-					anim_array.push(["add",pair.node,new_dis]);
+					previous_connected_node[pair.node.id] = node;
+					anim_array.push(["add",pair.node,new_dis,node]);
 				}
 				else if (curr_dis > new_dis)
 				{
@@ -432,7 +437,8 @@ function dijsktra (node)
 					anim_array.push(["solve",pair.node,"new_dis"]);
 					heap.change_value(pair.node.id,new_dis);
 					closest_node[pair.node.id] = node;
-					anim_array.push(["change",pair.node,new_dis,heap.get_position(pair.node.id),curr_dis]);
+					anim_array.push(["change",pair.node,new_dis,heap.get_position(pair.node.id),curr_dis,previous_connected_node[pair.node.id],node]);
+					previous_connected_node[pair.node.id] = node;
 				}
 				else
 				{
@@ -442,7 +448,7 @@ function dijsktra (node)
 				anim_array.push(["return",node]);
 			}
 		}
-		visited_node[node.id] = 1;
+		visited_node[node.id] = 1;		
 		anim_array.push(["done",node]);
 	}	
 }

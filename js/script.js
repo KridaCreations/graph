@@ -53,6 +53,7 @@ function recolor_graph () {
 	clearArray(anim_array);
 	clearObject(visited_node);
 	clearObject(distance);
+	clearObject(previous_connected_node);
 
 	scroll_box.textContent = "";
 	scroll_heap.empty();
@@ -122,7 +123,6 @@ function graph_mouse_up()
 
 function graph_wheel(event)
 {
-		// console.log(event.target);
 		if (event.target.parentNode === document.querySelector('#scroll_box')) {
 			event.stopPropagation();
 			return;
@@ -139,15 +139,14 @@ function graph_wheel(event)
 			event.stopPropagation();
 			return;
 		}
-		// console.log("here");
 		var con_pos_x = graph_container.getBoundingClientRect().left;
 		var con_pos_y = graph_container.getBoundingClientRect().top;
 		var ev_wrt_con_x = event.clientX - con_pos_x;
 		var ev_wrt_con_y = event.clientY - con_pos_y;
 		var prev_scale = scale;
 		scale += event.deltaY * -0.0001;
-	  scale = Math.min(Math.max(.125, scale), 4);
-	  zoom_board(graph,ev_wrt_con_x,ev_wrt_con_y,prev_scale,scale);
+	    scale = Math.min(Math.max(.125, scale), 4);
+	    zoom_board(graph,ev_wrt_con_x,ev_wrt_con_y,prev_scale,scale);
 }
 
 

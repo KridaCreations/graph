@@ -1,6 +1,7 @@
 
 #dist_tag
 {
+	pointer-events:none;
 	text-align: center;
 	color: black;
 	font-size: 2em;
@@ -9,6 +10,7 @@
 
 #curr_dis_tag
 {
+	pointer-events:none;
 	height: 50px;
 	width: 50px;
 	left: -65px;
@@ -22,6 +24,7 @@
 }
 #new_dis_tag
 {
+	pointer-events:none;
 	height: 50px;
 	width: 50px;
 	left: 15px;

@@ -1,5 +1,6 @@
 .detail_tab_style
 {
+	pointer-events:none;
 	position: absolute;
 	opacity: 100%;
 	z-index: 1000;
@@ -20,7 +21,7 @@
 .scroll_box__heap_element
 {
 
-	user-select: none;
+  user-select: none;
   box-sizing:border-box;
   height: 40px;
   text-align: center;
@@ -29,6 +30,7 @@
 
 .dijsktra_distance_tag
 {
+	pointer-events:none;
 	user-select: none;
 	position: absolute;
 	left: ;
@@ -36,7 +38,7 @@
 
 .scroll_box__heap_element_name
 {
-	user-select: none;
+  user-select: none;
   box-sizing: border-box;
   border: 4px solid yellow;
   border-radius: 10px;

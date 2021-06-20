@@ -1,5 +1,5 @@
 var c_spring = 10;
-var c_length = 300;
+var c_length = 100;
 var c_rep = 200000;
 var c4 = 0.90;
 
