@@ -16,6 +16,8 @@ Available animations to visualize :-
 
 1)Depth first search
 2)Breadth First search
+3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
+4)Prim's algorithm(MINIMAL SPANING TREE)
 
 more animations will be added.....
 
