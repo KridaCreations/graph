@@ -14,10 +14,11 @@ this is a tool to draw graph and visualize the various algorithms on it
 
 Available animations to visualize :-
 
-1)Depth first search
-2)Breadth First search
+1)Depth first search(TRAVERSAL ALGORITHM)
+2)Breadth First search(TRAVERSAL ALGORITHM)
 3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
 4)Prim's algorithm(MINIMAL SPANING TREE)
+5)Kruskal algorithm(MINIMAL SPANING TREE)
 
 more animations will be added.....
 

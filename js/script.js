@@ -24,6 +24,8 @@ var g_pos = {"left" : 0,"top" : 0};
 var graph_pressed = false;
 var center_of_nodes = {"left" : 0, "top" : 0};
 
+document.lines = {};
+
 document.nodes = {};
 
 clear_button.addEventListener("click",clear_graph);
@@ -50,10 +52,15 @@ function recolor_graph () {
 	clearTimeout(current_timer);
 
 	heap.empty();
+	// clearObject(closest_node);
 	clearArray(anim_array);
 	clearObject(visited_node);
 	clearObject(distance);
 	clearObject(previous_connected_node);
+
+	set.empty();
+	clearArray(line_array);
+	clearObject(colored_nodes);
 
 	scroll_box.textContent = "";
 	scroll_heap.empty();

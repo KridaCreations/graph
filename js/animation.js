@@ -68,6 +68,10 @@ function move_back (argument) {
 	{
 		change_to_anim_stage_prims(anim_value);
 	}
+	else if (baked_animation === 4)
+	{
+		change_to_anim_stage_kruskal(anim_value);
+	}
 	
 }
 
@@ -101,6 +105,11 @@ function move_forward (argument) {
 	{
 		// console.log("performing fast dijsktra");
 		change_to_anim_stage_prims(anim_value);
+	}
+	else if (baked_animation === 4)
+	{
+		// console.log("performing fast dijsktra");
+		change_to_anim_stage_kruskal(anim_value);
 	}
 	
 }
@@ -255,6 +264,10 @@ function animation_slider_input()
 	{
 		change_to_anim_stage_prims(anim_value);
 	}
+	else if (baked_animation === 4)
+	{
+		change_to_anim_stage_kruskal(anim_value);
+	}
 }
 
 function bake_animation(event)
@@ -275,8 +288,12 @@ function bake_animation(event)
 	{
 		bake_prims();
 	}
+	else if (algorithm_label.selectedIndex === 4)
+	{
+		bake_kruskal();
+	}
 	else {
-				alert("Animation not available\nAbhishek kumar hasn't coded them yet\n only these animations are available for now \n1)depth first traversal\n2)breadth first traversal");
+				alert("Animation not available\nAbhishek kumar hasn't coded them yet\n only these animations are available for now \n1)depth first traversal\n2)breadth first traversal\n3)dijsktra algorithm \n4)prim's algorithm\n5)kruskal algorithm");
 	}
 
 }
@@ -307,6 +324,10 @@ function play_animation(event)
 		else if (baked_animation === 3)
 		{
 			play_prims(current_stage,anim_array);
+		}
+		else if (algorithm_label.selectedIndex === 4)
+		{
+			play_kruskal(current_stage,anim_array);
 		}
 		
 		

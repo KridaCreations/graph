@@ -143,7 +143,6 @@ function join(from,to,event)
 	new_line.setAttribute("y2" , to.offsetTop+25);
 	if (connection_label.selectedIndex === 0)
 	{
-		
 		new_line.detail = {};
 		new_line.detail.start = from;
 		new_line.detail.end = to;

@@ -188,6 +188,13 @@ function perform_prims_fast_back(stage,anim_array)
 	}
 	if (anim_array[stage+1][0] === "add")
 	{
+		if (!(stage+1 === 0))
+		{
+			var line = anim_array[stage+1][3].connections[anim_array[stage+1][1].id].line;
+			line.style.stroke = "blue";
+			// animate_property(line,"stroke","blue",(delay*transition_factor) * 1000,true);
+		}
+
 		anim_array[stage+1][1].children[0].children[0].children[1].textContent = "Inf";
 		scroll_heap.delete_from_last();
 	}
@@ -267,6 +274,13 @@ function perform_prims_fast_back(stage,anim_array)
 	}
 	else if (anim_array[stage+1][0] === "change")
 	{
+		//newly added
+		var line = anim_array[stage+1][5].connections[anim_array[stage+1][1].id].line;
+		line.style.stroke = "yellow";
+
+		line = anim_array[stage+1][6].connections[anim_array[stage+1][1].id].line;
+		line.style.stroke = "blue";
+
 		anim_array[stage+1][1].children[0].children[0].children[1].textContent = anim_array[stage+1][4];
 		scroll_heap.change_value_fast(anim_array[stage+1][1].id,anim_array[stage+1][4]);
 	}

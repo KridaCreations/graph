@@ -4,6 +4,8 @@ function clearArray(array) {
   }
 }
 
+
+
 function print_object(object)
 {
     for (key in object)
@@ -168,6 +170,50 @@ function get_parent (index)
     }
 }
 
+class Sets{
+    constructor()
+    {
+        this.parent = {};
+        this.size = {};
+    }
+    empty()
+    {
+        clearObject(this.parent);
+    }
+    make_set(node_id)
+    {
+        this.parent[node_id] = node_id;
+        this.size[node_id] = 1;
+    }
+    find_set(node_id)
+    {
+        if (node_id == this.parent[node_id])
+        {
+            return node_id;
+        }
+        // return find_set(this.parent[node_id]);
+        return this.parent[node_id] = this.find_set(this.parent[node_id]);
+    }
+    union_sets(a, b) 
+    {
+        a = this.find_set(a);
+        b = this.find_set(b);
+        if (!(a === b)) {
+            if (this.size[a] < this.size[b])
+            {
+                this.parent[a] = b;
+                this.size[b] += this.size[a];
+                return b;
+            }
+            else
+            {
+                this.parent[b] = a;
+                this.size[a] += this.size[b];
+                return a;
+            }
+        }
+    }
+}
 
 //heap class
 
