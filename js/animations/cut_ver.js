@@ -34,17 +34,23 @@ function bake_cut_ver()
 	dfstree(foccused_node,null);
 	done_nodes[foccused_node.id] = 1;
 	anim_array.push(["done",foccused_node]);
-	for(nodes in document.nodes)
+	
+	for(nodes1 in document.nodes)
 	{
-		if(!(visited_node[nodes] === 1))
+		if(!(visited_node[nodes1] === 1))
 		{
-			visited_node[nodes] = 1;
-			time[nodes] = pre_time;
-			low[nodes] = pre_time;
+			visited_node[nodes1] = 1;
+			time[nodes1] = pre_time;
+			low[nodes1] = pre_time;
 			pre_time += 1;
-			dfstree(document.nodes[nodes],null);
-			done_nodes[document.nodes[nodes].id] = 1;
-	 		anim_array.push(["done",document.nodes[nodes]]);
+			console.log(nodes1);
+			console.log(document.nodes[nodes1]);
+			anim_array.push(["jump",document.nodes[nodes1],pre_time]);
+			dfstree(document.nodes[nodes1],null);
+			done_nodes[nodes1] = 1;
+			console.log(nodes1);
+			console.log(document.nodes[nodes1]);
+	 		anim_array.push(["done",document.nodes[nodes1]]);
 		}
 	}
 	console.log(anim_array);
@@ -386,17 +392,19 @@ function perform_dfstree (stage,anim_array) {
 
 function dfstree(node,parent) 
 {
-	 for(nodes in node.connections)
-	 {
-	 	var pair = node.connections[nodes];
-	 	if (pair.node === parent)
-	 	{
-	 		continue;
-	 	}
-	 	else if (done_nodes[pair.node.id] === 1) 
-	 	{
-	 		continue;	
-	 	}
+	print_object(document.nodes);
+	var no_of_child = 0;
+	for(nodes in node.connections)
+	{
+		var pair = node.connections[nodes];
+		if (pair.node === parent)
+		{
+			continue;
+		}
+		else if (done_nodes[pair.node.id] === 1) 
+		{
+			continue;	
+		}
 	 	else if ((visited_node[pair.node.id] === 1))
 	 	{
 	 		anim_array.push(["backedge",pair.node]);
@@ -417,6 +425,7 @@ function dfstree(node,parent)
 	 	}
 	 	else 
 	 	{
+	 		no_of_child += 1;
 	 		anim_array.push(["go",pair.node,pre_time]);
 	 		visited_node[pair.node.id] = 1;
 	 		time[pair.node.id] = pre_time;
@@ -458,7 +467,10 @@ function dfstree(node,parent)
 		 		anim_array.push(["disappear",node]);
 	 		}
 	 	}
-
-
-	 }
+	}
+	if ((no_of_child>1) && (parent === null)) 
+	{
+	 	anim_array.push(["mark",node]);
+	 	cut_points[node.id] = 1;
+	}
 }

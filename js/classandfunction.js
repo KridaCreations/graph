@@ -8,6 +8,7 @@ function print_object(object)
 {
     for (key in object)
     {
+        console.log(key);
         console.log(object[key]);
     }
     console.log("");
