@@ -1,9 +1,52 @@
 .detail_tab_style
 {
+
 	pointer-events:none;
 	position: absolute;
 	opacity: 100%;
 	z-index: 1000;
+}
+
+.text_tag
+{
+	margin-top: 20px;
+	height: 120px;
+	overflow-wrap: normal;
+	overflow-y: auto;
+	display: inline-block;
+	text-align: left;
+	font-weight: bolder;
+	font-size: 1.1em;
+	font-weight: bolder;
+	width: 800px;
+}
+
+.slide_number_tag
+{
+	user-select: none;
+	font-size: 2em;
+}
+
+.slide_container
+{
+	user-select: none;
+	text-align: center;
+	width: 1100px;
+	height: 600px;
+	padding-top: 2%;
+	background: lightseagreen;
+	border-radius: 20px;
+	border: 10px solid darkviolet;
+}
+
+.slide_image
+{
+	user-select: none;
+	border-radius: 20px;
+	box-shadow:0 0 10px ;
+	/*box-shadow: blur;*/
+	/*background-blend-mode: all;*/
+	border: 10px solid palevioletred;
 }
 
 .dis_tab_style

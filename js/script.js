@@ -39,6 +39,8 @@ graph_container.addEventListener("mousedown",graph_mouse_down);
 graph_container.addEventListener("mouseover",graph_mouse_over);
 
 function recolor_graph () {
+	// console.log("here")
+	hide_dis_cut();
 	hide_dis();
 	clear_yellow_lines();
 	detail_tag.style.transform = "scale(0)";
@@ -61,6 +63,12 @@ function recolor_graph () {
 	set.empty();
 	clearArray(line_array);
 	clearObject(colored_nodes);
+
+	//cut_vertices
+	clearObject(colored_nodes);
+	clearObject(time);
+	clearObject(low);
+	pre_time = 0;
 
 	scroll_box.textContent = "";
 	scroll_heap.empty();
@@ -233,7 +241,7 @@ function add_node(id_no,position_y,position_x)
 	new_node.addEventListener('mouseup',node_mouse_up);
 	new_node.addEventListener('mousedown',node_mouse_down);
 
-	//adding the detail tag
+	//adding the dijsktra detail tag
 	var new_detail_tag = document.createElement("div");
 	new_detail_tag.classList.add("dis_tab_style");
 	var new_svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
@@ -244,27 +252,56 @@ function add_node(id_no,position_y,position_x)
 	text_tab.setAttribute("y",-40);
 	text_tab.setAttribute("text-anchor","middle");
 
-	// var closest_node_tab = document.createElementNS("http://www.w3.org/2000/svg","text")
-	// text_tab.setAttribute("y",-20);
-	// text_tab.setAttribute("text-anchor","middle");
-
 	var new_path = document.createElementNS("http://www.w3.org/2000/svg","path");
 	new_path.setAttribute("d","M0 0 L10 -20 L40 -20 L40 -60 L-40 -60 L-40 -20 L-10 -20 Z");
 	new_path.style = "fill:pink;stroke:blueviolet;stroke-width:3 ;";
 	
-	// text_tab.textContent = "1000";
 	new_svg.append(new_path);
 	new_svg.append(text_tab);
-	// new_svg.append(closest_node_tab);
-	// closest_node_tab.textContent = "A";
-
 
 	new_detail_tag.append(new_svg);
-	document.nodes[new_node.id] = new_node;
 	new_node.append(new_detail_tag);
 	new_detail_tag.style.left  = "25px";
 	new_detail_tag.style.top = "0px";
+
 	new_detail_tag.style.transform = "scale(0)";
+
+	//adding the cut_ver detail tag
+	new_detail_tag = document.createElement("div");
+	new_detail_tag.classList.add("dis_tab_style");
+	new_svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+	new_svg.setAttribute("height",100);
+	new_svg.setAttribute("width",100);
+
+	text_tab = document.createElementNS("http://www.w3.org/2000/svg","text")
+	text_tab.setAttribute("y",-40);
+	text_tab.setAttribute("text-anchor","middle");
+
+	var text_tab1 = document.createElementNS("http://www.w3.org/2000/svg","text")
+	text_tab1.setAttribute("y",-80);
+	text_tab1.setAttribute("text-anchor","middle");
+
+	new_path = document.createElementNS("http://www.w3.org/2000/svg","path");
+	new_path.setAttribute("d","M0 0 L10 -20 L40 -20 L40 -120 L-40 -120 L-40 -20 L-10 -20 Z");
+	new_path.style = "fill:pink;stroke:blueviolet;stroke-width:3 ;";
+	text_tab.textContent = "100";
+	text_tab1.textContent = "100";
+	new_svg.append(new_path);
+	new_svg.append(text_tab);
+	new_svg.append(text_tab1);
+
+	new_detail_tag.append(new_svg);
+	new_node.append(new_detail_tag);
+	new_detail_tag.style.left  = "25px";
+	new_detail_tag.style.top = "0px";
+
+	new_detail_tag.style.transform = "scale(0)";
+	new_node.cut_ver_detail = new_detail_tag.children[0];
+	new_node.cut_ver_detail.low_value_tab = text_tab;
+	new_node.cut_ver_detail.time_value_tab = text_tab1;
+
+	document.nodes[new_node.id] = new_node;
+	
 
 	return new_node;
 }

@@ -4,8 +4,6 @@ function clearArray(array) {
   }
 }
 
-
-
 function print_object(object)
 {
     for (key in object)
@@ -33,6 +31,28 @@ function show_dis()
         c_node.children[0].style.transform = "scale(1)";
     }
 }
+
+function show_dis_cut()
+{
+    for (node in document.nodes)
+    {
+        console.log("here");
+        var c_node = document.nodes[node];
+        // c_node.children[0].children[0].children[1].textContent = "Inf";
+        c_node.cut_ver_detail.parentNode.style.transform = "scale(1)";
+    }
+}
+
+function hide_dis_cut()
+{
+    for (node in document.nodes)
+    {
+        var c_node = document.nodes[node];
+        c_node.children[0].children[0].children[1].textContent = "Inf";
+        c_node.cut_ver_detail.parentNode.style.transform = "scale(0)";
+    }
+}
+
 
 function set_all_dis(value)
 {
@@ -138,7 +158,7 @@ function find_length(from,to)
     } 
     else
     {
-        return line.detail.weight;
+        return new Number(line.detail.weight);
     }
 }
 

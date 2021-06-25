@@ -1,6 +1,65 @@
+#slide_no
+{
+	width: 1px;
+	float: left;
+	font-size: 2em;
+	font-weight: bolder;
+}
+
+#tutorial_button
+{
+	pointer-events: all;
+	float:right; 
+	margin-right: 10px;
+}
+
+#skip_button
+{
+	box-shadow: 0 0 10px black;
+	float: right;
+	font-size: 1.1em;
+	font-weight: bolder;
+}
+
+#slides
+{
+	user-select: none;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+  width: 100%;
+  position: absolute;
+  z-index: 1000;
+  text-align: center;
+  background-color: transparent ;
+
+}
+
+#slide_previous
+{
+	box-shadow: 0 0 10px black;
+	user-select: none;
+	clear: both;
+	float: left;
+	margin-top: 20%;
+	height: 40px;
+	width: 40px;
+}
+
+#slide_next
+{
+	box-shadow: 0 0 10px black;
+	user-select: none;
+	float: right;
+	margin-top: 20%;
+	height: 40px;
+	width: 40px;
+}
 
 #dist_tag
 {
+	user-select: none;
 	pointer-events:none;
 	text-align: center;
 	color: black;

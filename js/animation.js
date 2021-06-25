@@ -50,7 +50,6 @@ function move_back (argument) {
 	clearTimeout(current_timer);
 	var anim_value = Number(current_stage-1);
 	change_anim_position(anim_value);
-	// anim_label.textContent = current_stage-1;
 	anim_label.textContent = anim_position.value;
 	if (baked_animation === 0)
 	{
@@ -72,11 +71,15 @@ function move_back (argument) {
 	{
 		change_to_anim_stage_kruskal(anim_value);
 	}
+	else if (baked_animation === 5)
+	{
+		change_to_anim_stage_dfstree(anim_value);
+	}
 	
 }
 
 function move_forward (argument) {
-	console.log("move_forward")
+	// console.log("move_forward")
 	if (baked_animation === null)
 	{
 		alert("error occured\npossible errors:-\n1)no animation baked \n2)broken animation: you might have edited the graph after baking animation")
@@ -98,18 +101,19 @@ function move_forward (argument) {
 	}
 	else if (baked_animation === 2)
 	{
-		// console.log("performing fast dijsktra");
 		change_to_anim_stage_dijsktra(anim_value);
 	}
 	else if (baked_animation === 3)
 	{
-		// console.log("performing fast dijsktra");
 		change_to_anim_stage_prims(anim_value);
 	}
 	else if (baked_animation === 4)
 	{
-		// console.log("performing fast dijsktra");
 		change_to_anim_stage_kruskal(anim_value);
+	}
+	else if (baked_animation === 5)
+	{
+		change_to_anim_stage_dfstree(anim_value);
 	}
 	
 }
@@ -268,6 +272,10 @@ function animation_slider_input()
 	{
 		change_to_anim_stage_kruskal(anim_value);
 	}
+	else if (baked_animation === 5)
+	{
+		change_to_anim_stage_dfstree(anim_value);
+	}
 }
 
 function bake_animation(event)
@@ -291,6 +299,10 @@ function bake_animation(event)
 	else if (algorithm_label.selectedIndex === 4)
 	{
 		bake_kruskal();
+	}
+	else if (algorithm_label.selectedIndex === 5)
+	{
+		bake_cut_ver();
 	}
 	else {
 				alert("Animation not available\nAbhishek kumar hasn't coded them yet\n only these animations are available for now \n1)depth first traversal\n2)breadth first traversal\n3)dijsktra algorithm \n4)prim's algorithm\n5)kruskal algorithm");

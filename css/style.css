@@ -13,7 +13,7 @@ h1{
 	top: 2%;
 	width: 90%;
 	background: lightseagreen;
-	z-index: 23;
+	/*z-index: 23;*/
 	/*opacity: 50%;*/
 	background-color:rgba(255, 0, 0, 0.4);
 	/*style="position: absolute; left:5%; top:2%; width: 90%; background: lightseagreen; z-index: 23;"*/

@@ -7,8 +7,116 @@
 	<link rel="stylesheet" type="text/css" href="css/class_style.css">
 	<link id="line_sheet" rel="stylesheet" type="text/css" href="css/line_style_normal_mode.css">
 </head>
+<!-- &#10094;
+&#10095; -->
 <body>
-	
+	<div id="slides" style="display:none;">
+		<div class="slide_container">
+			<div id="slide_no">
+				1/15
+			</div>
+			<button id="skip_button" >SKIP</button>
+			<button id="slide_previous" >&#10094;</button>
+			<button id="slide_next" >&#10095;</button>
+			<div class="my_slides" style="display: block;">
+				<img src="images/first_slide.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/add_options.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/delete1.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/delete-2.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/foccus.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/move1.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/move2.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/connections1.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/connec.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/afterconnections.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/animation1.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/bake_animation.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/play_animation.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/delay.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/forward and back.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			<div class="my_slides" style="display: none;">
+				<img src="images/generate.jpg" class="slide_image" height="400" width="800">
+				<div class="text_tag">
+					Text
+				</div>
+			</div>
+			
+		</div>
+	</div>
 	<div id="graph-container"  style="">
 		<div id = "detail_tab" class="detail_tab_style" style="left: 100px; top: 100px; transform: scale(0);">
 			<div id="curr_dis_tag" >
@@ -51,30 +159,30 @@
 	<div id = coding_area class="disappeared">
 		<button  id="code_appear"></button>
 		<div >Graph-Generation Script editor<button id="generate">Generate</button><button id="clear">Clear</button></div>
-		<textarea spellcheck="false" id = "code_editor" type="textarea" rows="5" cols="50" placeholder="Add the Graph-Generation-Script .......">1 2 3 98
-1 22 3 62
-2 3 3 89
-2 22 3 58
+		<textarea spellcheck="false" id = "code_editor" type="textarea" rows="5" cols="50" placeholder="Add the Graph-Generation-Script .......">1 2 1 98
+1 22 1 62
+2 3 1 89
+2 22 1 58
 3 22 1 0
-3 14 3 57
-3 8 3 88
-4 22 3 87
-4 5 3 31
-5 6 3 26
+3 14 1 57
+3 8 1 88
+4 22 1 87
+4 5 1 31
+5 6 1 26
 5 22 1 0
-6 22 3 28
-6 7 3 167
-7 22 3 76
-7 25 3 98
-8 9 3 12
+6 22 1 28
+6 7 1 167
+7 22 1 76
+7 25 1 98
+8 9 1 12
 8 25 1 0
-9 25 3 25
-10 25 3 43
-10 16 3 62
-13 25 3 61
-13 16 3 73
-14 25 3 43
-16 25 3 15</textarea>
+9 25 1 25
+10 25 1 43
+10 16 1 62
+13 25 1 61
+13 16 1 73
+14 25 1 43
+16 25 1 15</textarea>
 		<div><textarea id = code_editor_output type="textarea" rows="5" cols="5" readonly="true" placeholder="Output......."></textarea>
 		</div>
 	</div>
@@ -95,7 +203,7 @@
 		<button id="connect">Connect</button>   
 	</dialog>
 	<!-- Header -->
-	<h1  >GraphAlgorithmVisualizer</h1>
+	<h1  >GraphAlgorithmVisualizer<button id="tutorial_button" class="radio_buttons">Tutorial</button></h1>
 	<!-- Control Panel -->
 	<div id="tools_panel" class = "control-panel" style="   left: -500px; top:100px;" >
 		<button class="radio_buttons" id="tools_panel_button" class="panel_buttons" style="float: right; height: 100%; width: 30px;">T</button>
@@ -123,9 +231,6 @@
 		</div>
 		
 	</div>
-
-
-
 	<div id="animation_panel" class = "control-panel" style=" left: 1490px; top:100px; " >
 		<button class="radio_buttons" id="animation_panel_button" class="panel_buttons" style="float: left; height: 100%; width: 30px; margin-right: 20px;">A</button>
 		<div  class="options">
@@ -136,9 +241,10 @@
 					<option>Dijsktra Algorithm</option>
 					<option>Prims's Algorithm</option>
 					<option>Kruskal Algorithm</option>
-					<option>Bellman Ford Algorithm</option>
 					<option>Articulation Points</option>
 					<option>Finding Bridges</option>
+					<option>Bellman Ford Algorithm</option>
+					
 				</select>
 				<button class="radio_buttons" id="bake">Bake Animation</button>
 				<div>
@@ -169,8 +275,11 @@
 <script type="text/javascript" src="js/animations/dijsktra.js"></script>
 <script type="text/javascript" src="js/animations/prims.js"></script>
 <script type="text/javascript" src="js/animations/kruskal.js"></script>
+<script type="text/javascript" src="js/animations/cut_ver.js"></script>
 <script type="text/javascript" src="js/layouts/spring_system_basic.js"></script>
 <script type="text/javascript" src="js/layout.js"></script>
+<script type="text/javascript" src="js/tutorial.js"></script>
+<script type="text/javascript" src="js/tutorial_text.js"></script>
 <script type="text/javascript" src="js/layouts/Fruchterman_Reingold.js"></script>
 <script type="text/javascript" src="js/layouts/tut_layout.js"></script>
 
