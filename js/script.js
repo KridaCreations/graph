@@ -68,6 +68,7 @@ function recolor_graph () {
 	clearObject(colored_nodes);
 	clearObject(time);
 	clearObject(low);
+	clearObject(done_nodes);
 	pre_time = 0;
 
 	scroll_box.textContent = "";

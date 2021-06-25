@@ -341,7 +341,10 @@ function play_animation(event)
 		{
 			play_kruskal(current_stage,anim_array);
 		}
-		
+		else if (algorithm_label.selectedIndex === 5)
+		{
+			play_dfstree(current_stage,anim_array);
+		}
 		
 
 	}
