@@ -39,8 +39,9 @@ function show_dis_cut()
     {
         console.log("here");
         var c_node = document.nodes[node];
-        // c_node.children[0].children[0].children[1].textContent = "Inf";
         c_node.cut_ver_detail.parentNode.style.transform = "scale(1)";
+        c_node.cut_ver_detail.low_value_tab.textContent = "";
+        c_node.cut_ver_detail.time_value_tab.textContent = "";
     }
 }
 
@@ -61,7 +62,6 @@ function set_all_dis(value)
     {
         var c_node = document.nodes[node];
         c_node.children[0].children[0].children[1].textContent = value;
-        // c_node.children[0].style.transform = "scale(0)";
     }
 }
 
@@ -212,7 +212,6 @@ class Sets{
         {
             return node_id;
         }
-        // return find_set(this.parent[node_id]);
         return this.parent[node_id] = this.find_set(this.parent[node_id]);
     }
     union_sets(a, b) 
@@ -277,7 +276,6 @@ class Heap
     }
     push(element,value)
     {   
-        // console.log("element to add is "+element+ " : "+ value);
         this.items.push({"node":element,"value":value});
         this.position[element] = this.size()-1;
         return this.bubble_up(this.size()-1);
@@ -300,16 +298,13 @@ class Heap
     }
     change_value(element,new_value)
     {
-        // console.log("inside change " +new_value+" " +this.items[this.position[element]].value);
         if (new_value < this.items[this.position[element]].value)
         { 
-            // console.log("up");
             this.items[this.position[element]].value = new_value;
             return this.bubble_up(this.position[element]);
         }
         else if (new_value > this.items[this.position[element]].value ) 
         {
-            // console.log("down");
             this.items[this.position[element]].value = new_value;
             return this.bubble_down(this.position[element]);
         }

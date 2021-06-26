@@ -79,7 +79,6 @@ function move_back (argument) {
 }
 
 function move_forward (argument) {
-	// console.log("move_forward")
 	if (baked_animation === null)
 	{
 		alert("error occured\npossible errors:-\n1)no animation baked \n2)broken animation: you might have edited the graph after baking animation")

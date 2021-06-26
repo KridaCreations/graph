@@ -34,11 +34,11 @@ function bake_dijsktra()
 		return;
 	}
 	recolor_graph();
-	heap.empty();
-	clearObject(closest_node);
-	clearArray(anim_array);
-	clearObject(visited_node);
-	clearObject(distance);
+	// heap.empty();
+	// clearObject(closest_node);
+	// clearArray(anim_array);
+	// clearObject(visited_node);
+	// clearObject(distance);
 	for(node in document.nodes)
 	{
 		distance[document.nodes] = null;
@@ -146,12 +146,14 @@ function perform_dijsktra_fast(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "add_pre_dis") 
 	{
+		detail_tag.children[0].children[0].textContent = "curr_dis";
 		detail_tag.children[0].style.transform = "scale(0)";
 		detail_tag.children[0].children[1].textContent = anim_array[stage][2];
 		detail_tag.children[0].style["transform"] = "scale(1)";
 	}
 	else if (anim_array[stage][0] === "add_new_dis") 
 	{
+		detail_tag.children[1].children[0].textContent = "new_dis";
 		detail_tag.children[1].style.transform = "scale(0)";
 		detail_tag.children[1].children[1].textContent = anim_array[stage][2];
 		detail_tag.children[1].style["transform"] = "scale(1)";
@@ -347,12 +349,14 @@ function perform_dijsktra (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "add_pre_dis") 
 	{
+		detail_tag.children[0].children[0].textContent = "new_dis";
 		detail_tag.children[0].style.transform = "scale(0)";
 		detail_tag.children[0].children[1].textContent = anim_array[stage][2];
 		animate_property(detail_tag.children[0],"transform","scale(1)",(delay*transition_factor) * 1000,true);
 	}
 	else if (anim_array[stage][0] === "add_new_dis") 
 	{
+		detail_tag.children[1].children[0].textContent = "new_dis";
 		detail_tag.children[1].style.transform = "scale(0)";
 		detail_tag.children[1].children[1].textContent = anim_array[stage][2];
 		animate_property(detail_tag.children[1],"transform","scale(1)",(delay*transition_factor) * 1000,true);

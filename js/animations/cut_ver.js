@@ -12,20 +12,8 @@ function bake_cut_ver()
 		alert("please choose a starting node\nyou can do this by foccusing on the start node ");
 		return;
 	}
-	console.log("here");
 	recolor_graph();
-	heap.empty();
-	clearObject(closest_node);
-	clearArray(anim_array);
-	clearObject(visited_node);
-	clearObject(distance);
-	clearArray(line_array);
-	clearObject(colored_nodes);
-	clearObject(time);
-	clearObject(low);
-	clearObject(done_nodes);
 	pre_time = 0;
-	set.empty();
 	visited_node[foccused_node.id] = 1;
 	time[foccused_node.id] = pre_time;
 	low[foccused_node.id] = pre_time;
@@ -43,22 +31,36 @@ function bake_cut_ver()
 			time[nodes1] = pre_time;
 			low[nodes1] = pre_time;
 			pre_time += 1;
-			console.log(nodes1);
-			console.log(document.nodes[nodes1]);
 			anim_array.push(["jump",document.nodes[nodes1],pre_time]);
 			dfstree(document.nodes[nodes1],null);
 			done_nodes[nodes1] = 1;
-			console.log(nodes1);
-			console.log(document.nodes[nodes1]);
 	 		anim_array.push(["done",document.nodes[nodes1]]);
 		}
 	}
-	console.log(anim_array);
 	baked_animation = 5;
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	change_anim_position(current_stage);
 	show_dis_cut();
+}
+
+function add_cut_mark (node) 
+{
+	var cut_ver_tag = document.createElement("div");
+	cut_ver_tag.classList.add("dis_tab_style");
+	var cut_ver_svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+	var cut_ver_path = document.createElementNS("http://www.w3.org/2000/svg","path");
+	cut_ver_path.setAttribute("d","M5 0 L40 40 L0 5 L-40 40 L-5 0 L-40 -40 L0 -5 L 40 -40  Z");
+	cut_ver_path.style.fill = "yellow";
+	cut_ver_path.style.stroke = "black";
+	cut_ver_path.style["stroke-width"] = 3;
+	cut_ver_svg.append(cut_ver_path);
+	cut_ver_tag.append(cut_ver_svg);
+	cut_ver_tag.style.left  = "25px";
+	cut_ver_tag.style.top = "25px";
+	// anim_array[stage][1].style["background-color"] = "red";
+	node.append(cut_ver_tag)
+	node.cut_mark = cut_ver_tag;
 }
 
 function play_dfstree(stage,anim_array)
@@ -120,6 +122,7 @@ function perform_dfstree_fast_back(stage,anim_array)
 		anim_array[stage+1][1].style.removeProperty("background-color");
 		anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
 		anim_array[stage+1][1].cut_ver_detail.time_value_tab.textContent = "";
+		anim_array[stage+1][1].cut_ver_detail.low_value_tab.textContent = "";
 	}
 	else if (anim_array[stage+1][0] === "backedge") {
 		anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
@@ -186,7 +189,6 @@ function perform_dfstree_fast(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "go") 
 	{
-		// anim_array[stage][1].append(cut_ver_tag)
 		anim_array[stage-1][1].style["background-color"] = "green";
 		anim_array[stage][1].style["background-color"] = "yellow";
 		anim_array[stage-1][1].connections[anim_array[stage][1].id].line.style["stroke"] = "blue";
@@ -255,19 +257,7 @@ function perform_dfstree_fast(stage,anim_array)
 	}
 	else if(anim_array[stage][0] === "mark") 
 	{
-		var cut_ver_tag = document.createElement("div");
-		cut_ver_tag.classList.add("dis_tab_style");
-		var cut_ver_svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-		var cut_ver_path = document.createElementNS("http://www.w3.org/2000/svg","path");
-		cut_ver_path.setAttribute("d","M5 0 L40 40 L0 5 L-40 40 L-5 0 L-40 -40 L0 -5 L 40 -40  Z");
-		cut_ver_path.style.fill = "yellow";
-		cut_ver_svg.append(cut_ver_path);
-		cut_ver_tag.append(cut_ver_svg);
-		cut_ver_tag.style.left  = "25px";
-		cut_ver_tag.style.top = "25px";
-		// anim_array[stage][1].style["background-color"] = "red";
-		anim_array[stage][1].append(cut_ver_tag)
-		anim_array[stage][1].cut_mark = cut_ver_tag;
+		add_cut_mark(anim_array[stage][1]);
 	}
 	else if (anim_array[stage][0] === "change") 
 	{
@@ -307,10 +297,7 @@ function perform_dfstree (stage,anim_array) {
 	else if (anim_array[stage][0] === "return") 
 	{
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
-		animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);
-		// animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
-		// animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
-		// animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);	
+		animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);	
 	}
 	else if (anim_array[stage][0] === "appear")
 	{
@@ -362,21 +349,7 @@ function perform_dfstree (stage,anim_array) {
 	}
 	else if (anim_array[stage][0] === "mark") 
 	{
-		var cut_ver_tag = document.createElement("div");
-		cut_ver_tag.classList.add("dis_tab_style");
-		var cut_ver_svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
-		var cut_ver_path = document.createElementNS("http://www.w3.org/2000/svg","path");
-		cut_ver_path.setAttribute("d","M5 0 L40 40 L0 5 L-40 40 L-5 0 L-40 -40 L0 -5 L 40 -40  Z");
-		cut_ver_path.style.fill = "yellow";
-		cut_ver_svg.append(cut_ver_path);
-		cut_ver_tag.append(cut_ver_svg);
-		cut_ver_tag.style.left  = "25px";
-		cut_ver_tag.style.top = "25px";
-		// anim_array[stage][1].style["background-color"] = "red";
-		anim_array[stage][1].append(cut_ver_tag)
-		anim_array[stage][1].cut_mark = cut_ver_tag;
-		// animate_property(cut_mark,"","red",(delay*transition_factor) * 1000,true);
-		// animate_property(anim_array[stage][1],"background-color","red",(delay*transition_factor) * 1000,true);
+		add_cut_mark(anim_array[stage][1]);
 	}
 	else if (anim_array[stage][0] === "change") 
 	{

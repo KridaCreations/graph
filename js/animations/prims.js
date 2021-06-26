@@ -9,12 +9,6 @@ function bake_prims()
 		return;
 	}
 	recolor_graph();
-	heap.empty();
-	clearObject(closest_node);
-	clearArray(anim_array);
-	clearObject(visited_node);
-	clearObject(distance);
-	clearObject(previous_connected_node);
 	for(node in document.nodes)
 	{
 		distance[document.nodes] = null;

@@ -9,14 +9,6 @@ var sort_array = function(a,b)
 function bake_kruskal()
 {
 	recolor_graph();
-	heap.empty();
-	clearObject(closest_node);
-	clearArray(anim_array);
-	clearObject(visited_node);
-	clearObject(distance);
-	clearArray(line_array);
-	clearObject(colored_nodes);
-	set.empty();
 	kruskal();
 	baked_animation = 4;
 	anim_position.max = anim_array.length-1;
@@ -82,14 +74,10 @@ function  perform_kruskal(stage,anim_array)
 	if (anim_array[stage][0] === "valid")
 	{
 		animate_property(anim_array[stage][1],"stroke","green",(delay*transition_factor) * 1000,true);
-		// var line = anim_array[stage][1];
 		for(var i = 0;i < anim_array[stage][2].length;i++)
 		{
-			// anim_array[stage+1][1][i].style.remove_property("background-color");
 			animate_property(anim_array[stage][2][i],"background-color","green",(delay*transition_factor) * 1000,true);
 		}
-		// animate_property(line.detail.start,"background-color","green",(delay*transition_factor) * 1000,true);
-		// animate_property(line.detail.end,"background-color","green",(delay*transition_factor) * 1000,true);
 	}
 }
 
@@ -111,7 +99,6 @@ function perform_kruskal_fast_back(stage,anim_array)
 	else if (anim_array[stage+1][0] === "valid")
 	{
 		anim_array[stage+1][1].style.stroke = "yellow";
-		// var line = anim_array[stage+1][1];
 		for(var i = 0;i < anim_array[stage+1][2].length;i++)
 		{
 			anim_array[stage+1][2][i].style.removeProperty("background-color");
@@ -137,13 +124,10 @@ function perform_kruskal_fast(stage,anim_array)
 	else if (anim_array[stage][0] === "valid")
 	{
 		anim_array[stage][1].style.stroke = "green";
-		// var line = anim_array[stage][1];
 		for(var i = 0;i < anim_array[stage][2].length;i++)
 		{
 			anim_array[stage][2][i].style["background-color"] = "green";
 		}
-		// line.detail.start.style["background-color"] = "green";
-		// line.detail.end.style["background-color"] = "green";
 	}
 }
 
@@ -200,14 +184,6 @@ function kruskal (argument)
 				colored_nodes[to.id] = 1;
 				new_element.push(to);
 			}
-			// if (!(from.style["background-color"] === "green"))
-			// {
-			// 	new_element.push(from);
-			// }
-			// if (!(to.style["background-color"] === "green"))
-			// {
-			// 	new_element.push(to);
-			// }
 			anim_array.push(["valid",line_array[lines][0],new_element])
 		}
 	}
