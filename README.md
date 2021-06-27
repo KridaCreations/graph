@@ -22,7 +22,7 @@ Available animations to visualize :-
 
 more animations will be added.....
 
-NSTRUCTIONS REGARDING NODES:-
+INSTRUCTIONS REGARDING NODES:-
 
 to add a node choose the "add" button from the above panel and click on the workspace a node will be added.
 
