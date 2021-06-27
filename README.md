@@ -9,6 +9,7 @@ https://kridacreations.github.io/graph/
 
 https://algorithmvisualizer.bitbucket.io/
 
+![Demo screen shot](images/animation1.jpg)
 
 this is a tool to draw graph and visualize the various algorithms on it 
 
