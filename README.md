@@ -20,17 +20,17 @@ I have spent a hard time understanding and viualizing graph-algorithms, so i dec
 * planning to add more animations 
 * build similar project for Sorting
 
-#Acces the demo here
+# Acces the demo here
 * https://kridacreations.github.io/graph/
 
 * https://algorithmvisualizer.bitbucket.io/
 
-#Screen Shot of the project
+# Screen Shot of the project
 ![Demo screen shot](images/demo_image.jpg)
 still from visualizing dijstra algorihtm
 
 
-#Available animations to visualize :-
+# Available animations to visualize :-
 
 * 1)Depth first search(TRAVERSAL ALGORITHM)
 * 2)Breadth First search(TRAVERSAL ALGORITHM)
@@ -42,9 +42,9 @@ still from visualizing dijstra algorihtm
 more animations will be added.....
 
 
-#Instructions to use:-
+# Instructions to use:-
 
-##INSTRUCTIONS REGARDING NODES:-
+## INSTRUCTIONS REGARDING NODES:-
 
 * to add a node choose the "add" button from the above panel and click on the workspace a node will be added.
 
@@ -58,13 +58,13 @@ more animations will be added.....
 
 * to move a node choose the move button, and now you can drag and drop the nodes to desired position.
 
-##INSTRUCTIONS REGARDING WORKSPACE:-
+## INSTRUCTIONS REGARDING WORKSPACE:-
 
 * Use scroll button to zoom in and zoom out.
 * click with middle button and drag to move the workspace.
 
 
-##INSTRUCTIONS REGARDING ANIMATIONS:-
+## INSTRUCTIONS REGARDING ANIMATIONS:-
 
 * choose a foccus node.
 * choose the desired algorithm.
