@@ -1,8 +1,8 @@
 # Graph Algorithm Visualizer (work in progress(WIP))
 
--[A visualizer website for Graph Algorithms, where you can see a detailed explanation and animations of important algorithm in runtime and build the intuition.]
--make or edit your graphs by clicking/drag&drop on the drawing board.
--also contains a script editor to make your graph from script(if it's taking longer to draw by clicking)(feature unstable but still you can give it a try).
+*A visualizer website for Graph Algorithms, where you can see a detailed explanation and animations of important algorithm in runtime and build the intuition.
+*make or edit your graphs by clicking/drag&drop on the drawing board.
+*also contains a script editor to make your graph from script(if it's taking longer to draw by clicking)(feature unstable but still you can give it a try).
 
 
 # Motivation 
@@ -11,9 +11,9 @@ I have spent a hard time understanding and viualizing graph-algorithms, so i dec
 
 # Tech Stack
 
--Vanila/javascript (didn't feel the use external libraries till now😅,might use external libraries later in journey of completing this project).
--HTML
--CSS
+*Vanila/javascript (didn't feel the use external libraries till now😅,might use external libraries later in journey of completing this project).
+*HTML
+*CSS
 
 # Future work.. 
 
@@ -32,12 +32,12 @@ still from visualizing dijstra algorihtm
 
 #Available animations to visualize :-
 
--1)Depth first search(TRAVERSAL ALGORITHM)
--2)Breadth First search(TRAVERSAL ALGORITHM)
--3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
--4)Prim's algorithm(MINIMAL SPANING TREE)
--5)Kruskal algorithm(MINIMAL SPANING TREE)
--6)Algorithm for finding CUT POINTS
+*1)Depth first search(TRAVERSAL ALGORITHM)
+*2)Breadth First search(TRAVERSAL ALGORITHM)
+*3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
+*4)Prim's algorithm(MINIMAL SPANING TREE)
+*5)Kruskal algorithm(MINIMAL SPANING TREE)
+*6)Algorithm for finding CUT POINTS
 
 more animations will be added.....
 
