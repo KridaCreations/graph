@@ -1,28 +1,48 @@
-# Graph Algorithm Visualizer
+# Graph Algorithm Visualizer (work in progress(WIP))
 
-Building using Vanilla/Pure javascript no external libraries used
+-A visualizer website for Graph Algorithms, where you can see a detailed explanation and animations of important algorithm in runtime and build the intuition.
+-make or edit your graphs by clicking/drag&drop on the drawing board.
+-also contains a script editor to make your graph from script(if it's taking longer to draw by clicking)(feature unstable but still you can give it a try).
 
-work in progress(WIP)
 
-current demo
-https://kridacreations.github.io/graph/
+# Motivation 
 
-https://algorithmvisualizer.bitbucket.io/
+I have spent a hard time understanding and viualizing graph-algorithms, so i decided to build a visualizer which will animate the graph in extreme detail and help you to understand and build your intuition for graph algorithm better. Happy learning😃 
 
+# Tech Stack
+
+-Vanila/javascript (didn't feel the use external libraries till now😅,might use external libraries later in journey of completing this project).
+-HTML
+-CSS
+
+# Future work.. 
+
+-planning to add more animations 
+-build similar project for Sorting
+
+#Acces the demo here
+-https://kridacreations.github.io/graph/
+
+-https://algorithmvisualizer.bitbucket.io/
+
+#Screen Shot of the project
 ![Demo screen shot](images/demo_image.jpg)
+still from visualizing dijstra algorihtm
 
-this is a tool to draw graph and visualize the various algorithms on it 
 
-Available animations to visualize :-
+#Available animations to visualize :-
 
-1)Depth first search(TRAVERSAL ALGORITHM)
-2)Breadth First search(TRAVERSAL ALGORITHM)
-3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
-4)Prim's algorithm(MINIMAL SPANING TREE)
-5)Kruskal algorithm(MINIMAL SPANING TREE)
-6)Algorithm for finding CUT POINTS
+-1)Depth first search(TRAVERSAL ALGORITHM)
+-2)Breadth First search(TRAVERSAL ALGORITHM)
+-3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
+-4)Prim's algorithm(MINIMAL SPANING TREE)
+-5)Kruskal algorithm(MINIMAL SPANING TREE)
+-6)Algorithm for finding CUT POINTS
 
 more animations will be added.....
+
+
+#Instructions to use:-
 
 INSTRUCTIONS REGARDING NODES:-
 
