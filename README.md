@@ -1,6 +1,6 @@
 # Graph Algorithm Visualizer (work in progress(WIP))
 
--A visualizer website for Graph Algorithms, where you can see a detailed explanation and animations of important algorithm in runtime and build the intuition.
+-[A visualizer website for Graph Algorithms, where you can see a detailed explanation and animations of important algorithm in runtime and build the intuition.]
 -make or edit your graphs by clicking/drag&drop on the drawing board.
 -also contains a script editor to make your graph from script(if it's taking longer to draw by clicking)(feature unstable but still you can give it a try).
 
