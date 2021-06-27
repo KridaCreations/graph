@@ -26,8 +26,9 @@ I have spent a hard time understanding and viualizing graph-algorithms, so i dec
 * https://algorithmvisualizer.bitbucket.io/
 
 # Screen Shot of the project
+### still from visualizing dijstra algorihtm
 ![Demo screen shot](images/demo_image.jpg)
-still from visualizing dijstra algorihtm
+
 
 
 # Available animations to visualize :-
