@@ -1,8 +1,8 @@
 # Graph Algorithm Visualizer (work in progress(WIP))
 
-*A visualizer website for Graph Algorithms, where you can see a detailed explanation and animations of important algorithm in runtime and build the intuition.
-*make or edit your graphs by clicking/drag&drop on the drawing board.
-*also contains a script editor to make your graph from script(if it's taking longer to draw by clicking)(feature unstable but still you can give it a try).
+* A visualizer website for Graph Algorithms, where you can see a detailed explanation and animations of important algorithm in runtime and build the intuition.
+* make or edit your graphs by clicking/drag&drop on the drawing board.
+* also contains a script editor to make your graph from script(if it's taking longer to draw by clicking)(feature unstable but still you can give it a try).
 
 
 # Motivation 
@@ -11,19 +11,19 @@ I have spent a hard time understanding and viualizing graph-algorithms, so i dec
 
 # Tech Stack
 
-*Vanila/javascript (didn't feel the use external libraries till now😅,might use external libraries later in journey of completing this project).
-*HTML
-*CSS
+* Vanila/javascript (didn't feel the use external libraries till now😅,might use external libraries later in journey of completing this project).
+* HTML
+* CSS
 
 # Future work.. 
 
--planning to add more animations 
--build similar project for Sorting
+* planning to add more animations 
+* build similar project for Sorting
 
 #Acces the demo here
--https://kridacreations.github.io/graph/
+* https://kridacreations.github.io/graph/
 
--https://algorithmvisualizer.bitbucket.io/
+* https://algorithmvisualizer.bitbucket.io/
 
 #Screen Shot of the project
 ![Demo screen shot](images/demo_image.jpg)
@@ -32,48 +32,48 @@ still from visualizing dijstra algorihtm
 
 #Available animations to visualize :-
 
-*1)Depth first search(TRAVERSAL ALGORITHM)
-*2)Breadth First search(TRAVERSAL ALGORITHM)
-*3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
-*4)Prim's algorithm(MINIMAL SPANING TREE)
-*5)Kruskal algorithm(MINIMAL SPANING TREE)
-*6)Algorithm for finding CUT POINTS
+* 1)Depth first search(TRAVERSAL ALGORITHM)
+* 2)Breadth First search(TRAVERSAL ALGORITHM)
+* 3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
+* 4)Prim's algorithm(MINIMAL SPANING TREE)
+* 5)Kruskal algorithm(MINIMAL SPANING TREE)
+* 6)Algorithm for finding CUT POINTS
 
 more animations will be added.....
 
 
 #Instructions to use:-
 
-INSTRUCTIONS REGARDING NODES:-
+##INSTRUCTIONS REGARDING NODES:-
 
-to add a node choose the "add" button from the above panel and click on the workspace a node will be added.
+* to add a node choose the "add" button from the above panel and click on the workspace a node will be added.
 
-to delete a node choose the delete button from above pane and click on the node ,the node will be deleted.
+* to delete a node choose the delete button from above pane and click on the node ,the node will be deleted.
 
-to connect two nodes choose the connect button, click on a node the node will be foccused, now click on other nodes to connect the foccused, to remove the foccus click on a empty place the current foccused node will be removed.
+* to connect two nodes choose the connect button, click on a node the node will be foccused, now click on other nodes to connect the foccused, to remove the foccus click on a empty place the current foccused node will be removed.
 
-you can choose the type of connection to add between nodes ,the following are the supported types:- "unidirectional unweighted" "directional unweighted" "unidirectional weighted" "directional weighted".
+* you can choose the type of connection to add between nodes ,the following are the supported types:- "unidirectional unweighted" "directional unweighted" "unidirectional weighted" "directional weighted".
 
-to delete a connection between two nodes click on the connections in delete mode.
+* to delete a connection between two nodes click on the connections in delete mode.
 
-to move a node choose the move button, and now you can drag and drop the nodes to desired position.
+* to move a node choose the move button, and now you can drag and drop the nodes to desired position.
 
-INSTRUCTIONS REGARDING WORKSPACE:-
+##INSTRUCTIONS REGARDING WORKSPACE:-
 
-Use scroll button to zoom in and zoom out.
-click with middle button and drag to move the workspace.
+* Use scroll button to zoom in and zoom out.
+* click with middle button and drag to move the workspace.
 
 
-INSTRUCTIONS REGARDING ANIMATIONS:-
+##INSTRUCTIONS REGARDING ANIMATIONS:-
 
-choose a foccus node.
-choose the desired algorithm.
-click on "bake animation" button to prepare the animation.
-now you can click the "play button" to watch the animation.
-after clicking play the play button will change to stop.
+* choose a foccus node.
+* choose the desired algorithm.
+* click on "bake animation" button to prepare the animation.
+* now you can click the "play button" to watch the animation.
+* after clicking play the play button will change to stop.
 
-you can drag the animation slider to jump to desirable stage of animation.
-also you can use the arrow buttons near the play button to move the animation forward anf backward. 
+* you can drag the animation slider to jump to desirable stage of animation.
+* also you can use the arrow buttons near the play button to move the animation forward anf backward. 
 
 
 
