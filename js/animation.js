@@ -374,6 +374,48 @@ function animate_property(element,property,final_value,duration,permanent)
 	};
 }
 
+function fix_graph(time_taken = 500)
+{
+	var animation1 = graph.animate([
+            {"left" : graph.style["left"],"top":graph.style["top"] },
+            {"left" : `${g_pos.left}px`,"top" : `${g_pos.top}px`}],time_taken);
+	animation1.onfinish = function()
+	{
+			graph.style["left"] = `${g_pos.left}px` ;
+			graph.style["top"] = `${g_pos.top}px` ;
+	};
+  var animation2 = draw_area_container.animate([
+            {"left" : graph.style["left"],"top":graph.style["top"] },
+            {"left" : `${g_pos.left}px`,"top" : `${g_pos.top}px`}],time_taken);
+  animation2.onfinish = function()
+	{
+			draw_area_container.style["left"] = `${g_pos.left}px` ;
+			draw_area_container.style["top"] = `${g_pos.top}px` ;
+	};
 
+}
+
+
+function move_graph_to_pos(left,top,time_taken)
+{
+	g_pos.left = left;
+  g_pos.top = top
+	var animation1 = graph.animate([
+            {"left" : graph.style["left"],"top":graph.style["top"] },
+            {"left" : `${g_pos.left}px`,"top" : `${g_pos.top}px`}],time_taken);
+	animation1.onfinish = function()
+	{
+			graph.style["left"] = `${g_pos.left}px` ;
+			graph.style["top"] = `${g_pos.top}px` ;
+	};
+  var animation2 = draw_area_container.animate([
+            {"left" : graph.style["left"],"top":graph.style["top"] },
+            {"left" : `${g_pos.left}px`,"top" : `${g_pos.top}px`}],time_taken);
+  animation2.onfinish = function()
+	{
+			draw_area_container.style["left"] = `${g_pos.left}px` ;
+			draw_area_container.style["top"] = `${g_pos.top}px` ;
+	};
+}
 
 

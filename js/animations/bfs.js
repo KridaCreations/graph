@@ -109,12 +109,14 @@ function perform_bfs(stage,anim_array)
 		delete_node_func("nothing");
 	}
 	else if (anim_array[stage][0] === "go") {
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage-1][1].connections[anim_array[stage][1].id].line,"stroke","blue",(delay*transition_factor) * 1000,true);
 	}
 	else if (anim_array[stage][0] === "return")
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);
@@ -125,6 +127,7 @@ function perform_bfs(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "jump") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(scroll_box.firstElementChild,"background-color","lightseagreen",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);	
 	}

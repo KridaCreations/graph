@@ -95,35 +95,30 @@ function recolor_graph() {
     }
 }
 
+function center_node(node,time_taken)
+{
+    g_pos.left = container_center.left - ((node.pos.left + 25) * scale);
+    g_pos.top = container_center.top - ((node.pos.top + 25) * scale);
+    fix_graph(time_taken);
+    // move_graph_to_pos(node.pos.left,node.pos.top,time_taken);
+}
+
 function position_graph(event) {
     if (!(foccused_node === null)) {
         event.stopPropagation();
         g_pos.left = container_center.left - ((foccused_node.pos.left + 25) * scale);
         g_pos.top = container_center.top - ((foccused_node.pos.top + 25) * scale);
-        graph.style.top = `${g_pos.top}px`;
-        graph.style.left = `${g_pos.left}px`;
-        draw_area_container.style.top = `${g_pos.top}px`;
-        draw_area_container.style.left = `${g_pos.left}px`;
+        fix_graph();
     } else if (no_of_nodes === 0) {
         g_pos.left = container_center.left - (container_center.left * scale);
         g_pos.top = container_center.top - (container_center.top * scale);
-        graph.style.top = `${g_pos.top}px`;
-        graph.style.left = `${g_pos.left}px`;
-        draw_area_container.style.top = `${g_pos.top}px`;
-        draw_area_container.style.left = `${g_pos.left}px`;
+        fix_graph();
     } else {
         g_pos.left = container_center.left - ((center_of_nodes.left + 25) * scale);
         g_pos.top = container_center.top - ((center_of_nodes.top + 25) * scale);
-        graph.style.top = `${g_pos.top}px`;
-        graph.style.left = `${g_pos.left}px`;
-        draw_area_container.style.top = `${g_pos.top}px`;
-        draw_area_container.style.left = `${g_pos.left}px`;
+        fix_graph();
     }
-
-
-
 }
-
 
 function graph_mouse_down() {
     if (event.button === 1) {

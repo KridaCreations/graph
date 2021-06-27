@@ -18,11 +18,12 @@ function bake_cut_ver()
 	time[foccused_node.id] = pre_time;
 	low[foccused_node.id] = pre_time;
 	anim_array.push(["jump",foccused_node,pre_time]);
+	context_array.push(`went to ${foccused_node.id}`);
 	pre_time += 1;
 	dfstree(foccused_node,null);
 	done_nodes[foccused_node.id] = 1;
 	anim_array.push(["done",foccused_node]);
-	
+	context_array.push(`marked ${foccused_node.id} as done`);
 	for(nodes1 in document.nodes)
 	{
 		if(!(visited_node[nodes1] === 1))
@@ -32,9 +33,11 @@ function bake_cut_ver()
 			low[nodes1] = pre_time;
 			pre_time += 1;
 			anim_array.push(["jump",document.nodes[nodes1],pre_time]);
+			context_array.push(`went to ${nodes1}`);
 			dfstree(document.nodes[nodes1],null);
 			done_nodes[nodes1] = 1;
 	 		anim_array.push(["done",document.nodes[nodes1]]);
+	 		context_array.push(`marked ${nodes1} as done`);
 		}
 	}
 	baked_animation = 5;
@@ -112,6 +115,7 @@ function perform_dfstree_fast_back(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage+1][0] === "jump")
 	{
 		anim_array[stage+1][1].style["background-color"] = "palevioletred";		
@@ -183,6 +187,7 @@ function perform_dfstree_fast(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "jump") 
 	{
 		anim_array[stage][1].style["background-color"] = "yellow";
@@ -276,11 +281,14 @@ function perform_dfstree (stage,anim_array) {
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "jump") {
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);	
 	}
 	else if (anim_array[stage][0] === "go")
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage-1][1].connections[anim_array[stage][1].id].line,"stroke","blue",(delay*transition_factor) * 1000,true);
@@ -296,11 +304,13 @@ function perform_dfstree (stage,anim_array) {
 	}
 	else if (anim_array[stage][0] === "return") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);	
 	}
 	else if (anim_array[stage][0] === "appear")
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		detail_tag.style.transform = "scale(0)";
 		detail_tag.children[0].style.transform = "scale(0)";
 		detail_tag.children[1].style.transform = "scale(0)";
@@ -349,6 +359,7 @@ function perform_dfstree (stage,anim_array) {
 	}
 	else if (anim_array[stage][0] === "mark") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		add_cut_mark(anim_array[stage][1]);
 	}
 	else if (anim_array[stage][0] === "change") 
@@ -365,7 +376,7 @@ function perform_dfstree (stage,anim_array) {
 
 function dfstree(node,parent) 
 {
-	print_object(document.nodes);
+	// print_object(document.nodes);
 	var no_of_child = 0;
 	for(nodes in node.connections)
 	{
@@ -381,25 +392,34 @@ function dfstree(node,parent)
 	 	else if ((visited_node[pair.node.id] === 1))
 	 	{
 	 		anim_array.push(["backedge",pair.node]);
+	 		context_array.push(`the edge to ${pair.node.id} is a BACKEDGE`);
 	 		anim_array.push(["appear",node]);
+	 		context_array.push(`comparing low value of ${node.id} to time value of ${pair.node.id}`);
 	 		anim_array.push(["add_low_value",node,low[node.id],0]);
+	 		context_array.push(`comparing low value of ${node.id} to time value of ${pair.node.id}`);
 	 		anim_array.push(["add_c_time_value",node,time[pair.node.id],1]);
+	 		context_array.push(`comparing low value of ${node.id} to time value of ${pair.node.id}`);
 		 	if (low[node.id] > time[pair.node.id])
 		 	{
 		 		anim_array.push(["solve",node,"left"]);
+		 		context_array.push(`time value of ${pair.node.id} is LESSER`);
 		 		anim_array.push(["change",node,time[pair.node.id],low[node.id]])
+		 		context_array.push(`changed the low value of ${node.id} to ${time[pair.node.id]}`);
 		 		low[node.id] = time[pair.node.id]
 		 	}
 		 	else
 		 	{
 		 		anim_array.push(["solve",node,"right"]);
+		 		context_array.push(`low value of ${node.id} is LESSER so no change`);
 		 	}
 		 	anim_array.push(["disappear",node]);
+		 	context_array.push(`done comparing time value and low value`);
 	 	}
 	 	else 
 	 	{
 	 		no_of_child += 1;
 	 		anim_array.push(["go",pair.node,pre_time]);
+	 		context_array.push(`went to ${pair.node.id}`);
 	 		visited_node[pair.node.id] = 1;
 	 		time[pair.node.id] = pre_time;
 	 		low[pair.node.id] = pre_time;
@@ -407,43 +427,60 @@ function dfstree(node,parent)
 	 		dfstree(pair.node,node);
 	 		done_nodes[pair.node.id] = 1;
 	 		anim_array.push(["done",pair.node]);
+	 		context_array.push(`marked ${pair.node.id} as done`);
 	 		anim_array.push(["return",node])
+	 		context_array.push(`returned to ${node.id}`);
 	 		anim_array.push(["appear",node]);
+	 		context_array.push(`comparing low value of ${low[node.id]} low value of it's child ${low[pair.node.id]}`);
 	 		anim_array.push(["add_low_value",node,low[node.id],0]);
+	 		context_array.push(`comparing low value of ${low[node.id]} low value of it's child ${low[pair.node.id]}`);
 	 		anim_array.push(["add_c_low_value",node,low[pair.node.id],1]);
+	 		context_array.push(`comparing low value of ${low[node.id]} low value of it's child ${low[pair.node.id]}`);
 	 		if (low[node.id] > low[pair.node.id])
 	 		{
 	 			anim_array.push(["solve",node,"left"]);
+	 			context_array.push(`the low value of child ${pair.node.id} is LESSER`);
 	 			anim_array.push(["change",node,low[pair.node.id],low[node.id]]);
+	 			context_array.push(`changed the low of value of ${node.id} to ${low[pair.node.id]}`);
 	 			low[node.id] = low[pair.node.id];
 	 		}
 	 		else
 	 		{
 	 			anim_array.push(["solve",node,"right"]);
+	 			context_array.push(`low of ${node.id} is LESSER so no change`);
 	 		}
 	 		anim_array.push(["disappear",node]);
+	 		context_array.push(`done comparing time value and low value`);
 	 		if ((!(parent === null)) &&(!(cut_points[node.id] === 1)) )
 	 		{
 		 		anim_array.push(["appear",node]);
+		 		context_array.push(`comparing time value of ${time[node.id]} and low value of ${pair[node.id]}`);
 		 		anim_array.push(["add_time_value",node,time[node.id],0]);
+		 		context_array.push(`comparing time value of ${time[node.id]} and low value of ${pair[node.id]}`);
 		 		anim_array.push(["add_c_low_value",node,low[pair.node.id],1]);
+		 		context_array.push(`comparing time value of ${time[node.id]} and low value of ${pair[node.id]}`);
 		 		if (low[pair.node.id] >= time[node.id])
 		 		{
 		 			anim_array.push(["solve",node,"left"]);
+		 			context_array.push(`time value of ${node.id} is LESSER`);
 		 			anim_array.push(["mark",node]);
+		 			context_array.push(`marked ${node.id} as cut vertex`);
 		 			cut_points[node.id] = 1;
 		 		}
 		 		else 
 		 		{
 		 			anim_array.push(["solve",node,"right"]);
+		 			context_array.push(`low value of ${node.id} is LESSER so not a cut vertex`);
 		 		}
 		 		anim_array.push(["disappear",node]);
+		 		context_array.push(`done comparing the values`);
 	 		}
 	 	}
 	}
 	if ((no_of_child>1) && (parent === null)) 
 	{
 	 	anim_array.push(["mark",node]);
+	 	context_array.push(`marked ${node.id} as root having more than one child`);
 	 	cut_points[node.id] = 1;
 	}
 }

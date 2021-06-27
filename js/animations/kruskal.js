@@ -65,6 +65,7 @@ function  perform_kruskal(stage,anim_array)
 	}
 	if(anim_array[stage][0] === "go")
 	{
+		// center_node(anim_array[stage][0],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage][1],"stroke","yellow",(delay*transition_factor) * 1000,true);
 	}
 	else if (anim_array[stage][0] === "invalid")

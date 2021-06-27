@@ -669,3 +669,39 @@ function perform(stage,anim_array)
 			// 		pair.line.detail.weight_rect.setAttribute("y", y_pos-10);
 			// 	}
 			// }
+
+
+
+
+
+
+
+        // graph.style.top = `${g_pos.top}px`;
+        // graph.style.left = `${g_pos.left}px`;
+        // animate_property(graph,top,g_pos.top,true);
+        // animate_property(graph,left,g_pos.left,true);
+        // draw_area_container.style.top = `${g_pos.top}px`;
+        // draw_area_container.style.left = `${g_pos.left}px`;
+        // animate_property(draw_area_container,top,g_pos.top,true);
+        // animate_property(draw_area_container,left,g_pos.left,true);
+
+        // graph.style.top = `${g_pos.top}px`;
+        // graph.style.left = `${g_pos.left}px`;
+        // animate_property(graph,top,g_pos.top,true);
+        // animate_property(graph,left,g_pos.left,true);
+        // draw_area_container.style.top = `${g_pos.top}px`;
+        // draw_area_container.style.left = `${g_pos.left}px`;
+        // animate_property(draw_area_container,top,g_pos.top,true);
+        // animate_property(draw_area_container,left,g_pos.left,true);
+
+        // graph.style.top = `${g_pos.top}px`;
+        // graph.style.left = `${g_pos.left}px`;
+        // console.log(graph.style.left);
+
+        // draw_area_container.style.top = `${g_pos.top}px`;
+        // draw_area_container.style.left = `${g_pos.left}px`;
+
+//  animate_property(graph,"top",`${g_pos.top}px`,true);
+//         animate_property(graph,"left",`${g_pos.left}px`,true);
+// animate_property(draw_area_container,"top",`${g_pos.top}px`,true);
+//         animate_property(draw_area_container,"left",`${g_pos.left}px`,true);

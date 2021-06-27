@@ -112,12 +112,14 @@ function perform_dijsktra_fast(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "go") 
 	{
+		// center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		anim_array[stage-1][1].style["background-color"] = "green";
 		anim_array[stage][1].style["background-color"] = "yellow";
 		anim_array[stage-1][1].connections[anim_array[stage][1].id].line.style["stroke"] = "blue";
 	}
 	else if (anim_array[stage][0] === "return")
 	{
+		// center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		anim_array[stage-1][1].style["background-color"] = "green";
 		anim_array[stage][1].style["background-color"] = "yellow";
 		anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] = "green";
@@ -128,12 +130,14 @@ function perform_dijsktra_fast(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "jump") 
 	{
+		// center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		scroll_heap.bubble_changes.push([["bubble_down"]]);
 		scroll_heap.bubble_down(0);
 		anim_array[stage][1].style["background-color"] = "yellow";	
 	}
 	else if (anim_array[stage][0] === "appear") 
 	{
+		// center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		detail_tag.style.transform = "scale(0)";
 		detail_tag.children[0].style.transform = "scale(0)";
 		detail_tag.children[1].style.transform = "scale(0)";
@@ -157,6 +161,7 @@ function perform_dijsktra_fast(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "solve") 
 	{
+
 		if (anim_array[stage][2] === "new_dis")
 		{
 			detail_tag.children[0].style.transform = "scale(0)";
@@ -173,6 +178,7 @@ function perform_dijsktra_fast(stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "disappear")
 	{
+		// center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		if (anim_array[stage-1][0] === "add")
 		{
 			scroll_heap.bubble_changes.push([["bubble_up"]]);
@@ -317,12 +323,14 @@ function perform_dijsktra (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "go") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage-1][1].connections[anim_array[stage][1].id].line,"stroke","blue",(delay*transition_factor) * 1000,true);
 	}
 	else if (anim_array[stage][0] === "return")
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1].connections[anim_array[stage-1][1].id].line,"stroke","green",(delay*transition_factor) * 1000,true);
@@ -333,12 +341,14 @@ function perform_dijsktra (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "jump") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		scroll_heap.bubble_changes.push([["bubble_down"]]);
 		scroll_heap.bubble_down(0);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);	
 	}
 	else if (anim_array[stage][0] === "appear") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		detail_tag.style.transform = "scale(0)";
 		detail_tag.children[0].style.transform = "scale(0)";
 		detail_tag.children[1].style.transform = "scale(0)";
@@ -378,6 +388,7 @@ function perform_dijsktra (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "disappear")
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		if (anim_array[stage-1][0] === "add")
 		{
 			scroll_heap.bubble_changes.push([["bubble_up"]]);

@@ -319,12 +319,14 @@ function perform_prims (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "go") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage-1][1].connections[anim_array[stage][1].id].line,"stroke","blue",(delay*transition_factor) * 1000,true);
 	}
 	else if (anim_array[stage][0] === "return")
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		animate_property(anim_array[stage-1][1],"background-color","green",(delay*transition_factor) * 1000,true);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);
 		if (!(anim_array[stage][1].connections[anim_array[stage-1][1].id].line.style["stroke"] === "yellow"))
@@ -338,12 +340,14 @@ function perform_prims (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "jump") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		scroll_heap.bubble_changes.push([["bubble_down"]]);
 		scroll_heap.bubble_down(0);
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);	
 	}
 	else if (anim_array[stage][0] === "appear") 
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		detail_tag.style.transform = "scale(0)";
 		detail_tag.children[0].style.transform = "scale(0)";
 		detail_tag.children[1].style.transform = "scale(0)";
@@ -387,6 +391,7 @@ function perform_prims (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "disappear")
 	{
+		center_node(anim_array[stage][1],(delay*transition_factor) * 1000);
 		if (anim_array[stage-1][0] === "add")
 		{
 			scroll_heap.bubble_changes.push([["bubble_up"]]);
