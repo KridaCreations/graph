@@ -1,3 +1,5 @@
+// var node_color = "#f2960c";
+var node_color = "#c2789e";
 function node_click(event)
 {
 	// console.log(event.target);
@@ -42,12 +44,12 @@ function node_click(event)
 			}
 			else if (foccused_node === this)
 			{
-				foccused_node.style.border= "4px solid yellow";
+				foccused_node.style.border= `4px solid ${node_color}`;
 				foccused_node = null;
 			}
 			else
 			{
-				foccused_node.style.border= "4px solid yellow";
+				foccused_node.style.border= `4px solid ${node_color}`;
 				this.style.border= "4px solid green";
 				foccused_node = this;
 			}
@@ -61,7 +63,7 @@ function node_click(event)
 			}
 			else if (foccused_node === this)
 			{
-				foccused_node.style.border= "4px solid yellow";
+				foccused_node.style.border= `4px solid ${node_color}`;
 				foccused_node = null;
 			}
 			else

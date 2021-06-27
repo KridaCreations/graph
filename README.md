@@ -20,6 +20,7 @@ Available animations to visualize :-
 3)Dijsktra algorihtm(SHORTEST PATH ALGORITHM)
 4)Prim's algorithm(MINIMAL SPANING TREE)
 5)Kruskal algorithm(MINIMAL SPANING TREE)
+6)Algorithm for finding CUT POINTS
 
 more animations will be added.....
 

@@ -1,7 +1,10 @@
 
 line{
-	stroke: saddlebrown;
-	/*stroke: skyblue;*/
+	/*stroke: saddlebrown;*/
+	/*stroke: #e69e32;*/
+	/*stroke: #f2960c;*/
+	stroke: #c2789e;
+	/*outline: 1px solid black;*/
 	stroke-width:8;
 	pointer-events:all;
 }
