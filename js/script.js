@@ -39,6 +39,7 @@ graph_container.addEventListener("mousedown", graph_mouse_down);
 graph_container.addEventListener("mouseover", graph_mouse_over);
 
 function recolor_graph() {
+    context_label.textContent = "";
     hide_dis_cut();
     hide_dis();
     clear_yellow_lines();
@@ -53,6 +54,7 @@ function recolor_graph() {
     clearTimeout(current_timer);
 
     heap.empty();
+    clearArray(context_array);
     clearArray(anim_array);
     clearObject(visited_node);
     clearObject(distance);

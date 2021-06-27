@@ -12,6 +12,7 @@ function bake_bfs()
 	clearArray(anim_array);
 	clearObject(visited_node);
 	anim_array.push(["add",foccused_node]);
+	context_array.push(`added ${foccused_node.id} to the QUEUE`);
 	visited_node[foccused_node.id] = 1;
 	queue.enqueue(foccused_node);
 	bfs();
@@ -51,20 +52,26 @@ function bfs(node)
 	{
 		var node = queue.front();
 		anim_array.push(["jump",node]);
+		context_array.push(`went to ${node.id}`);
 		for (nodes in node.connections )
 		{
 			var pair = node.connections[nodes];
 			if (!(visited_node[pair.node.id] === 1)) {
 				anim_array.push(["go",pair.node]);
+				context_array.push(`went to ${pair.node.id}`);
 				anim_array.push(["add",pair.node]);
+				context_array.push(`added ${pair.node.id} to QUEUE`);
 				queue.enqueue(pair.node);
 				visited_node[pair.node.id] = 1;
 				anim_array.push(["return",node]);
+				context_array.push(`returned to ${node.id}`);
 			}
 		}
 		queue.dequeue();
 		anim_array.push(["remove",node]);
+		context_array.push(`removed ${node.id} from Queue`);
 		anim_array.push(["done",node]);
+		context_array.push(`marked ${node.id} as done`);
 	}
 }
 
@@ -92,6 +99,7 @@ function perform_bfs(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add")
 	{
 		add_node_func(anim_array[stage][1].id);
@@ -128,6 +136,7 @@ function perform_bfs_fast(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add")
 	{
 		var new_div = document.createElement("div");
@@ -172,6 +181,7 @@ function perform_bfs_fast_back(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage+1][0] === "add")
 	{
 		scroll_box.scrollTop = 0;

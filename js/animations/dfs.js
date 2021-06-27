@@ -7,12 +7,14 @@ function bake_dfs()
 		return;
 	}
 	recolor_graph();
-	clearArray(anim_array);
-	clearObject(visited_node);
+	// clearArray(anim_array);
+	// clearObject(visited_node);
 	visited_node[foccused_node.id] = 1;
 	anim_array.push(["start",foccused_node]);
+	context_array.push(`Starting from the foccused node (${foccused_node.id})`);
 	dfs(foccused_node);
 	anim_array.push(["done",foccused_node]);
+	context_array.push(`marking ${foccused_node.id} as done`)
 	baked_animation = 0;
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
@@ -54,9 +56,12 @@ function dfs(node)
 		{
 			visited_node[pair.node.id] = 1;
 			anim_array.push(["go",pair.node]);
+			context_array.push(`going to ${pair.node.id}`);
 			dfs(pair.node);
 			anim_array.push(["done",pair.node]);
+			context_array.push(`marking ${pair.node.id} as done`);
 			anim_array.push(["return",node]);
+			context_array.push(`returning to ${node.id}`);
 		}
 	}
 }
@@ -88,6 +93,7 @@ function perform_dfs_fast_back(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage+1][0] === "start")
 	{
 		anim_array[stage+1][1].style.removeProperty("background-color");
@@ -116,6 +122,7 @@ function perform_dfs_fast(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "start")
 	{
 		anim_array[stage][1].style["background-color"] = "yellow";
@@ -144,6 +151,7 @@ function perform_dfs(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "start")
 	{
 		animate_property(anim_array[stage][1],"background-color","yellow",(delay*transition_factor) * 1000,true);

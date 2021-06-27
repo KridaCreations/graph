@@ -34,17 +34,13 @@ function bake_dijsktra()
 		return;
 	}
 	recolor_graph();
-	// heap.empty();
-	// clearObject(closest_node);
-	// clearArray(anim_array);
-	// clearObject(visited_node);
-	// clearObject(distance);
 	for(node in document.nodes)
 	{
 		distance[document.nodes] = null;
 	}
 	closest_node[foccused_node.id] = null;
 	anim_array.push(["add",foccused_node,0]);
+	context_array.push(`Added ${foccused_node.id} to the heap`);
 	distance[foccused_node.id] = 0;
 	visited_node[foccused_node.id] = 1;
 	heap.push(foccused_node.id,0);
@@ -104,6 +100,7 @@ function perform_dijsktra_fast(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add") 
 	{
 		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
@@ -198,6 +195,7 @@ function perform_dijsktra_fast_back(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage+1][0] === "add")
 	{
 		anim_array[stage+1][1].children[0].children[0].children[1].textContent = "Inf";
@@ -307,6 +305,7 @@ function perform_dijsktra (stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add")
 	{
 		anim_array[stage][1].children[0].children[0].children[1].textContent = anim_array[stage][2];
@@ -403,7 +402,9 @@ function dijsktra (node)
 		node = document.nodes[node];
 		heap.pop();
 		anim_array.push(["remove",node,distance[node.id]]);
+		context_array.push(`removed ${node.id} from heap`)
 		anim_array.push(["jump",node]);
+		context_array.push(`went to ${node.id}`);
 		for(nodes in node.connections)
 		{
 			var pair = node.connections[nodes];
@@ -412,42 +413,55 @@ function dijsktra (node)
 				var curr_dis = distance[pair.node.id];
 				var new_dis = find_length(node,node.connections[nodes].node)+distance[node.id];
 				anim_array.push(["go",pair.node]);
+				context_array.push(`went to ${pair.node.id}`);
 				anim_array.push(["appear",pair.node]);
+				context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 				if (curr_dis === undefined) 
 				{
 					anim_array.push(["add_pre_dis",pair.node,"∞"]);
+					context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 				}
 				else
 				{
 					anim_array.push(["add_pre_dis",pair.node,curr_dis]);
+					context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 				}
 				anim_array.push(["add_new_dis",pair.node,new_dis]);
+				context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 				if (curr_dis === undefined)
 				{
 					distance[pair.node.id] = new_dis;
 					anim_array.push(["solve",pair.node,"new_dis"]);
+					context_array.push(`CURRENT distance is INFINITY so distance will be changed `);
 					heap.push(pair.node.id,new_dis);
 					closest_node[pair.node.id] = node;
 					anim_array.push(["add",pair.node,new_dis]);
+					context_array.push(`adding ${pair.node.id} to heap with new dis ${new_dis}`);
 				}
 				else if (curr_dis > new_dis)
 				{
 					distance[pair.node.id] = new_dis;
 					anim_array.push(["solve",pair.node,"new_dis"]);
+					context_array.push(`NEW distance is LESSER than CURRENT distance`);
 					heap.change_value(pair.node.id,new_dis);
 					closest_node[pair.node.id] = node;
 					anim_array.push(["change",pair.node,new_dis,heap.get_position(pair.node.id),curr_dis]);
+					context_array.push(`changed the previous dis of ${pair.node.id} from heap`);
 				}
 				else
 				{
 					anim_array.push(["solve",pair.node,"curr_dis"]);
+					context_array.push(`CURRENT distance is LESSER so no change`);
 				}
 				anim_array.push(["disappear",pair.node]);
+				context_array.push(`done comparing new and old dis`);
 				anim_array.push(["return",node]);
+				context_array.push(`returned to ${node.id}`);
 			}
 		}
 		visited_node[node.id] = 1;
 		anim_array.push(["done",node]);
+		context_array.push(`marked ${node.id} as done`)
 	}	
 }
 
