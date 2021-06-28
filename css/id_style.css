@@ -36,9 +36,9 @@
 
 #slides
 {
-	z-index: 12;
-	user-select: none;
-	display: flex;
+  z-index: 12;
+  user-select: none;
+  display: flex;
   justify-content: center;
   align-items: center;
   height:100vh;

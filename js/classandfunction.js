@@ -37,7 +37,7 @@ function show_dis_cut()
 {
     for (node in document.nodes)
     {
-        console.log("here");
+        // console.log("here");
         var c_node = document.nodes[node];
         c_node.cut_ver_detail.parentNode.style.transform = "scale(1)";
         c_node.cut_ver_detail.low_value_tab.textContent = "";

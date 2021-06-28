@@ -241,6 +241,40 @@ function speed_slider_input(value)
 	speed_label.textContent = delay;
 }
 
+function change_to_stage (stage_value) 
+{
+	is_playing = false
+	play_button.textContent = "Play";
+	clearTimeout(current_timer);
+	var anim_value = Number(stage_value);
+	change_anim_position(stage_value);
+	anim_label.textContent = stage_value;
+	if (baked_animation === 0)
+	{
+		change_to_anim_stage_dfs(anim_value);
+	}
+	else if (baked_animation === 1)
+	{
+		change_to_anim_stage_bfs(anim_value);
+	}
+	else if (baked_animation === 2)
+	{
+		change_to_anim_stage_dijsktra(anim_value);
+	}
+	else if (baked_animation === 3)
+	{
+		change_to_anim_stage_prims(anim_value);
+	}
+	else if (baked_animation === 4)
+	{
+		change_to_anim_stage_kruskal(anim_value);
+	}
+	else if (baked_animation === 5)
+	{
+		change_to_anim_stage_dfstree(anim_value);
+	}
+}
+
 function animation_slider_input()
 {
 	if (baked_animation === null)

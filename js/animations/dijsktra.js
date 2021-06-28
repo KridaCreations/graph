@@ -13,14 +13,12 @@ var scroll_heap = new ScrollHeap(scroll_box_heap);
 function paint_shortest_dis(des_node_id)
 {
 	clear_yellow_lines();
-
+	change_to_stage(-1);
 	while (!(closest_node[des_node_id] === null)) 
 	{
 		var curr_line = closest_node[des_node_id].connections[des_node_id].line;
 		yellow_lines.push([curr_line,curr_line.style.stroke]);
 		closest_node[des_node_id].connections[des_node_id].line.style.stroke = "yellow";
-		
-		
 		des_node_id = closest_node[des_node_id].id;
 	}
 }
@@ -56,6 +54,7 @@ function bake_dijsktra()
 
 function play_dijsktra (stage,anim_array) 
 {
+	clear_yellow_lines();
 	if (stage === anim_array.length)
 	{
 		return;
@@ -255,11 +254,11 @@ function perform_dijsktra_fast_back(stage,anim_array)
 	}
 	else if (anim_array[stage+1][0] === "jump") 
 	{
-		console.log("inside jump");
+		// console.log("inside jump");
 		scroll_heap.reverse_bubble_change();
 		scroll_heap.scroll_box.scrollTop = 0;
 		if (stage === 1) {
-			console.log("here");
+			// console.log("here");
 			anim_array[stage+1][1].style["background-color"] = "palevioletred";
 		}
 		else

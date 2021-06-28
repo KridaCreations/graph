@@ -18,14 +18,12 @@ function appear_tools_panel (argument)
 	{
 		tools_panel.classList.remove("tools_panel_disappear");
 		tools_panel.classList.add("tools_panel_appear");
-		// animate_property(tools_panel,"left","20px",300,true);
 		tools_panel_button.visible = true;
 	}
 	else 
 	{
 		tools_panel.classList.remove("tools_panel_appear");
 		tools_panel.classList.add("tools_panel_disappear");
-		// animate_property(tools_panel,"left","-500px",300,true);
 		tools_panel_button.visible = false;
 	}
 }
@@ -36,14 +34,12 @@ function appear_animation_panel(argument)
 	{
 		animation_panel.classList.remove("animation_panel_disappear");
 		animation_panel.classList.add("animation_panel_appear");
-		// animate_property(animation_panel,"right","0px",300,true);
 		animation_panel_button.visible = true;
 	}
 	else 
 	{
 		animation_panel.classList.remove("animation_panel_appear");
 		animation_panel.classList.add("animation_panel_disappear");
-		// animate_property(animation_panel,"right","-490px",300,true);
 		animation_panel_button.visible = false;
 	}
 }
@@ -51,7 +47,6 @@ function appear_animation_panel(argument)
 
 function animate_code_area()
 {
-	console.log("here");
 	if(coding_appear_button.visible === false)
 	{
 		this.parentNode.className = "appeared";
@@ -74,7 +69,6 @@ gen_button.addEventListener("click",generate);
 
 function clear_editor()
 {
-	// console.log("here")
 	code_editor.value = "";
 }
 
@@ -88,27 +82,32 @@ function generate()
 		var p_line = lines[line].replace(/^\s+|\s+$/g, "");
 		p_line = p_line.replace(/\s+/g, " ");
 		words = p_line.split(" ");
+		
 		if (words.length > 4)
 		{
+			prompt()
 			return;
 		}
-		if(false === (words.every(function(value,index,array){
-			return (!(isNaN(Number(value))));
-		})))
+
+		if (words.length === 1) 
+		{
+			gen_array.push(words.map())
+		}
+
+		if(false === (words.every(function(value,index,array){return(!(isNaN(Number(value))));})))
 		{
 
-			console.log("unexpected value in line " + line + 1);
+			alert("unexpected value in line " + line + 1);
 			return;
 		}
 
 		if ((words[2] > 4)||(words[2] < 1))
 		{
-			console.log("unexpected type at line " + line + 1);
+			alert("unexpected type at line " + line + 1);
 			return;
 		}
 		gen_array.push(words.map(Number));
 	}
-	// console.log(gen_array);
 	generate_graph(gen_array);
 
 }
@@ -137,7 +136,6 @@ function generate_graph(gen_array)
 		{
 			x = getRndInteger(-spread*20,spread*20);
 			y = getRndInteger(-spread*20,spread*20);
-			// console.log("here");
 			node_to = add_node(gen_array[format][1],250+y,750+x,0);
 		}
 		else

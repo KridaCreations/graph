@@ -41,6 +41,9 @@ graph_container.addEventListener("mousedown", graph_mouse_down);
 graph_container.addEventListener("mouseover", graph_mouse_over);
 
 function recolor_graph() {
+    clearTimeout(current_timer);
+    is_playing = false;
+    
     i_text.textContent = "";
     context_label.textContent = "";
     hide_dis_cut();
@@ -52,9 +55,10 @@ function recolor_graph() {
     anim_position.max = anim_array.length - 1;
     current_stage = -1;
     change_anim_position(current_stage);
-    is_playing = false;
+    
     play_button.textContent = "Play";
-    clearTimeout(current_timer);
+    
+    // clearTimeout(current_timer);
 
     heap.empty();
     clearArray(context_array);
@@ -68,10 +72,10 @@ function recolor_graph() {
 
     //cut_vertices
     for (n in cut_points) {
-    	console.log(document.nodes[n].cut_mark);
-    	console.log(document.nodes[n]);
+    	// console.log(document.nodes[n].cut_mark);
+    	// console.log(document.nodes[n]);
         if (!(document.nodes[n].cut_mark === undefined)) {
-        	console.log("here");
+        	// console.log("here");
             document.nodes[n].cut_mark.remove();
         }
         
@@ -275,7 +279,7 @@ function add_node(id_no, position_y, position_x,index) {
     }  
     baked_animation = null;
     no_of_nodes += 1;
-    console.log(no_of_nodes);     
+    // console.log(no_of_nodes);     
     // var new_node = document.createElement("div");
     // new_node.id = "node" + id_no;
     graph.append(new_node);

@@ -5,12 +5,10 @@ function node_click(event)
 	// console.log(event.target);
 	if (event.currentTarget === event.target)
 	{
-		if (baked_animation === 2) 
-		{
-			paint_shortest_dis(event.currentTarget.id);
-		}
+		
 		if (delete_button.checked === true)
 		{
+			recolor_graph();
 			for (node in this.connections)
 			{
 				var pair = this.connections[node];
@@ -51,9 +49,15 @@ function node_click(event)
 				this.style.border= "4px solid green";
 				foccused_node = this;
 			}
+			if (baked_animation === 2) 
+			{
+				paint_shortest_dis(event.currentTarget.id);
+			}
+
 		}
 		else if (connect_button.checked === true)
 		{
+			recolor_graph();
 			if(foccused_node === null)
 			{
 				this.style.border= "4px solid green";
@@ -129,6 +133,7 @@ function join(from,to,event)
 	{
 		return;
 	}
+
 	baked_animation = null;
 	var new_line = document.createElementNS("http://www.w3.org/2000/svg","line");
 	new_line.className += " svg_graphics";
