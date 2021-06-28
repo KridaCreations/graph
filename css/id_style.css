@@ -284,6 +284,11 @@
 
 }
 
+body
+{
+	width: 500vh;
+}
+
 #graph-container
 {
 	box-sizing: border-box;
