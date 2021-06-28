@@ -20,7 +20,7 @@ I have spent a hard time understanding and viualizing graph-algorithms, so i dec
 * planning to add more animations 
 * build similar project for Sorting
 
-# Acces the demo here
+# Acces the Project here
 * https://kridacreations.github.io/graph/
 * https://algorithmvisualizer.bitbucket.io/
 
@@ -70,3 +70,4 @@ more animations will be added.....
 
 
 
+#### Feel free to open a issue if you find a bug
