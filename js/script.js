@@ -101,7 +101,6 @@ function center_node(node,time_taken)
     g_pos.left = container_center.left - ((node.pos.left + 25) * scale);
     g_pos.top = container_center.top - ((node.pos.top + 25) * scale);
     fix_graph(time_taken);
-    // move_graph_to_pos(node.pos.left,node.pos.top,time_taken);
 }
 
 function position_graph(event) {
@@ -202,44 +201,53 @@ function graph_click(event) {
         var dgcc_y = graph.getBoundingClientRect().top - graph_container.getBoundingClientRect().top;
         var calc_x = (ev_wrt_con_x - dgcc_x) / scale;
         var calc_y = (ev_wrt_con_y - dgcc_y) / scale;
-        add_node(node_number, calc_y - 25, calc_x - 25);
+        add_node(node_number, calc_y - 25, calc_x - 25,node_type.selectedIndex);
 
     }
 
 };
 
 
-function add_node(id_no, position_y, position_x) {
+function add_node(id_no, position_y, position_x,index) {
     // console.log(node_type.selectedIndex );
     // baked_animation = null;
     // node_number += 1;
     // no_of_nodes += 1;
     var new_node = document.createElement("div");
-    if (node_type.selectedIndex === 1)
+    if (index === 1)
     {
-        var name = prompt("Enter the vertex name");
-        if (name === null)
+        var name = prompt("Enter the vertex name\n(whitespaces will be trimmed)");
+        name = name.trim();
+        if (name === null || name === "")
         {
+            alert("Blank Input");
             return;
         }
         else if(document.nodes[name] === undefined)
         {
+            // console.log("name"+name+"name");
             new_node.id = name;
             new_node.textContent = name;
         }
         else
         {
-            alert("node already present");
+            alert("Node already present");
             return;
         }
     }
-    else {
-        node_number += 1;
+    else 
+    {
+        while(!(document.nodes["node" + id_no] === undefined))
+        {
+            node_number += 1;
+            id_no = node_number; 
+        }
         new_node.id = "node" + id_no;
         new_node.textContent = id_no;
     }  
     baked_animation = null;
-    no_of_nodes += 1;     
+    no_of_nodes += 1;
+    console.log(no_of_nodes);     
     // var new_node = document.createElement("div");
     // new_node.id = "node" + id_no;
     graph.append(new_node);

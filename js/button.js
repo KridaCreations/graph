@@ -117,7 +117,7 @@ function generate_graph(gen_array)
 		{
 			var x = getRndInteger(-spread*20,spread*20);
 			var y = getRndInteger(-spread*20,spread*20);
-			node_from = add_node(gen_array[format][0],250+y,750+x);
+			node_from = add_node(gen_array[format][0],250+y,750+x,0);
 		}	
 		else
 		{
@@ -129,7 +129,7 @@ function generate_graph(gen_array)
 			x = getRndInteger(-spread*20,spread*20);
 			y = getRndInteger(-spread*20,spread*20);
 			// console.log("here");
-			node_to = add_node(gen_array[format][1],250+y,750+x);
+			node_to = add_node(gen_array[format][1],250+y,750+x,0);
 		}
 		else
 		{
