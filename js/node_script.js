@@ -94,7 +94,7 @@ function node_mouse_down(event)
 		}
 		else
 		{
-			foccused_node.style.border= "4px solid yellow";
+			foccused_node.style.border= `4px solid ${node_color}`;
 			this.style.border= "4px solid green";
 			foccused_node = this;
 		}
@@ -112,7 +112,7 @@ function node_mouse_up(event)
 		if (this.pressed === true)
 		{
 			this.pressed = false;
-			foccused_node.style.border= "4px solid yellow";
+			foccused_node.style.border= `4px solid ${node_color}`;
 			foccused_node = null;
 		}
 	}

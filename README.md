@@ -11,7 +11,7 @@ I have spent a hard time understanding and viualizing graph-algorithms, so i dec
 
 # Tech Stack
 
-* Vanila/javascript (didn't feel the use external libraries till now😅,might use external libraries later in journey of completing this project).
+* Vanila/javascript (didn't feel the use of external libraries till now😅,might use external libraries later in journey of completing this project).
 * HTML
 * CSS
 

@@ -23,7 +23,7 @@ var container_center = { "left": 818, "top": 375 };
 var g_pos = { "left": 0, "top": 0 };
 var graph_pressed = false;
 var center_of_nodes = { "left": 0, "top": 0 };
-
+// var node_color = "#c2789e";
 document.lines = {};
 
 document.nodes = {};
