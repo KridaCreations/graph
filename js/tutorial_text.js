@@ -3,7 +3,7 @@ var tutorial_text = [
 	 2)Click on the 'A' button to access the animation tools." +"\n" +"\
 	 3)Click on the button pointed by 'Graph Script' arrow to access the Graph Generation Tool."+"\n" +"\
 	 4)We will learn about adding node in next slide, so click on 'T' and open the tools pannel.",
-	"1)Choose the 'ADD' Option."+"\n" +"\
+	"1)Choose the 'ADD' Option(Or you can press'A' to select add option)"+"\n" +"\
 	 2)Click anywhere on the graph drawing area to add a node."+"\n" +"\
 	 3)The node will be assigned a unique number."+"\n" +"\
 	 4)You can add as many nodes you want,Try adding more Nodes."+"\n" +"\
@@ -11,19 +11,19 @@ var tutorial_text = [
 	 6)Now we will learn about deleting the Node you have added.",
 	"1)To add a node with CUSTOM NAME you can choose the custom name option in 'NODE ENUM'"+"\n" +"\
 	 2)A prompt will appear after clicking on the board,enter custom name there",
-	"1)Choose the 'DELETE' Option."+"\n" +"\
+	"1)Choose the 'DELETE' Option(Or you can press'D' to select delete option)"+"\n" +"\
 	 2)Click on the node you want to delete.",
 	"1)'Whoose!! Node deleted"+"\n" +"\
 	 2)Now we will learn about foccusing the Node.",
-	"1)Choose the 'FOCUS' option"+"\n" +"\
+	"1)Choose the 'FOCUS' option(Or you can press'F' to select focus option)"+"\n" +"\
 	 2)Click on the node you want to focus."+"\n" +"\
 	 3)The border of clicked node will become green to specify that it's the 'foccused Node' "+"\n" +"\
 	 4)Now we will learn about how to move a Node",
-	"1)Choose the 'MOVE' option"+"\n" +"\
+	"1)Choose the 'MOVE' option(Or you can press'M' to select move option)"+"\n" +"\
 	 2)Now you can DRAG AND DROP  any node to move it all the edges incident and outgoing from it will chnage too",
 	"Easy Till Now!!!"+"\n" +"\
 	 Now we will learn about how to Connect two Nodes",
-	"1)Choose the 'CONNECT' option"+"\n" +"\
+	"1)Choose the 'CONNECT' option(Or you can press'C' to select connect option)"+"\n" +"\
 	 2)Choose the type of connection you want"+"\n" +"\
 	 3)Four types of connection are there"+"\n" +"\
 	   "+" a)Bidirectional Unweighted"+"\n" +"\

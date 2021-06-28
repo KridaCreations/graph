@@ -28,6 +28,8 @@ document.lines = {};
 
 document.nodes = {};
 
+// console.log(document.getElementById('canvas'));
+
 clear_button.addEventListener("click", clear_graph);
 recolor_button.addEventListener("click", recolor_graph);
 center_button.addEventListener("click", position_graph);
@@ -93,6 +95,32 @@ function recolor_graph() {
         for (lines in c_node.connections) {
             c_node.connections[lines].line.style.removeProperty("stroke");
         }
+    }
+}
+
+window.addEventListener("keydown",key_handeler);
+
+function key_handeler(event)
+{
+    if (event.keyCode === 70)
+    {
+        focus_button.checked = true;
+    }
+    else if (event.keyCode === 65) 
+    {
+        add_button.checked = true;    
+    }
+    else if (event.keyCode === 68) 
+    {
+        delete_button.checked = true;    
+    }
+    else if (event.keyCode === 77) 
+    {
+        move_button.checked = true;    
+    }
+    else if (event.keyCode === 67) 
+    {
+        connect_button.checked = true;    
     }
 }
 

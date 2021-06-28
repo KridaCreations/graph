@@ -16,7 +16,7 @@ next_slide_button.addEventListener("click",change_slide);
 previous_slide_button.addEventListener("click",change_slide);
 
 function show_slide (argument) {
-	console.log("here");
+	// console.log("here");
 	slides_container.style.display = "flex";
 }
 
