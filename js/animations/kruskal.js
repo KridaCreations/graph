@@ -154,7 +154,7 @@ function kruskal (argument)
 {
 	get_line_array(draw_area_container.children[0].children);
 	line_array.sort(sort_array);
-	console.log(line_array);
+	// console.log(line_array);
 	for(nodes in document.nodes)
 	{
 		set.make_set(nodes);
@@ -188,8 +188,8 @@ function kruskal (argument)
 			anim_array.push(["valid",line_array[lines][0],new_element])
 		}
 	}
-	for(nodes in document.nodes)
-	{
-		console.log(set.find_set(nodes));
-	}
+	// for(nodes in document.nodes)
+	// {
+		// console.log(set.find_set(nodes));
+	// }
 }
