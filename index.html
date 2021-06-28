@@ -13,7 +13,7 @@
 	<div id="slides" style="display:none;">
 		<div class="slide_container">
 			<div id="slide_no">
-				1/15
+				1/16
 			</div>
 			<button id="skip_button" >SKIP</button>
 			<button id="slide_previous" >&#10094;</button>
@@ -204,7 +204,8 @@
 	</dialog>
 	<!-- Header -->
 	<h1  >GraphAlgorithmVisualizer<button id="tutorial_button" class="radio_buttons">Tutorial</button></h1>
-	<h2 id="context_tab"  >Context</h2>
+	<h2 id="context_tab"></h2>
+	<h2 id="i_button"></h2>
 	<!-- Control Panel -->
 	<div id="tools_panel" class = "control-panel" style="   left: -500px; top:100px;" >
 		<button class="radio_buttons" id="tools_panel_button" class="panel_buttons" style="float: right; height: 100%; width: 30px;">T</button>
@@ -225,7 +226,15 @@
 				</select>
 			</label>
 		</div>
-		<div class="options">
+		<div style="margin-top: 10px; width: auto;float: left;">
+			<label  class="options">Node Enum
+				<select id = "Vertex_type" name = "Vertex_type">
+					<option>1,2,3..</option>
+					<option selected>Custom name</option>
+				</select>
+			</label>
+		</div>
+		<div class="options" style="float:right;">
 			<button class="radio_buttons" id="recolor_button" style="font-weight: bolder;" title="clear all the coloring created by animations">Recolor</button>
 			<button class="radio_buttons" id="layout_button" style="font-weight: bolder;" title="clear all the coloring created by animations">Layout</button>
 			<button class="radio_buttons" id="clear_button" style="font-weight: bolder;" title="delete the graph">Clear Graph</button>

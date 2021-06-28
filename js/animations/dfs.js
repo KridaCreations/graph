@@ -7,8 +7,6 @@ function bake_dfs()
 		return;
 	}
 	recolor_graph();
-	// clearArray(anim_array);
-	// clearObject(visited_node);
 	visited_node[foccused_node.id] = 1;
 	anim_array.push(["start",foccused_node]);
 	context_array.push(`Starting from the foccused node (${foccused_node.id})`);

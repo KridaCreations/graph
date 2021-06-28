@@ -1,3 +1,15 @@
+#context_tab
+{
+	left: 5%;
+	top: 15%;
+}
+
+#i_button{
+
+	left: 1%;
+	bottom: 5%;
+}
+
 #slide_no
 {
 	width: 1px;
@@ -11,6 +23,7 @@
 	pointer-events: all;
 	float:right; 
 	margin-right: 10px;
+	margin-top: 5px;
 }
 
 #skip_button
@@ -23,6 +36,7 @@
 
 #slides
 {
+	z-index: 12;
 	user-select: none;
 	display: flex;
   justify-content: center;
@@ -30,7 +44,6 @@
   height:100vh;
   width: 100%;
   position: absolute;
-  z-index: 1000;
   text-align: center;
   background-color: transparent ;
 
@@ -97,6 +110,7 @@
 }
 #scroll_box_heap
 {
+	z-index: 10;
   position:absolute ;
   background-color: gray;
   height: 280px;
@@ -109,6 +123,7 @@
   background-color: rgba(255, 0, 0, 0.4);;
 }
 #scroll_box{
+	z-index: 10;
 	position: absolute;
 	height: 280px;
 	width: 150px;
@@ -118,7 +133,6 @@
 	border-radius: 3px;
 	border: 4px solid seagreen;
 	overflow-y: scroll;
-	z-index: 999;
 	background-color: rgba(255, 0, 0, 0.4);;
 }
 
@@ -143,7 +157,6 @@
 	transition-property: background-color, letter-spacing,transform,font-size;
  	transition-duration: 0.5s ,0.3s,0.3s,0.3s;
  	transition-timing-function: ease, ease,ease;
- 	z-index: 999;
 }
 
 #center_button:hover
@@ -155,6 +168,7 @@
 
 #dialog
 {
+	z-index: 11;
 	position: fixed;
 	left: 100px;
 	top: 300px;
@@ -164,11 +178,11 @@
 	font-weight: bolder;
 	border: 4px solid yellow;
 	border-radius: 10px;
-	z-index: 40;
 }
 
 #coding_area
 {
+	z-index: 10;
 	transition-property: right;
 	transition-duration: 0.3s;
 	transition-timing-function: ease;
@@ -275,12 +289,11 @@
 
 #control-panel
 {
-	
+	z-index: 10;
 	border-radius: 10px;
 	user-select: none;
 	position: relative;
 	width:550px ;
-	/*width: 100%;*/
 	background: palevioletred;
 	box-sizing: border-box;
 	border: 5px solid lightgreen;
@@ -302,5 +315,4 @@
 	height: 100px;
 	margin:0px; 
 	padding: 0px;  
-	z-index: 1;
 }

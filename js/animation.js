@@ -19,7 +19,7 @@ var is_playing = false;
 var scroll_box = document.querySelector("#scroll_box");
 var forward_button = document.querySelector("#forward_button");
 var back_button = document.querySelector("#back_button");
-
+var i_text = document.querySelector("#i_button");
 
 forward_button.addEventListener("click",move_forward);
 back_button.addEventListener("click",move_back);

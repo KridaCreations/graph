@@ -14,7 +14,7 @@ var draw_area = document.querySelector("#draw_area");
 var dialog = document.querySelector("#dialog");
 var dialog_hide = document.querySelector("#hide");
 var dialog_connect = document.querySelector("#connect");
-
+var node_type = document.querySelector("#Vertex_type");
 var foccused_node = null;
 var node_number = 0;
 var no_of_nodes = 0
@@ -39,6 +39,7 @@ graph_container.addEventListener("mousedown", graph_mouse_down);
 graph_container.addEventListener("mouseover", graph_mouse_over);
 
 function recolor_graph() {
+    i_text.textContent = "";
     context_label.textContent = "";
     hide_dis_cut();
     hide_dis();
@@ -209,18 +210,44 @@ function graph_click(event) {
 
 
 function add_node(id_no, position_y, position_x) {
-
-    baked_animation = null;
-    node_number += 1;
-    no_of_nodes += 1;
+    // console.log(node_type.selectedIndex );
+    // baked_animation = null;
+    // node_number += 1;
+    // no_of_nodes += 1;
     var new_node = document.createElement("div");
-    new_node.id = "node" + id_no;
+    if (node_type.selectedIndex === 1)
+    {
+        var name = prompt("Enter the vertex name");
+        if (name === null)
+        {
+            return;
+        }
+        else if(document.nodes[name] === undefined)
+        {
+            new_node.id = name;
+            new_node.textContent = name;
+        }
+        else
+        {
+            alert("node already present");
+            return;
+        }
+    }
+    else {
+        node_number += 1;
+        new_node.id = "node" + id_no;
+        new_node.textContent = id_no;
+    }  
+    baked_animation = null;
+    no_of_nodes += 1;     
+    // var new_node = document.createElement("div");
+    // new_node.id = "node" + id_no;
     graph.append(new_node);
     new_node.pos = { "left": position_x, "top": position_y };
     new_node.connections = {};
     new_node.other_connections = {};
     new_node.className += "node";
-    new_node.textContent = id_no;
+    // new_node.textContent = id_no;
     new_node.pressed = false;
     new_node.title = new_node.id;
     center_of_nodes.left = ((center_of_nodes.left * (no_of_nodes - 1)) + position_x) / no_of_nodes;

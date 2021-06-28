@@ -15,6 +15,7 @@ function bake_prims()
 	}
 	closest_node[foccused_node.id] = null;
 	anim_array.push(["add",foccused_node,0]);
+	context_array.push(`add ${foccused_node.id} to heap`);
 	distance[foccused_node.id] = 0;
 	visited_node[foccused_node.id] = 1;
 	heap.push(foccused_node.id,0);
@@ -74,6 +75,7 @@ function perform_prims_fast(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add") 
 	{
 		if (!(stage === 0))
@@ -180,6 +182,7 @@ function perform_prims_fast_back(stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage+1][0] === "add")
 	{
 		if (!(stage+1 === 0))
@@ -214,9 +217,16 @@ function perform_prims_fast_back(stage,anim_array)
         }
 	}
 	else if (anim_array[stage+1][0] === "go") {
+		if (anim_array[stage+1][2] === "first")
+		{
+			anim_array[stage+1][1].style.removeProperty("background-color");
+			anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
+		}
+		else {
+			anim_array[stage+1][1].style["background-color"] = "green";
+			anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
+		}
 		anim_array[stage+1-1][1].style["background-color"] = "yellow";
-		anim_array[stage+1][1].style.removeProperty("background-color");
-		anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
 	}
 	else if (anim_array[stage+1][0] === "return")
 	{
@@ -233,7 +243,7 @@ function perform_prims_fast_back(stage,anim_array)
 	{
 		scroll_heap.reverse_bubble_change();
 		scroll_heap.scroll_box.scrollTop = 0;
-		if (stage === 0) {
+		if (stage === 1) {
 			anim_array[stage+1][1].style["background-color"] = "palevioletred";
 		}
 		else
@@ -303,6 +313,7 @@ function perform_prims (stage,anim_array)
 	{
 		return;
 	}
+	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add")
 	{
 		if (!(stage === 0))
@@ -416,53 +427,72 @@ function prims (node)
 		node = document.nodes[node];
 		heap.pop();
 		anim_array.push(["remove",node,distance[node.id]]);
+		context_array.push(`removed ${node.id}(top element) from heap`);
 		anim_array.push(["jump",node]);
+		context_array.push(`went to ${node.id}`);
 		for(nodes in node.connections)
 		{
 			var pair = node.connections[nodes];
 			if (!(visited_node[pair.node.id] === 1)) 
 			{
 				var curr_dis = distance[pair.node.id];
-				var new_dis = find_length(node,node.connections[nodes].node); //+distance[node.id];
-				anim_array.push(["go",pair.node]);
-				anim_array.push(["appear",pair.node]);
+				var new_dis = find_length(node,node.connections[nodes].node); 
 				if (curr_dis === undefined) {
+					anim_array.push(["go",pair.node,"first"]);
+					context_array.push(`went to ${pair.node.id}`);
+					anim_array.push(["appear",pair.node]);
+					context_array.push(`comparing cur dis from tree to new dis from tree`);
 					anim_array.push(["add_pre_dis",pair.node,"∞"]);
+					context_array.push(`comparing cur dis from tree to new dis from tree`);
 				}
 				else
 				{
+					anim_array.push(["go",pair.node,"another"]);
+					context_array.push(`went to ${pair.node.id}`);
+					anim_array.push(["appear",pair.node]);
+					context_array.push(`comparing cur dis from tree to new dis from tree`);
 					anim_array.push(["add_pre_dis",pair.node,curr_dis]);
+					context_array.push(`comparing cur dis from tree to new dis from tree`);
 				}
 				
 				anim_array.push(["add_new_dis",pair.node,new_dis]);
+				context_array.push(`comparing cur dis from tree to new dis from tree`);
 				if (curr_dis === undefined)
 				{
 					distance[pair.node.id] = new_dis;
 					anim_array.push(["solve",pair.node,"new_dis"]);
+					context_array.push(`new dis ${new_dis} is LESSER than previous dis`);
 					heap.push(pair.node.id,new_dis);
 					closest_node[pair.node.id] = node;
 					previous_connected_node[pair.node.id] = node;
 					anim_array.push(["add",pair.node,new_dis,node]);
+					context_array.push(`the ${pair.node.id} is not in heap so added ${pair.node.id} to heap`);
 				}
 				else if (curr_dis > new_dis)
 				{
 					distance[pair.node.id] = new_dis;
 					anim_array.push(["solve",pair.node,"new_dis"]);
+					context_array.push(`new dis ${new_dis} is LESSER than previous dis`);
 					heap.change_value(pair.node.id,new_dis);
 					closest_node[pair.node.id] = node;
 					anim_array.push(["change",pair.node,new_dis,heap.get_position(pair.node.id),curr_dis,previous_connected_node[pair.node.id],node]);
+					context_array.push(`changed the dis value of ${pair.node.id} as it's already in heap`);
 					previous_connected_node[pair.node.id] = node;
 				}
 				else
 				{
 					anim_array.push(["solve",pair.node,"curr_dis"]);
+					context_array.push(`current distance is LESSER than new distance so no change`);
 				}
 				anim_array.push(["disappear",pair.node]);
+				context_array.push(`done comparing values`);
 				anim_array.push(["return",node]);
+				context_array.push(`returned to ${node.id}`);
 			}
 		}
 		visited_node[node.id] = 1;		
 		anim_array.push(["done",node]);
+		context_array.push(`marked ${node.id} as done`);
 	}	
 }
 

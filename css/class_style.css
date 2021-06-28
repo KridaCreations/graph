@@ -4,7 +4,6 @@
 	pointer-events:none;
 	position: absolute;
 	opacity: 100%;
-	z-index: 1000;
 }
 
 .text_tag
@@ -54,7 +53,6 @@
 	pointer-events:none;
 	position: absolute;
 	opacity: 100%;
-	z-index: 1000;
 	transform-origin: top left;
 	transition-property: transform;
 	transition-duration: 0.3s;
@@ -179,6 +177,7 @@
 
 .control-panel
 {
+	z-index: 11;
 	position: absolute;
 	transition-property: right;
 	transition-property: left;
@@ -194,7 +193,6 @@
 	color: darkgreen;
 	padding: 10px;
 	padding-top: 5px;
-	z-index: 23;
 }
 
 .node:hover {

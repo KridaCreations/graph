@@ -34,13 +34,30 @@ var tutorial_text = {
 		 4)to remove the foccus of the current node click on the foccused node itself",
 	"9":"Easy till now!!! you can draw large graphs more larger than shown above "+"\n" +"\
 		 Now we will move towards running and visualizing animations on them",
-	"10":"",
-	"11":"",
-	"12":"",
-	"13":"",
-	"14":"",
-	"15":"",
-}
+	"10":"1)choose the algorithm you want to visualize",
+	"11":"1)Foccus on the node which you want to be the starting point"+"\n" +"\
+		 2)Click on BAKE ANIMATION button"+"\n" +"\
+		 3)You will see the slider is shifted to Zero(if not at zero already)"+"\n" +"\
+		 4)Your animation is ready to play",
+	"12":"1)Click in PLAY ANIMATION button"+"\n" +"\
+		 2)The play button will change to stop button and animation will start playing"+"\n" +"\
+		 3)you can click on the stop button to PAUSE the animation"+"\n" +"\
+		 4)The delay is the time taken between each frame"+"\n" +"\
+		 5)First frame is always blank frame ",
+	"13":"1)You can set delay by changing the slider"+"\n" +"\
+		 2)Less delay means faster animations"+"\n" +"\
+		 3)More delay means slower animations",
+	"14":"1)You can click on the forward and back button to move the frame of slider forward and backward"+"\n" +"\
+		 2)Also you can change the animation frame by using the slider",
+	"15":"(This feature is UNSTABLE)"+"\n" +"\
+		 1)still you can click on the generate button to generate a graph from the loaded script"+"\n" +"\
+		 2)each row has a syntax"+"\n" +"\
+		 3)suppose a row is '1 2 1 98'"+"\n" +"\
+		 4)'1 2' means the connection is to be drawn from 1 to 2"+"\n" +"\
+		 5)'1' after 2 means the type of connection"+"\n" +"\
+		 6)type '1' means 'bidirectional unweights'"+"\n" +"\
+		 7)and '68' after '1' means the weight of line if line is weighted",
+} 
 
 for (var i = 0;i<slides.length;i++)
 {

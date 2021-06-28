@@ -29,10 +29,8 @@ function node_click(event)
 			center_of_nodes.left = ((center_of_nodes.left * (no_of_nodes + 1)) - this.pos.left)/no_of_nodes;
 			center_of_nodes.top = ((center_of_nodes.top * (no_of_nodes + 1)) - this.pos.top)/no_of_nodes;
 			baked_animation = null;
-			// console.log(document.nodes);
 			this.remove();
 			delete document.nodes[this.id];
-			// console.log(document.nodes);
 
 		}
 		else if (focus_button.checked === true)

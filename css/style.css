@@ -1,5 +1,4 @@
 h1{
-	z-index: 333;
 	pointer-events: none;
 	height: 60px;align-content: center; 
 	border: 3px solid black; 
@@ -18,7 +17,6 @@ h1{
 }
 
 h2{
-	z-index: 333;
 	text-align: center;
 	pointer-events: none;
 	height: 60px;align-content: center;
@@ -31,8 +29,6 @@ h2{
 	margin: 0px;
 	box-sizing: border-box;
 	position: absolute;
-	left: 5%;
-	top: 15%;
 	width: auto;
 	min-width: 50px;
 	background-color:rgba(255, 123, 123, 0.2);

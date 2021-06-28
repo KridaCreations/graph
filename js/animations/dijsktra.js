@@ -46,6 +46,7 @@ function bake_dijsktra()
 	heap.push(foccused_node.id,0);
 	dijsktra();
 	baked_animation = 2;
+	i_text.textContent = `🛈 Foccus on any node to get the path from the ${foccused_node.id}`;
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	scroll_box_heap.style.visibility = 'visible';
@@ -229,9 +230,17 @@ function perform_dijsktra_fast_back(stage,anim_array)
         }
 	}
 	else if (anim_array[stage+1][0] === "go") {
+		if (anim_array[stage+1][2] === "first")
+		{
+			anim_array[stage+1][1].style.removeProperty("background-color");
+			anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
+		}
+		else {
+			anim_array[stage+1][1].style["background-color"] = "green";
+			anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
+		}
 		anim_array[stage+1-1][1].style["background-color"] = "yellow";
-		anim_array[stage+1][1].style.removeProperty("background-color");
-		anim_array[stage+1-1][1].connections[anim_array[stage+1][1].id].line.style.removeProperty("stroke");
+		
 	}
 	else if (anim_array[stage+1][0] === "return")
 	{
@@ -246,9 +255,11 @@ function perform_dijsktra_fast_back(stage,anim_array)
 	}
 	else if (anim_array[stage+1][0] === "jump") 
 	{
+		console.log("inside jump");
 		scroll_heap.reverse_bubble_change();
 		scroll_heap.scroll_box.scrollTop = 0;
-		if (stage === 0) {
+		if (stage === 1) {
+			console.log("here");
 			anim_array[stage+1][1].style["background-color"] = "palevioletred";
 		}
 		else
@@ -423,17 +434,21 @@ function dijsktra (node)
 			{
 				var curr_dis = distance[pair.node.id];
 				var new_dis = find_length(node,node.connections[nodes].node)+distance[node.id];
-				anim_array.push(["go",pair.node]);
-				context_array.push(`went to ${pair.node.id}`);
-				anim_array.push(["appear",pair.node]);
-				context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 				if (curr_dis === undefined) 
 				{
+					anim_array.push(["go",pair.node,"first"]);
+					context_array.push(`went to ${pair.node.id}`);
+					anim_array.push(["appear",pair.node]);
+					context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 					anim_array.push(["add_pre_dis",pair.node,"∞"]);
 					context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 				}
 				else
 				{
+					anim_array.push(["go",pair.node,"another"]);
+					context_array.push(`went to ${pair.node.id}`);
+					anim_array.push(["appear",pair.node]);
+					context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 					anim_array.push(["add_pre_dis",pair.node,curr_dis]);
 					context_array.push(`comparing the current and new distance of ${pair.node.id}`);
 				}
