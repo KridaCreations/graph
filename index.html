@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/id_style.css">
 	<link rel="stylesheet" type="text/css" href="css/class_style.css">
+	<link rel="stylesheet" type="text/css" href="css/anim_css.css">
 	<link id="line_sheet" rel="stylesheet" type="text/css" href="css/line_style_normal_mode.css">
 </head>
 <!-- &#10094;
@@ -164,7 +165,11 @@
 	</div>
 	<div id = coding_area class="disappeared">
 		<button  id="code_appear"></button>
-		<div >Graph-Generation Script editor<button id="generate">Generate</button><button id="clear">Clear</button></div>
+		<div style="margin-bottom: 5px;">Graph-Generation Script editor</div>
+		<div>
+			<button id="generate">Generate</button>
+			<button id="clear">Clear</button>
+		</div>
 		<textarea spellcheck="false" id = "code_editor" type="textarea" rows="5" cols="50" placeholder="Add the Graph-Generation-Script .......">1 2 1 98
 1 22 1 62
 2 3 1 89
@@ -213,8 +218,8 @@
 	<h2 id="context_tab"></h2>
 	<h2 id="i_button"></h2>
 	<!-- Control Panel -->
-	<div id="tools_panel" class = "control-panel" style="   left: -500px; top:100px;" >
-		<button class="radio_buttons" id="tools_panel_button" class="panel_buttons" style="float: right; height: 100%; width: 30px;">T</button>
+	<div id="tools_panel" class = "control-panel tools_panel_disappear"  >
+		<button class="radio_buttons panel_buttons" id="tools_panel_button" style="float: right; height: 100%; width: 30px;">T</button>
 		<div class="options" >
 			<label class = "radio_buttons">ADD<input  type="radio" name="mode" checked="true" id="add_button"></label>
 			<label class = "radio_buttons">DELETE<input type="radio" name="mode" id="delete_button"></label>
@@ -247,8 +252,8 @@
 		</div>
 		
 	</div>
-	<div id="animation_panel" class = "control-panel" style=" left: 1490px; top:100px; " >
-		<button class="radio_buttons" id="animation_panel_button" class="panel_buttons" style="float: left; height: 100%; width: 30px; margin-right: 20px;">A</button>
+	<div id="animation_panel" class = "control-panel animation_panel_disappear"  >
+		<button class="radio_buttons panel_buttons" id="animation_panel_button" >A</button>
 		<div  class="options">
 			<label>Algorithm
 				<select  id = "algorithms">

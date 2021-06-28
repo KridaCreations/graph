@@ -1,0 +1,19 @@
+.animation_panel_appear
+{
+	right: 0px;
+}
+
+.animation_panel_disappear
+{
+	right: -500px;
+}
+
+.tools_panel_appear
+{
+	left: 20px; 
+}
+
+.tools_panel_disappear
+{
+	left: -500px;
+}

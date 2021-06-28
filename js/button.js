@@ -16,12 +16,16 @@ function appear_tools_panel (argument)
 {
 	if (tools_panel_button.visible === false) 
 	{
-		animate_property(tools_panel,"left","20px",300,true);
+		tools_panel.classList.remove("tools_panel_disappear");
+		tools_panel.classList.add("tools_panel_appear");
+		// animate_property(tools_panel,"left","20px",300,true);
 		tools_panel_button.visible = true;
 	}
 	else 
 	{
-		animate_property(tools_panel,"left","-500px",300,true);
+		tools_panel.classList.remove("tools_panel_appear");
+		tools_panel.classList.add("tools_panel_disappear");
+		// animate_property(tools_panel,"left","-500px",300,true);
 		tools_panel_button.visible = false;
 	}
 }
@@ -30,12 +34,16 @@ function appear_animation_panel(argument)
 {
 	if (animation_panel_button.visible === false) 
 	{
-		animate_property(animation_panel,"left","960px",300,true);
+		animation_panel.classList.remove("animation_panel_disappear");
+		animation_panel.classList.add("animation_panel_appear");
+		// animate_property(animation_panel,"right","0px",300,true);
 		animation_panel_button.visible = true;
 	}
 	else 
 	{
-		animate_property(animation_panel,"left","1490px",300,true);
+		animation_panel.classList.remove("animation_panel_appear");
+		animation_panel.classList.add("animation_panel_disappear");
+		// animate_property(animation_panel,"right","-490px",300,true);
 		animation_panel_button.visible = false;
 	}
 }
@@ -43,6 +51,7 @@ function appear_animation_panel(argument)
 
 function animate_code_area()
 {
+	console.log("here");
 	if(coding_appear_button.visible === false)
 	{
 		this.parentNode.className = "appeared";
