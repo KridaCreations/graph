@@ -5,9 +5,11 @@ function node_click(event)
 	// console.log(event.target);
 	if (event.currentTarget === event.target)
 	{
+
 		
 		if (delete_button.checked === true)
 		{
+			event.stopPropagation();
 			recolor_graph();
 			for (node in this.connections)
 			{
@@ -33,6 +35,7 @@ function node_click(event)
 		}
 		else if (focus_button.checked === true)
 		{
+			event.stopPropagation();
 			if(foccused_node === null)
 			{
 				this.style.border= "4px solid green";
@@ -57,6 +60,7 @@ function node_click(event)
 		}
 		else if (connect_button.checked === true)
 		{
+			event.stopPropagation();
 			recolor_graph();
 			if(foccused_node === null)
 			{
@@ -116,8 +120,9 @@ function node_mouse_up(event)
 		if (this.pressed === true)
 		{
 			this.pressed = false;
-			foccused_node.style.border= `4px solid ${node_color}`;
-			foccused_node = null;
+			event.stopPropagation();
+			// foccused_node.style.border= `4px solid ${node_color}`;
+			// foccused_node = null;
 		}
 	}
 }

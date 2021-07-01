@@ -1,5 +1,6 @@
 
 line{
+	user-select: none;
 	/*stroke: saddlebrown;*/
 	/*stroke: #e69e32;*/
 	/*stroke: #f2960c;*/
@@ -12,6 +13,7 @@ line{
 
 
 rect{
+	user-select: none;
 	box-sizing: border-box;
 	fill:#67e4de;
 	stroke-width:3;
@@ -21,6 +23,7 @@ rect{
 
 
 text{
-
+	user-select: none;
+	color: red;
 	stroke: darkolivegreen;
 }

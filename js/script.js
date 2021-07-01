@@ -70,12 +70,8 @@ function recolor_graph() {
     set.empty();
     clearArray(line_array);
 
-    //cut_vertices
     for (n in cut_points) {
-    	// console.log(document.nodes[n].cut_mark);
-    	// console.log(document.nodes[n]);
         if (!(document.nodes[n].cut_mark === undefined)) {
-        	// console.log("here");
             document.nodes[n].cut_mark.remove();
         }
         
@@ -236,15 +232,22 @@ function graph_click(event) {
         add_node(node_number, calc_y - 25, calc_x - 25,node_type.selectedIndex);
 
     }
+    else {
+            console.log("heelo")
+            if((foccused_node !== null)){       
+                if (event.currentTarget === event.target){
+                    foccused_node.style.border= `4px solid ${node_color}`;
+                    foccused_node = null;
+                }
+            
+            }
+            
+    }
 
 };
 
 
 function add_node(id_no, position_y, position_x,index) {
-    // console.log(node_type.selectedIndex );
-    // baked_animation = null;
-    // node_number += 1;
-    // no_of_nodes += 1;
     var new_node = document.createElement("div");
     if (index === 1)
     {
@@ -257,7 +260,6 @@ function add_node(id_no, position_y, position_x,index) {
         }
         else if(document.nodes[name] === undefined)
         {
-            // console.log("name"+name+"name");
             new_node.id = name;
             new_node.textContent = name;
         }
@@ -275,19 +277,15 @@ function add_node(id_no, position_y, position_x,index) {
             id_no = node_number; 
         }
         new_node.id = "node" + id_no;
-        new_node.textContent = id_no;
+        new_node.textContent = "node" + id_no;
     }  
     baked_animation = null;
     no_of_nodes += 1;
-    // console.log(no_of_nodes);     
-    // var new_node = document.createElement("div");
-    // new_node.id = "node" + id_no;
     graph.append(new_node);
     new_node.pos = { "left": position_x, "top": position_y };
     new_node.connections = {};
     new_node.other_connections = {};
     new_node.className += "node";
-    // new_node.textContent = id_no;
     new_node.pressed = false;
     new_node.title = new_node.id;
     center_of_nodes.left = ((center_of_nodes.left * (no_of_nodes - 1)) + position_x) / no_of_nodes;

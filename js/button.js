@@ -89,21 +89,22 @@ function generate()
 			return;
 		}
 
-		if (words.length === 1) 
+		if (words.length < 4) 
 		{
-			gen_array.push(words.map())
+			alert("less command at line " + (Number(line) + 1));
+			return;
 		}
 
 		if(false === (words.every(function(value,index,array){return(!(isNaN(Number(value))));})))
 		{
 
-			alert("unexpected value in line " + line + 1);
+			alert("unexpected value in line " + (Number(line) + 1));
 			return;
 		}
 
 		if ((words[2] > 4)||(words[2] < 1))
 		{
-			alert("unexpected type at line " + line + 1);
+			alert("unexpected type at line " + (Number(line) + 1));
 			return;
 		}
 		gen_array.push(words.map(Number));
@@ -114,11 +115,12 @@ function generate()
 
 function generate_graph(gen_array)
 {	
+	clear_graph();
 	var spread = gen_array.length;
 	for (format in gen_array)
 	{
 
-		var node_name = "node" + gen_array[format][0];
+		var node_name = "node" + (gen_array[format][0]);
 		var node_from;
 		var node_to;
 		if (document.nodes.hasOwnProperty(node_name) === false)

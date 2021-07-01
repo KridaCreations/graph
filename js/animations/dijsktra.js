@@ -44,7 +44,7 @@ function bake_dijsktra()
 	heap.push(foccused_node.id,0);
 	dijsktra();
 	baked_animation = 2;
-	i_text.textContent = `🛈 Foccus on any node to get the path from the ${foccused_node.id}`;
+	i_text.textContent = `🛈 Foccus on any node to get the path from the ${foccused_node.id}(do this in FOCCUS MODE)`;
 	anim_position.max = anim_array.length-1;
 	current_stage = -1;
 	scroll_box_heap.style.visibility = 'visible';
