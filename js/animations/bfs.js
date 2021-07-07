@@ -1,3 +1,5 @@
+// console.log(isShapeDetectionApiSupported());
+
 var queue = new Queue();
 function bake_bfs()
 {

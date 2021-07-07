@@ -368,7 +368,7 @@ function perform_dijsktra (stage,anim_array)
 	}
 	else if (anim_array[stage][0] === "add_pre_dis") 
 	{
-		detail_tag.children[0].children[0].textContent = "new_dis";
+		detail_tag.children[0].children[0].textContent = "curr_dis";
 		detail_tag.children[0].style.transform = "scale(0)";
 		detail_tag.children[0].children[1].textContent = anim_array[stage][2];
 		animate_property(detail_tag.children[0],"transform","scale(1)",(delay*transition_factor) * 1000,true);

@@ -61,7 +61,9 @@ class ScrollHeap
         clearArray(this.items);
         clearObject(this.position);
         clearArray(this.bubble_changes);
-        this.scroll_box.innerHtml = "";
+        // console.log("empty scroll heap");
+        // console.log(this.scroll_box);
+        this.scroll_box.textContent = "";
     }
     print()
     {
