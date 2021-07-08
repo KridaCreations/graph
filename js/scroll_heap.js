@@ -201,7 +201,7 @@ class ScrollHeap
         new_scroll_element.append(new_scroll_element_value);
         
         this.items.push({"node":element,"value":value});
-        this.position[element] = this.size()-1;
+        this.position[element] = Number(this.size()-1);
         return this.bubble_up(this.size()-1);
     }
     pop(delay)
@@ -468,7 +468,7 @@ class ScrollHeap
         new_scroll_element.style.transform =(`scale(${0})`);
 
         this.items.push({"node":element,"value":value});
-        this.position[element] = this.size()-1;
+        this.position[element] = Number(this.size())-1;
 
         var scroll_box = this.scroll_box;
         var animateScroll =function()
