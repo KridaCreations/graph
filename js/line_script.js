@@ -24,6 +24,10 @@ function line_delete(line)
 	}
 	if (!(line.detail.weight === null))
 	{
+		if (Number(line.detail.weight)<0)
+		{
+			negative_weights -= 1;
+		}
 		line.detail.weight_rect.remove();
 	}
 	line.remove();

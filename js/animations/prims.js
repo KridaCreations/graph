@@ -182,6 +182,7 @@ function perform_prims_fast_back(stage,anim_array)
 	{
 		return;
 	}
+	console.log((Number(stage)+1)+" "+anim_array[stage+1][0]);
 	context_label.textContent = context_array[stage];
 	if (anim_array[stage+1][0] === "add")
 	{
@@ -313,6 +314,7 @@ function perform_prims (stage,anim_array)
 	{
 		return;
 	}
+	console.log(stage+" "+anim_array[stage][0]);
 	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add")
 	{

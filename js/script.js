@@ -19,6 +19,7 @@ var foccused_node = null;
 var node_number = 0;
 var no_of_nodes = 0
 var scale = 1;
+var negative_weights = 0 ;
 var container_center = { "left": 818, "top": 375 };
 var g_pos = { "left": 0, "top": 0 };
 var graph_pressed = false;

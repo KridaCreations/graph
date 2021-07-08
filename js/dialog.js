@@ -52,6 +52,10 @@ function connect_dialog()
 	dialog.line.detail.weight_rect = new_group;
 	title.textContent = num_input.value;
 	dialog.line.detail.weight = num_input.value;
+	if (Number(num_input.value) < 0)
+	{
+		negative_weights += 1;
+	}
 	// console.log(typeof dialog.line.detail.weight);
 	dialog.close();
 }

@@ -14,7 +14,7 @@ function paint_shortest_dis(des_node_id)
 {
 	clear_yellow_lines();
 	change_to_stage(-1);
-	while (!(closest_node[des_node_id] === null)) 
+	while (!((closest_node[des_node_id] === null)||(closest_node[des_node_id] === undefined))) 
 	{
 		var curr_line = closest_node[des_node_id].connections[des_node_id].line;
 		yellow_lines.push([curr_line,curr_line.style.stroke]);
@@ -29,6 +29,11 @@ function bake_dijsktra()
 	if (foccused_node === null)
 	{
 		alert("please choose a starting node\nyou can do this by foccusing on the start node ");
+		return;
+	}
+	if (negative_weights > 0) 
+	{
+		alert("There is some edge with negative weight dijsktra will not work");
 		return;
 	}
 	recolor_graph();
@@ -321,6 +326,7 @@ function perform_dijsktra (stage,anim_array)
 	{
 		return;
 	}
+	console.log(stage + " " + anim_array[stage][0]);
 	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add")
 	{

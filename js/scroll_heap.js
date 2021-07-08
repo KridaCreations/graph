@@ -304,6 +304,8 @@ class ScrollHeap
     }
     swap(index1,index2)
     {
+        // console.log(this.items);
+        // console.log(index1);
         var temp_node = this.items[index1].node;
         var temp_value = this.items[index1].value;
         var temp_pos = index1;
@@ -450,8 +452,8 @@ class ScrollHeap
         var change = to - start;
         var currentTime = 0;
         var increment = 10;
+        //n
         var new_scroll_element = document.createElement("div");
-        // n
         new_scroll_element.className = "scroll_box__heap_element";
         var new_scroll_element_name = document.createElement("div");
         new_scroll_element_name.className = "scroll_box__heap_element_name";
@@ -462,6 +464,7 @@ class ScrollHeap
         this.scroll_box.append(new_scroll_element);
         new_scroll_element.append(new_scroll_element_name);
         new_scroll_element.append(new_scroll_element_value);
+        
         new_scroll_element.style.transform =(`scale(${0})`);
 
         this.items.push({"node":element,"value":value});
