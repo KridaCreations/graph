@@ -9,7 +9,29 @@ function print_object(object)
     for (key in object)
     {
         console.log(key);
-        console.log(object[key]);
+        var sum = "";
+        sum += object[key].node ;
+        sum += " ";
+        sum += object[key].value;
+        sum += " ";
+        console.log(sum);
+        // console.log(object[key]);
+    }
+    console.log("");
+}
+
+function print_object_real(object)
+{
+    for (key in object)
+    {
+        console.log(key);
+        var sum = "";
+        sum += key ;
+        sum += " ";
+        sum += object[key];
+        sum += " ";
+        console.log(sum);
+        // console.log(object[key]);
     }
     console.log("");
 }
@@ -22,7 +44,34 @@ function clear_yellow_lines()
     }
     clearArray(yellow_lines);
 }
-
+function print_array(array)
+{
+    var add  ="";
+    for(var i = 0;i<array.length;i++)
+    {
+        // console.log(array[i].nodeName);
+        if (array[i].nodeName === "DIV")
+        {
+            add += array[i].id;
+            // console.log("here");
+            // console.log(array[i].id)
+            add+= " ";
+        }
+        else
+        {
+            add += array[i];
+            add+= " ";
+        }
+    }
+    console.log(add);
+}
+function print_array_wr(array)
+{
+    for(var i = 0;i<array.length;i++)
+    {
+        console.log(array[i]);
+    }
+}
 function show_dis()
 {
     for (node in document.nodes)

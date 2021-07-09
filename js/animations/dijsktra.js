@@ -427,11 +427,15 @@ function dijsktra (node)
 	{	
 		var node = heap.peek();
 		node = document.nodes[node];
-		heap.pop();
 		anim_array.push(["remove",node,distance[node.id]]);
 		context_array.push(`removed ${node.id} from heap`)
 		anim_array.push(["jump",node]);
 		context_array.push(`went to ${node.id}`);
+		heap.pop();
+		// anim_array.push(["remove",node,distance[node.id]]);
+		// context_array.push(`removed ${node.id} from heap`)
+		// anim_array.push(["jump",node]);
+		// context_array.push(`went to ${node.id}`);
 		for(nodes in node.connections)
 		{
 			var pair = node.connections[nodes];

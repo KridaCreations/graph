@@ -358,27 +358,27 @@ function play_animation(event)
 		play_button.textContent = "Stop";
 		if (baked_animation === 0)
 		{
-			play_dfs(current_stage,anim_array);
+			play_dfs(current_stage+1,anim_array);
 		}
 		else if (baked_animation === 1)
 		{
-			play_bfs(current_stage,anim_array);
+			play_bfs(current_stage+1,anim_array);
 		}
 		else if (baked_animation === 2)
 		{
-			play_dijsktra(current_stage,anim_array);
+			play_dijsktra(current_stage+1,anim_array);
 		}
 		else if (baked_animation === 3)
 		{
-			play_prims(current_stage,anim_array);
+			play_prims(current_stage+1,anim_array);
 		}
 		else if (algorithm_label.selectedIndex === 4)
 		{
-			play_kruskal(current_stage,anim_array);
+			play_kruskal(current_stage+1,anim_array);
 		}
 		else if (algorithm_label.selectedIndex === 5)
 		{
-			play_dfstree(current_stage,anim_array);
+			play_dfstree(current_stage+1,anim_array);
 		}
 		
 
