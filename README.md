@@ -24,6 +24,9 @@ I have spent a hard time understanding and viualizing graph-algorithms, so i dec
 * https://kridacreations.github.io/graph/
 * https://algorithmvisualizer.bitbucket.io/
 
+# youtube video for "how to use"
+* https://youtu.be/ex5K2wV2pDk
+
 # Screen Shot of the project
 ### still from visualizing Dijsktra algorithm
 ![Demo screen shot](images/demo_image.jpg)
