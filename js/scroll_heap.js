@@ -315,8 +315,8 @@ class ScrollHeap
         {
             try{
                 // print_array_wr(this.items);
-                        console.log("swap");
-                        console.log(index1+" "+index2);
+                        // console.log("swap");
+                        // console.log(index1+" "+index2);
                         var temp_node = this.items[index1].node;
                         var temp_value = this.items[index1].value;
                         var temp_pos = index1;
@@ -387,34 +387,22 @@ class ScrollHeap
             {
                 duration = 0;
             }
-            console.log("animation_started "+start+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
+            // console.log("animation_started "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
             var animateScroll =function()
             {
                 currentTime += increment;
                 var val = Math.easeInOutQuad(currentTime,start,change,duration);
 
                 scroll_box.scrollTop = val;
+                // console.log("animation_playing "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
                 if (currentTime < duration) {
                   setTimeout(animateScroll, increment);
                 }
                 else
                 {
-                    var scale_anim = scroll_box.firstElementChild.animate(
-                      [
-                        { transform: 'scale(1)'},
-                        { transform: 'scale(0)'}
-                      ], delay*1000*transition_factor);
-                    scale_anim.onfinish = function ()
-                    {
-                        console.log("animation_ended "+start+" "+change+" "+currentTime+" "+increment+" "+current_heap+" "+scroll_box.id);
-                        // scroll_box.firstElementChild.remove();
-                        var top_element = current_heap.items[0].node;
-                        // this.items[this.position[element]].value = new_value;
-                        current_heap.swap(0,current_heap.size()-1);
-                        scroll_box.children[current_heap.size()-1].remove();
-                        current_heap.items.pop();
-                        delete current_heap.position[top_element];
-                    };
+
+                    current_heap.delete_element(scroll_box.firstElementChild,delay*1000*transition_factor)
+                    
                 }
             };
             animateScroll();
@@ -432,7 +420,7 @@ class ScrollHeap
             {
                 duration = 0;
             }
-            console.log("animation_started "+start+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
+            // console.log("animation_started "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
             var animateScroll =function()
             {
                 currentTime += increment;
@@ -442,33 +430,13 @@ class ScrollHeap
                     val = scroll_box.scrollTop;
                 }
                 scroll_box.scrollTop = val;
+                // console.log("animation_playing "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
                 if (currentTime < duration) {
                   setTimeout(animateScroll, increment);
                 }
                 else
                 {
-                    var font_min = scroll_element.children[1].animate(
-                      [
-                        { fontSize: "1.3em"},
-                        { fontSize: '0em'}
-                      ], delay*1000*transition_factor);
-                    font_min.onfinish = function ()
-                    {
-                        scroll_element.children[1].style["fontSize"] = '0em';
-                        scroll_element.children[1].textContent = value;
-                        current_heap.items[current_heap.position[element]].value = value;
-                        // this.items[this.position[element]].value = new_value;
-                        var font_max = scroll_element.children[1].animate(
-                          [
-                            { fontSize: "0em"},
-                            { fontSize: '1.3em'}
-                          ], delay*1000*transition_factor);
-                        font_max.onfinish = function ()
-                        {
-                            console.log("animation_ended "+start+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id)
-                            scroll_element.children[1].style["fontSize"] = '1.3em';
-                        };
-                    };
+                    current_heap.change_element(element,scroll_element.children[1],value,delay*1000*transition_factor);    
                 }
             };
             animateScroll();
@@ -496,35 +464,142 @@ class ScrollHeap
 
             this.items.push({"node":element,"value":value});
             this.position[element] = this.size()-1;
-
+            var current_heap = this
             var scroll_box = this.scroll_box;
             if(change === 0)
             {
                 duration = 0;
             }
-            console.log("animation_started "+start+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
+            // console.log("animation_started "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
             var animateScroll =function()
             {
                 currentTime += increment;
                 var val = Math.easeInOutQuad(currentTime,start,change,duration);
 
                 scroll_box.scrollTop = val;
+                // console.log("animation_playing "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
                 if (currentTime < duration) {
                   setTimeout(animateScroll, increment);
                 }
                 else
                 {
-                    // new_scroll_element.style["transform"] = 'scale(0)';
-                    var scale_anim = new_scroll_element.animate(
-                      [
-                        { transform: `scale(0)`},
-                        { transform: 'scale(1)'}
-                      ], delay*1000*transition_factor);
-                    scale_anim.onfinish = function ()
+                    current_heap.add_element(new_scroll_element,delay*1000*transition_factor);
+                    
+                }
+            };
+            animateScroll();
+        }
+        change_element(parent,element,new_value,duration)
+        {
+            var start = 1.3;
+            var change = -1.3;
+            var currentTime = 0;
+            var increment = 10;
+            var current_heap = this;
+            var scroll_box = this.scroll_box;
+            if(change === 0)
+            {
+                duration = 0;
+            }
+            var animateScroll =function()
+            {
+                currentTime += increment;
+                var val = Math.easeInOutQuad(currentTime,start,change,duration);
+                element.style["fontSize"] = `${val}em`;
+                if (currentTime < duration) {
+                  setTimeout(animateScroll, increment);
+                }
+                else
+                {
+                    element.style["fontSize"] = `${0}em`;
+                    element.textContent = new_value;
+                    current_heap.items[current_heap.position[parent]].value = new_value;
+
+
+                    var start = 0;
+                    var change = 1.3;
+                    var currentTime = 0;
+                    var increment = 10;
+                    var animateScroll =function()
                     {
-                        console.log("animation_ended "+start+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id)
-                        new_scroll_element.style["transform"] = 'scale(1)';
+                        currentTime += increment;
+                        var val = Math.easeInOutQuad(currentTime,start,change,duration);
+                        element.style["fontSize"] = `${val}em`;
+                        if (currentTime < duration) {
+                          setTimeout(animateScroll, increment);
+                        }
+                        else
+                        {
+                            element.style["fontSize"] = '1.3em';
+                            
+                        }
                     };
+                    animateScroll();
+
+                }
+            };
+            animateScroll();
+        }
+        add_element(element,duration)
+        {
+            var start = 0;
+            var change = 1;
+            var currentTime = 0;
+            var increment = 10;
+
+            if(change === 0)
+            {
+                duration = 0;
+            }
+            // console.log("animation_started "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
+            var animateScroll =function()
+            {
+                currentTime += increment;
+                var val = Math.easeInOutQuad(currentTime,start,change,duration);
+
+                element.style["transform"] = `scale(${val})`;
+                // console.log("animation_playing "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
+                if (currentTime < duration) {
+                  setTimeout(animateScroll, increment);
+                }
+                else
+                {
+                    element.style["transform"] = 'scale(1)';
+                }
+            };
+            animateScroll();
+        }
+        delete_element(element,duration)
+        {
+
+            var start = 1;
+            var change = -1;
+            var currentTime = 0;
+            var increment = 10;
+            var current_heap = this
+            var scroll_box = this.scroll_box;
+            if(change === 0)
+            {
+                duration = 0;
+            }
+            // console.log("animation_started "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id);
+            var animateScroll =function()
+            {
+                currentTime += increment;
+                var val = Math.easeInOutQuad(currentTime,start,change,duration);
+
+                element.style["transform"] = `scale(${val})`;
+                if (currentTime < duration) {
+                  setTimeout(animateScroll, increment);
+                }
+                else
+                {
+                        element.style["transform"] = `scale(${1})`;
+                        var top_element = current_heap.items[0].node;
+                        current_heap.swap(0,current_heap.size()-1);
+                        scroll_box.children[current_heap.size()-1].remove();
+                        current_heap.items.pop();
+                        delete current_heap.position[top_element];
                 }
             };
             animateScroll();
@@ -538,3 +613,66 @@ Math.easeInOutQuad = function (t,b,c,d) {
     t--;
     return -c/2 * (t*(t-2)-1) + b;
 };
+
+
+
+
+// var scale_anim = new_scroll_element.animate(
+                    //   [
+                    //     { transform: `scale(0)`},
+                    //     { transform: 'scale(1)'}
+                    //   ], delay*1000*transition_factor);
+                    // scale_anim.onfinish = function ()
+                    // {
+                    //     console.log("animation_ended "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id)
+                    //     new_scroll_element.style["transform"] = 'scale(1)';
+                    // };
+
+
+
+
+
+
+// var scale_anim = scroll_box.firstElementChild.animate(
+                    //   [
+                    //     { transform: 'scale(1)'},
+                    //     { transform: 'scale(0)'}
+                    //   ], delay*1000*transition_factor);
+                    // scale_anim.onfinish = function ()
+                    // {
+                    //     console.log("animation_ended "+start+" "+change+" "+currentTime+" "+increment+" "+current_heap+" "+scroll_box.id);
+                    //     // scroll_box.firstElementChild.remove();
+                    //     var top_element = current_heap.items[0].node;
+                    //     // this.items[this.position[element]].value = new_value;
+                    //     current_heap.swap(0,current_heap.size()-1);
+                    //     scroll_box.children[current_heap.size()-1].remove();
+                    //     current_heap.items.pop();
+                    //     delete current_heap.position[top_element];
+                    // };
+
+
+
+
+
+// var font_min = scroll_element.children[1].animate(
+                    //   [
+                    //     { fontSize: "1.3em"},
+                    //     { fontSize: '0em'}
+                    //   ], delay*1000*transition_factor);
+                    // font_min.onfinish = function ()
+                    // {
+                    //     scroll_element.children[1].style["fontSize"] = '0em';
+                    //     scroll_element.children[1].textContent = value;
+                    //     current_heap.items[current_heap.position[element]].value = value;
+                    //     // this.items[this.position[element]].value = new_value;
+                    //     var font_max = scroll_element.children[1].animate(
+                    //       [
+                    //         { fontSize: "0em"},
+                    //         { fontSize: '1.3em'}
+                    //       ], delay*1000*transition_factor);
+                    //     font_max.onfinish = function ()
+                    //     {
+                    //         console.log("animation_ended "+start+" "+duration+" "+change+" "+currentTime+" "+increment+" "+this+" "+scroll_box.id)
+                    //         scroll_element.children[1].style["fontSize"] = '1.3em';
+                    //     };
+                    // };

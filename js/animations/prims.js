@@ -76,10 +76,10 @@ function perform_prims_fast(stage,anim_array)
 	{
 		return;
 	}
-	console.log("stage " + (stage));
-	print_array(anim_array[stage]);
-	print_object(scroll_heap.items);
-	print_object_real(scroll_heap.position);
+	// console.log("stage " + (stage));
+	// print_array(anim_array[stage]);
+	// print_object(scroll_heap.items);
+	// print_object_real(scroll_heap.position);
 	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add") 
 	{
@@ -187,10 +187,10 @@ function perform_prims_fast_back(stage,anim_array)
 	{
 		return;
 	}
-	console.log("stage " + (stage+1));
-	print_array(anim_array[stage+1]);
-	print_object(scroll_heap.items);
-	print_object_real(scroll_heap.position);
+	// console.log("stage " + (stage+1));
+	// print_array(anim_array[stage+1]);
+	// print_object(scroll_heap.items);
+	// print_object_real(scroll_heap.position);
 	context_label.textContent = context_array[stage];
 	if (anim_array[stage+1][0] === "add")
 	{
@@ -322,10 +322,10 @@ function perform_prims (stage,anim_array)
 	{
 		return;
 	}
-	console.log("stage " + (stage));
-	print_array(anim_array[stage]);
-	print_object(scroll_heap.items);
-	print_object_real(scroll_heap.position);
+	// console.log("stage " + (stage));
+	// print_array(anim_array[stage]);
+	// print_object(scroll_heap.items);
+	// print_object_real(scroll_heap.position);
 	context_label.textContent = context_array[stage];
 	if (anim_array[stage][0] === "add")
 	{
