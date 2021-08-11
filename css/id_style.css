@@ -18,13 +18,13 @@
 	font-weight: bolder;
 }
 
-#tutorial_button
+/*#tutorial_button
 {
 	pointer-events: all;
 	float:right; 
 	margin-right: 10px;
 	margin-top: 5px;
-}
+}*/
 
 #skip_button
 {

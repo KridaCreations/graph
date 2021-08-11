@@ -1,3 +1,22 @@
+.links
+{
+	/*pointer-events: all;
+	
+	margin-right: 10px;
+	margin-top: 5px;*/
+	text-decoration: none;
+	float:right; 
+	display: flex; 
+	justify-content: center; 
+	align-items: center; 
+	/*margin:5px; */
+	padding-top: 4px; 
+	height:30px; 
+	margin-right: 8px; 
+	/*font-size: 15px;*/
+}
+
+
 .detail_tab_style
 {
 	z-index: 10;
@@ -146,6 +165,7 @@
 
 .radio_buttons
 {
+	pointer-events: all;
 	cursor: pointer;
 	border-radius: 6px;
 	user-select: none;
